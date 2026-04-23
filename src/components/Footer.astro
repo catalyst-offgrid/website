@@ -1,0 +1,33 @@
+---
+import { site } from "../data/site";
+const year = new Date().getFullYear();
+---
+<footer class="bg-brand-blue text-white mt-16">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12 grid gap-8 sm:grid-cols-3">
+    <div>
+      <div class="font-display text-lg font-bold">{site.name}</div>
+      <p class="text-sm text-white/70 mt-2">{site.tagline}</p>
+    </div>
+    <div>
+      <div class="text-sm font-semibold mb-3">Contact</div>
+      <a href={`mailto:${site.contactEmail}`} class="text-sm text-white/80 hover:text-brand-gold">
+        {site.contactEmail}
+      </a>
+    </div>
+    <div>
+      <div class="text-sm font-semibold mb-3">More</div>
+      <ul class="space-y-2">
+        {site.footerLinks.map((item) => (
+          <li>
+            <a href={item.href} class="text-sm text-white/80 hover:text-brand-gold">{item.label}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-white/10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 text-xs text-white/60">
+      &copy; {year} {site.name}. All rights reserved.
+    </div>
+  </div>
+</footer>
