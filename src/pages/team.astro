@@ -58,16 +58,16 @@ function headshot(file?: string) {
     </div>
   </section>
 
-  <section class="bg-brand-blue text-white">
+  <section class="bg-white">
     <div class="max-w-6xl mx-auto px-6 py-16">
       <h2 class="text-center font-display font-light text-3xl sm:text-4xl">
-        <span class="text-white">Affiliated</span> <span class="text-brand-gold">Advisors</span>
+        <span class="text-brand-blue">Affiliated</span> <span class="text-brand-gold">Advisors</span>
       </h2>
       <div class="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {advisors.map((m) => (
           <article>
             <h3 class="font-display text-sm font-semibold text-brand-gold uppercase tracking-widest">{m.name}</h3>
-            {m.bio && <p class="mt-2 text-sm text-white/85 leading-relaxed">{m.bio}</p>}
+            {m.bio && <p class="mt-2 text-sm text-slate-700 leading-relaxed">{m.bio}</p>}
           </article>
         ))}
       </div>
