@@ -4,13 +4,15 @@ import lockup from "../assets/images/logos/catalyst-white.png";
 import { site } from "../data/site";
 const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
 ---
-<header class="bg-brand-blue text-white">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-6 flex items-center justify-between gap-6">
+<header class="bg-brand-blue text-white relative">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-5 flex items-center justify-between gap-6">
     <a href="/" class="block shrink-0" aria-label="Catalyst Energy Advisors home">
-      <Image src={lockup} alt="Catalyst Energy Advisors" class="h-11 w-auto" width={480} height={84} />
+      <Image src={lockup} alt="Catalyst Energy Advisors" class="h-10 sm:h-11 w-auto" width={480} height={84} />
     </a>
-    <nav aria-label="Primary">
-      <ul class="flex items-center gap-2 sm:gap-7">
+
+    <!-- Desktop nav -->
+    <nav aria-label="Primary" class="hidden md:block">
+      <ul class="flex items-center gap-6 lg:gap-7">
         {site.nav.map((item) => {
           const normalized = item.href.replace(/\/$/, "") || "/";
           const isActive = currentPath === normalized;
@@ -31,5 +33,65 @@ const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
         })}
       </ul>
     </nav>
+
+    <!-- Mobile hamburger button -->
+    <button
+      id="mobile-menu-toggle"
+      type="button"
+      class="md:hidden p-2 -mr-2 text-white hover:text-brand-gold"
+      aria-label="Toggle menu"
+      aria-controls="mobile-menu"
+      aria-expanded="false"
+    >
+      <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
   </div>
+
+  <!-- Mobile drawer -->
+  <nav
+    id="mobile-menu"
+    aria-label="Primary mobile"
+    class="md:hidden hidden absolute left-0 right-0 top-full bg-brand-blue border-t border-white/10 shadow-lg z-40"
+  >
+    <ul class="px-4 py-4 space-y-1">
+      {site.nav.map((item) => {
+        const normalized = item.href.replace(/\/$/, "") || "/";
+        const isActive = currentPath === normalized;
+        return (
+          <li>
+            <a
+              href={item.href}
+              class:list={[
+                "block px-2 py-3 text-lg tracking-wide hover:text-brand-gold transition-colors",
+                isActive ? "text-brand-gold" : "text-white"
+              ]}
+              aria-current={isActive ? "page" : undefined}
+            >
+              {item.label}
+            </a>
+          </li>
+        );
+      })}
+    </ul>
+  </nav>
 </header>
+
+<script is:inline>
+  function initCatalystMobileNav() {
+    const btn = document.getElementById("mobile-menu-toggle");
+    const menu = document.getElementById("mobile-menu");
+    if (!btn || !menu || btn.dataset.bound === "1") return;
+    btn.dataset.bound = "1";
+    btn.addEventListener("click", function () {
+      var isHidden = menu.classList.toggle("hidden");
+      btn.setAttribute("aria-expanded", String(!isHidden));
+    });
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initCatalystMobileNav);
+  } else {
+    initCatalystMobileNav();
+  }
+</script>
