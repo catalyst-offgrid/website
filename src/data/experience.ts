@@ -51,7 +51,7 @@ export const projects: Project[] = [
     image: "shell-sdg7.jpg",
     logo: "shell-foundation-logo.png",
     body: `In 2017, Catalyst, in partnership with Shell Foundation, developed the groundbreaking report <a href="https://shellfoundation.org/wp-content/uploads/2018/10/Catalyst-Report.pdf" target="_blank" rel="noopener">Achieving SDG 7: The Need to Disrupt Off-Grid Electricity Financing in Africa</a>, highlighting the funding gap preventing universal energy access. The report examines the scale of investment required and proposes innovative financing solutions to accelerate off-grid electrification. By combining predictive modeling with enterprise-level insights, it outlines a pathway for scaling solar home systems and mini-grids, ensuring that underserved households can access modern, reliable energy.`,
-    section: "enterprise",
+    section: "strategy",
   },
   {
     slug: "acumen-hardest-to-reach",
@@ -107,7 +107,7 @@ export const projects: Project[] = [
     title: "SEforALL Sierra Leone Healthcare",
     image: "seforall-sierra-leone.jpg",
     logo: "seforall-logo.png",
-    body: `Catalyst conducted an impact assessment and developmental evaluation of SEforALL's Healthcare Electrification Project in Sierra Leone. The work aimed to assess the program's effectiveness in electrifying health facilities and its broader impacts on service delivery and sustainability. Using a mixed-methods approach, Catalyst evaluated health, and environmental benefits while identifying lessons for scaling and replication. The study also developed a results framework and measurement tools to enhance future health facility electrification efforts in Sierra Leone and beyond.`,
+    body: `Catalyst conducted an impact assessment and developmental evaluation of SEforALL's Healthcare Electrification Project in Sierra Leone. The work aimed to assess the program's effectiveness in electrifying health facilities and its broader impacts on service delivery, patient outcomes, and sustainability. Using a mixed-methods approach, Catalyst is evaluating health, economic, and environmental benefits while identifying lessons for scaling and replication. The study also developed a results framework and measurement tools to enhance future health facility electrification efforts in Sierra Leone and beyond.`,
     section: "strategy",
   },
   {
@@ -116,7 +116,7 @@ export const projects: Project[] = [
     image: "ifc-paygo.jpg",
     logo: "ifc-logo.png",
     body: `Catalyst developed and delivered a capacity-building curriculum for small-scale (1kW-5kW) distributed solar sales and distribution businesses in Nigeria to help companies scale their activities and impact through a cohort training series featuring online and in-person workshops. Catalyst has also supported the IFC in assessing the viability of a standardized backup servicing agreement for PAYGo businesses in the off-grid solar industry and developing a roadmap.`,
-    section: "strategy",
+    section: "enterprise",
   },
   {
     slug: "brilho-mozambique",
