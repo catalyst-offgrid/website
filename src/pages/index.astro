@@ -3,7 +3,7 @@ import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { values } from "../data/values";
 import { expertise } from "../data/expertise";
-import { partners } from "../data/partners";
+import { partners, innovations } from "../data/partners";
 import catalystIcon from "../assets/images/logos/catalyst-blue.png";
 import heroVillage from "../assets/images/heroes/home-village.jpg";
 import nightlights from "../assets/images/heroes/nightlights.jpg";
@@ -66,7 +66,7 @@ function partnerImg(filename: string) {
         {values.map((v, i) => {
           const gold = (i % 2) === 1;
           return (
-            <div class="border-t-2 border-brand-gold pt-5">
+            <div class="border-l-2 border-brand-blue pl-6">
               <h3 class:list={["font-display text-2xl sm:text-3xl font-semibold", gold ? "text-brand-gold" : "text-brand-blue"]}>{v.title}</h3>
               <p class="mt-3 text-lg text-slate-700 leading-relaxed">{v.body}</p>
             </div>
@@ -87,6 +87,21 @@ function partnerImg(filename: string) {
             <p class="mt-3 text-sm leading-relaxed text-white/90">{e.body}</p>
           </div>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- INNOVATIONS -->
+  <section class="bg-white">
+    <div class="max-w-6xl mx-auto px-6 py-20">
+      <h2 class="section-heading">Innovations</h2>
+      <p class="mt-6 text-center text-slate-700 max-w-3xl mx-auto leading-relaxed">
+        We're entrepreneurs, and have a natural itch to identify solutions to market failures and opportunities that we see in the energy access space. This includes conceptualizing and rolling out <a href="https://www.venture-builder.com/" target="_blank" rel="noopener" class="text-brand-gold hover:underline">VentureBuilder</a>, <a href="https://accessinsights.org/" target="_blank" rel="noopener" class="text-brand-gold hover:underline">Access Insights Platform</a> and the <a href="https://www.maf-lab.com/" target="_blank" rel="noopener" class="text-brand-gold hover:underline">MAF Lab</a> (formerly PAYGo Lab).
+      </p>
+      <div class="mt-10 text-center">
+        <a href="/innovations" class="inline-block bg-brand-gold text-brand-blue font-semibold px-8 py-3 hover:bg-brand-gold-deep transition">
+          Learn more &rsaquo;
+        </a>
       </div>
     </div>
   </section>
