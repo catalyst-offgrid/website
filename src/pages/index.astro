@@ -8,7 +8,6 @@ import catalystIcon from "../assets/images/logos/catalyst-blue.png";
 import heroVillage from "../assets/images/heroes/home-village.jpg";
 import nightlights from "../assets/images/heroes/nightlights.jpg";
 import worldMap from "../assets/images/map/world-map.png";
-import mapLegend from "../assets/images/map/map-legend.png";
 
 const partnerImages = import.meta.glob<{ default: ImageMetadata }>(
   "../assets/images/partners/*.{png,jpg,jpeg,webp}",
@@ -109,7 +108,6 @@ function partnerImg(filename: string) {
         </div>
         <div class="relative">
           <Image src={worldMap} alt="Map of countries where Catalyst has worked" class="w-full h-auto" width={900} height={500} />
-          <Image src={mapLegend} alt="" aria-hidden="true" class="absolute bottom-2 right-2 w-28 sm:w-32 h-auto pointer-events-none drop-shadow" width={200} height={140} />
         </div>
       </div>
     </div>
