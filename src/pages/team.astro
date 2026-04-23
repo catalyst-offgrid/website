@@ -1,0 +1,30 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import TeamCard from "../components/TeamCard.astro";
+import { team } from "../data/team";
+
+const core = team.filter((m) => m.group === "core");
+const advisors = team.filter((m) => m.group === "advisor");
+---
+<BaseLayout title="Team">
+  <Hero title="Our team" subtitle="A decentralized, global team of energy access practitioners." />
+
+  <section>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-16">
+      <h2 class="font-display text-3xl font-light text-brand-blue">Our core team</h2>
+      <div class="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        {core.map((m) => <TeamCard name={m.name} role={m.role} bio={m.bio} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-slate-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-16">
+      <h2 class="font-display text-3xl font-light text-brand-blue">Affiliated advisors</h2>
+      <div class="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        {advisors.map((m) => <TeamCard name={m.name} role={m.role} bio={m.bio} />)}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

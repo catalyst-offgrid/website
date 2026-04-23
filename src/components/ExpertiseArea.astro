@@ -1,0 +1,8 @@
+---
+interface Props { title: string; body: string; }
+const { title, body } = Astro.props;
+---
+<div class="py-6 border-b border-slate-200">
+  <h3 class="font-display text-lg font-semibold text-brand-blue">{title}</h3>
+  <p class="mt-2 text-slate-700 leading-relaxed">{body}</p>
+</div>

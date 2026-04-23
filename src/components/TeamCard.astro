@@ -1,0 +1,13 @@
+---
+interface Props { name: string; role: string; bio?: string; }
+const { name, role, bio } = Astro.props;
+const initials = name.split(" ").map((s) => s[0]).slice(0, 2).join("");
+---
+<div class="flex flex-col items-center text-center p-4">
+  <div class="w-32 h-32 rounded-full bg-brand-blue text-white flex items-center justify-center font-display text-2xl font-semibold shadow-sm">
+    {initials}
+  </div>
+  <div class="mt-4 font-display text-lg font-semibold text-brand-blue">{name}</div>
+  <div class="text-sm text-brand-cyan font-medium">{role}</div>
+  {bio && <p class="mt-2 text-sm text-slate-700 leading-relaxed">{bio}</p>}
+</div>

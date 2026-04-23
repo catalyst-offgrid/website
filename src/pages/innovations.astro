@@ -1,0 +1,27 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import { innovations } from "../data/partners";
+---
+<BaseLayout title="Innovations">
+  <Hero
+    title="Our innovations."
+    subtitle="We build the platforms and tools the sector needs — then spin them into independent ventures."
+  />
+
+  <section>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-20 space-y-10">
+      {innovations.map((i) => (
+        <article class="grid gap-4 md:grid-cols-[200px_1fr] items-start border-b border-slate-200 pb-10">
+          <div class="font-display text-2xl text-brand-blue">{i.name}</div>
+          <div>
+            <p class="text-slate-700 leading-relaxed">{i.summary}</p>
+            <a href={i.url} target="_blank" rel="noopener" class="inline-block mt-3 text-brand-cyan font-semibold hover:underline">
+              Visit {i.name} →
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

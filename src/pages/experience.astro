@@ -1,0 +1,30 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import ExpertiseArea from "../components/ExpertiseArea.astro";
+import { expertise } from "../data/expertise";
+---
+<BaseLayout title="Experience">
+  <Hero
+    title="Our experience."
+    subtitle="Decades of combined expertise delivering energy access strategy, analysis, and enterprise development across emerging markets."
+  />
+
+  <section>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-20">
+      <h2 class="font-display text-3xl font-light text-brand-blue">What we do</h2>
+      <div class="mt-8 grid gap-6 md:grid-cols-2">
+        {expertise.map((e) => <ExpertiseArea title={e.title} body={e.body} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-slate-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-16">
+      <h2 class="font-display text-2xl font-light text-brand-blue">Representative engagements</h2>
+      <p class="mt-4 text-slate-700 leading-relaxed max-w-3xl">
+        Our team has led market-defining research and strategy work for governments, development finance institutions, foundations, and private investors. Specific project profiles are available on request — <a href="/contact" class="text-brand-cyan underline">get in touch</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
