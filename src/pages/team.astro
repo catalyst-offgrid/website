@@ -38,11 +38,19 @@ function headshot(file?: string) {
                 </div>
               )}
               <h3 class="mt-4 font-display text-lg font-semibold text-brand-blue">{m.name}</h3>
-              <p class="text-sm text-brand-gold font-semibold">{m.role}</p>
-              {m.bio && <p class="mt-3 text-sm text-slate-700 leading-relaxed max-w-xs">{m.bio}</p>}
-              <a href="#" aria-label={`${m.name} on LinkedIn`} class="mt-3 w-8 h-8 rounded-full bg-slate-200 text-brand-blue flex items-center justify-center hover:bg-brand-gold/30">
-                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.555v-5.569c0-1.328-.025-3.037-1.852-3.037-1.853 0-2.136 1.447-2.136 2.94v5.666H9.352V9h3.414v1.561h.05c.476-.9 1.637-1.85 3.37-1.85 3.602 0 4.268 2.37 4.268 5.455v6.284zM5.337 7.433a2.063 2.063 0 1 1 0-4.126 2.063 2.063 0 0 1 0 4.126zM7.114 20.45H3.555V9h3.56v11.45zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.225.792 24 1.771 24h20.451C23.2 24 24 23.225 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-              </a>
+              <p class="text-sm text-brand-gold font-semibold uppercase tracking-wider">{m.role}</p>
+              {m.bio && <p class="mt-3 text-sm text-slate-700 leading-relaxed max-w-[22rem]">{m.bio}</p>}
+              {m.linkedin && (
+                <a
+                  href={m.linkedin}
+                  target="_blank"
+                  rel="noopener"
+                  aria-label={`${m.name} on LinkedIn`}
+                  class="mt-3 w-8 h-8 rounded-full bg-slate-200 text-brand-blue flex items-center justify-center hover:bg-brand-gold/30"
+                >
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.555v-5.569c0-1.328-.025-3.037-1.852-3.037-1.853 0-2.136 1.447-2.136 2.94v5.666H9.352V9h3.414v1.561h.05c.476-.9 1.637-1.85 3.37-1.85 3.602 0 4.268 2.37 4.268 5.455v6.284zM5.337 7.433a2.063 2.063 0 1 1 0-4.126 2.063 2.063 0 0 1 0 4.126zM7.114 20.45H3.555V9h3.56v11.45zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.225.792 24 1.771 24h20.451C23.2 24 24 23.225 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                </a>
+              )}
             </article>
           );
         })}
@@ -55,11 +63,11 @@ function headshot(file?: string) {
       <h2 class="text-center font-display font-light text-3xl sm:text-4xl">
         <span class="text-white">Affiliated</span> <span class="text-brand-gold">Advisors</span>
       </h2>
-      <div class="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {advisors.map((m) => (
           <article>
-            <h3 class="font-display text-base font-semibold text-brand-gold uppercase tracking-wider">{m.name}</h3>
-            <p class="mt-2 text-sm text-white/85 leading-relaxed">{m.bio}</p>
+            <h3 class="font-display text-sm font-semibold text-brand-gold uppercase tracking-widest">{m.name}</h3>
+            {m.bio && <p class="mt-2 text-sm text-white/85 leading-relaxed">{m.bio}</p>}
           </article>
         ))}
       </div>
