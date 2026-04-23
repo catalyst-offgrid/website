@@ -79,18 +79,17 @@ const sections = [
                 {!isContain && !p.noBadge && (() => {
                   const logoList = p.logos && p.logos.length > 0 ? p.logos : (p.logo ? [p.logo] : []);
                   const isMulti = logoList.length > 1;
-                  // Size: multi-logo row uses smaller logos; single logo uses max-h-12 or max-h-16 (logoLarge)
                   const logoCls = isMulti ? "max-h-8 w-auto object-contain" : (p.logoLarge ? "max-h-16 w-auto object-contain" : "max-h-12 w-auto object-contain");
                   if (logoList.length === 0) {
                     return (
-                      <div class:list={["absolute top-4 z-20 flex items-center max-w-[45%]", rightCol ? "right-4 justify-end" : "left-4 justify-start"]}>
+                      <div class:list={["tile-logo-badge absolute top-4 z-20 flex items-center max-w-[45%]", rightCol ? "right-4 justify-end" : "left-4 justify-start"]}>
                         <span class="font-display text-sm font-bold text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.7)] leading-tight">{p.title}</span>
                       </div>
                     );
                   }
                   return (
                     <div class:list={[
-                      "absolute top-4 z-20 flex items-center gap-3",
+                      "tile-logo-badge absolute top-4 z-20 flex items-center gap-3",
                       isMulti ? "left-4 right-4 justify-center" : (rightCol ? "right-4" : "left-4"),
                       isMulti ? "" : "max-w-[45%]"
                     ]}>
@@ -105,6 +104,21 @@ const sections = [
                   );
                 })()}
                 <div class="tile-overlay">
+                  {!isContain && !p.noBadge && (() => {
+                    const logoList = p.logos && p.logos.length > 0 ? p.logos : (p.logo ? [p.logo] : []);
+                    const isMulti = logoList.length > 1;
+                    const logoCls = isMulti ? "max-h-8 w-auto object-contain" : (p.logoLarge ? "max-h-16 w-auto object-contain" : "max-h-12 w-auto object-contain");
+                    if (logoList.length === 0) return null;
+                    return (
+                      <div class:list={["flex items-center gap-3 mb-4 shrink-0", isMulti ? "justify-center" : "justify-start"]}>
+                        {logoList.map((filename) => {
+                          if (filename.endsWith(".svg")) return <img src={`/logos/${filename}`} alt="" class={logoCls} />;
+                          const meta = img(filename);
+                          return meta ? <Image src={meta} alt="" class={logoCls} /> : null;
+                        })}
+                      </div>
+                    );
+                  })()}
                   <div class="tile-body" set:html={p.body}></div>
                 </div>
               </article>

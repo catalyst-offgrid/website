@@ -136,11 +136,15 @@
   visibility: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   padding: 1.25rem 1.75rem 1.5rem;
   overflow: auto;
   text-align: left;
-  z-index: 30;
+}
+.tile:hover .tile-logo-badge,
+.tile:focus-within .tile-logo-badge,
+.tile.is-open .tile-logo-badge {
+  visibility: hidden;
 }
 .tile:hover .tile-overlay,
 .tile:focus-within .tile-overlay,
