@@ -49,7 +49,7 @@ export const team: TeamMember[] = [
   {
     name: "Ian Muir",
     role: "Head of Insights",
-    bio: "Ian has 15+ years of diverse energy-sector experience with tech and business-model expertise across off-grid solar, mini-grids, and clean cooking. In addition to Catalyst, he has worked for the World Bank, EarthSpark International, and PFC Energy (now S&P Global).",
+    bio: "Ian has 20 years of energy-sector experience, with expertise in the technology and business models driving off-grid solar, mini-grids, and clean cooking. Prior to joining Catalyst, he held roles at the World Bank, EarthSpark International, and PFC Energy (now S&P Global). He is also currently a Fellow at the Energy for Growth Hub.",
     headshot: "ian-muir.png",
     linkedin: "https://www.linkedin.com/in/iandmuir/",
     group: "core",
