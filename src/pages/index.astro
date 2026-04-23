@@ -8,8 +8,8 @@ import catalystIcon from "../assets/images/logos/catalyst-blue.png";
 import heroVillage from "../assets/images/heroes/home-village.jpg";
 import nightlights from "../assets/images/heroes/nightlights.jpg";
 import worldMap from "../assets/images/map/world-map.png";
+import mapLegend from "../assets/images/map/map-legend.png";
 
-// Pre-load partner logos via glob so <Image> can optimize them.
 const partnerImages = import.meta.glob<{ default: ImageMetadata }>(
   "../assets/images/partners/*.{png,jpg,jpeg,webp}",
   { eager: true }
@@ -20,7 +20,7 @@ function partnerImg(filename: string) {
 }
 ---
 <BaseLayout>
-  <!-- HERO: full-bleed village photo + right-anchored translucent card with white+gold headline -->
+  <!-- HERO -->
   <section class="relative min-h-[600px] flex items-center overflow-hidden">
     <Image src={heroVillage} alt="" class="absolute inset-0 w-full h-full object-cover" width={2000} height={1125} />
     <div class="relative max-w-7xl mx-auto w-full px-6 py-16 flex justify-center text-white">
@@ -28,7 +28,7 @@ function partnerImg(filename: string) {
         <h1 class="font-display font-bold text-3xl sm:text-4xl leading-tight">
           <span class="text-white">Catalyst Energy Advisors</span> <span class="text-brand-gold">is a specialized consulting firm that focuses exclusively on the energy access deficit in emerging markets</span>
         </h1>
-        <div class="mt-8 border-l-2 border-brand-gold pl-5 space-y-4 max-w-[calc(100%-9rem)] sm:max-w-[calc(100%-10rem)]">
+        <div class="mt-8 border-l-2 border-brand-gold pl-5 space-y-4 max-w-[calc(100%-10rem)]">
           <p class="text-xl sm:text-2xl font-semibold leading-relaxed">
             We help transform markets that power lives and livelihoods.
           </p>
@@ -36,12 +36,12 @@ function partnerImg(filename: string) {
             Our vision is a world where every community is powered by clean, reliable, and sustainable energy.
           </p>
         </div>
-        <Image src={catalystIcon} alt="" aria-hidden="true" class="absolute -right-4 -bottom-4 w-24 h-24 sm:w-28 sm:h-28 pointer-events-none" width={234} height={234} />
+        <Image src={catalystIcon} alt="" aria-hidden="true" class="absolute right-8 bottom-8 w-20 h-20 sm:w-24 sm:h-24 opacity-95 pointer-events-none" width={234} height={234} />
       </div>
     </div>
   </section>
 
-  <!-- DEFINITION PANEL: nightlights background + gold lockup watermark + definition -->
+  <!-- DEFINITION PANEL -->
   <section class="relative bg-brand-blue text-white">
     <Image src={nightlights} alt="" class="absolute inset-0 w-full h-full object-cover opacity-70" width={2000} height={1000} />
     <div class="absolute inset-0 bg-brand-blue/50"></div>
@@ -58,32 +58,17 @@ function partnerImg(filename: string) {
     </div>
   </section>
 
-  <!-- OUR VALUES -->
+  <!-- OUR VALUES: stacked vertical, alternating title color, larger text -->
   <section class="bg-white">
-    <div class="max-w-6xl mx-auto px-6 py-20">
-      <h2 class="section-heading">Our Values</h2>
-      <div class="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-        {values.map((v) => (
-          <div class="border-t-2 border-brand-gold pt-5">
-            <h3 class="font-display text-lg font-semibold text-brand-blue">{v.title}</h3>
-            <p class="mt-3 text-sm text-slate-700 leading-relaxed">{v.body}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- OUR EXPERTISE: alternating gold/navy tiles -->
-  <section class="bg-slate-50">
-    <div class="max-w-6xl mx-auto px-6 py-20">
-      <h2 class="section-heading">Our Expertise</h2>
-      <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {expertise.map((e, i) => {
-          const gold = (i % 2) === 0;
+    <div class="max-w-4xl mx-auto px-6 py-20">
+      <h2 class="section-heading section-heading-lg">Our Values</h2>
+      <div class="mt-12 space-y-10">
+        {values.map((v, i) => {
+          const gold = (i % 2) === 1;
           return (
-            <div class:list={["p-6", gold ? "bg-brand-gold text-brand-blue" : "bg-brand-blue text-white"]}>
-              <h3 class="font-display text-base font-semibold">{e.title}</h3>
-              <p class={`mt-3 text-sm leading-relaxed ${gold ? "text-brand-blue/90" : "text-white/90"}`}>{e.body}</p>
+            <div class="border-t-2 border-brand-gold pt-5">
+              <h3 class:list={["font-display text-2xl sm:text-3xl font-semibold", gold ? "text-brand-gold" : "text-brand-blue"]}>{v.title}</h3>
+              <p class="mt-3 text-lg text-slate-700 leading-relaxed">{v.body}</p>
             </div>
           );
         })}
@@ -91,24 +76,44 @@ function partnerImg(filename: string) {
     </div>
   </section>
 
-  <!-- WHERE WE'VE WORKED -->
-  <section class="bg-white">
+  <!-- OUR EXPERTISE: 4 across, all blue bg, gold title, white body -->
+  <section class="bg-slate-50">
     <div class="max-w-6xl mx-auto px-6 py-20">
-      <h2 class="section-heading">Where We've Worked</h2>
-      <div class="mt-12 grid md:grid-cols-2 gap-10 items-center">
-        <p class="text-slate-700 leading-relaxed text-[15px]">
-          Catalyst&rsquo;s team comes from the energy access industry, having assembled best-in-class experts based around the world, many of whom have spent considerable time in emerging markets working on engagements with, for, and on behalf of private-sector, multilateral, non-profit, and government entities. The team&rsquo;s experience extends to over 50 countries and covers a range of energy technologies from pico-PV products to utility-scale hydro and solar facilities.
-        </p>
-        <Image src={worldMap} alt="Map of countries where Catalyst has worked" width={900} height={500} />
+      <h2 class="section-heading section-heading-lg">Our Expertise</h2>
+      <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {expertise.map((e) => (
+          <div class="p-6 bg-brand-blue text-white">
+            <h3 class="font-display text-lg font-semibold text-brand-gold">{e.title}</h3>
+            <p class="mt-3 text-sm leading-relaxed text-white/90">{e.body}</p>
+          </div>
+        ))}
       </div>
     </div>
   </section>
 
-  <!-- PARTNERS AND CLIENTS -->
+  <!-- WHERE WE'VE WORKED: heading+text on left, world map with legend overlay on right -->
+  <section class="bg-white">
+    <div class="max-w-6xl mx-auto px-6 py-20">
+      <div class="grid md:grid-cols-2 gap-10 items-center">
+        <div>
+          <h2 class="font-display font-light text-brand-gold text-3xl sm:text-4xl leading-tight">Where We've Worked</h2>
+          <p class="mt-6 text-slate-700 leading-relaxed">
+            Catalyst&rsquo;s team comes from the energy access industry, having assembled best-in-class experts based around the world, many of whom have spent considerable time in emerging markets working on engagements with, for, and on behalf of private-sector, multilateral, non-profit, and government entities. The team&rsquo;s experience extends to over 50 countries and covers a range of energy technologies from pico-PV products to utility-scale hydro and solar facilities.
+          </p>
+        </div>
+        <div class="relative">
+          <Image src={worldMap} alt="Map of countries where Catalyst has worked" class="w-full h-auto" width={900} height={500} />
+          <Image src={mapLegend} alt="" aria-hidden="true" class="absolute bottom-2 right-2 w-28 sm:w-32 h-auto pointer-events-none drop-shadow" width={200} height={140} />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTNERS AND CLIENTS: 4 across, 4 down -->
   <section class="bg-white">
     <div class="max-w-6xl mx-auto px-6 pb-24">
       <h2 class="section-heading">Some of Our Partners And Clients</h2>
-      <div class="mt-14 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-10 gap-y-12 items-center justify-items-center">
+      <div class="mt-14 grid grid-cols-2 md:grid-cols-4 gap-x-10 gap-y-12 items-center justify-items-center">
         {partners.map((p) => {
           const img = partnerImg(p.logo);
           if (!img) return null;

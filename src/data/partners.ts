@@ -3,22 +3,23 @@ export interface Partner {
   logo: string; // filename in src/assets/images/partners/
 }
 
+// Order matches the Wix home-page partner wall display order.
 export const partners: Partner[] = [
   { name: "Acumen", logo: "acumen.png" },
   { name: "GOGLA", logo: "gogla.png" },
-  { name: "Energia", logo: "energia.png" },
-  { name: "Nefco", logo: "nefco.png" },
-  { name: "Global Innovation Fund", logo: "global-innovation-fund.png" },
   { name: "GET.invest", logo: "get-invest.png" },
-  { name: "The Rockefeller Foundation", logo: "rockefeller-foundation.png" },
   { name: "IKEA Foundation", logo: "ikea-foundation.png" },
+  { name: "British International Investment", logo: "british-international-investment.png" },
   { name: "Lightrock", logo: "lightrock.jpg" },
-  { name: "IFC", logo: "ifc.png" },
-  { name: "Shell Foundation", logo: "shell-foundation.png" },
+  { name: "The Rockefeller Foundation", logo: "rockefeller-foundation.png" },
   { name: "GEAPP", logo: "geapp.png" },
   { name: "Norfund", logo: "norfund.jpg" },
+  { name: "Nefco", logo: "nefco.png" },
   { name: "Sustainable Energy for All", logo: "seforall.jpg" },
-  { name: "British International Investment", logo: "british-international-investment.png" },
+  { name: "IFC", logo: "ifc.png" },
+  { name: "Shell Foundation", logo: "shell-foundation.png" },
+  { name: "Energia", logo: "energia.png" },
+  { name: "Global Innovation Fund", logo: "global-innovation-fund.png" },
 ];
 
 export interface Innovation {
