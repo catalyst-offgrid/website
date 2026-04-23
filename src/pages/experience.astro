@@ -53,11 +53,12 @@ const sections = [
         <p class="mt-5 text-center text-slate-700 leading-relaxed max-w-3xl mx-auto">
           {sec.copy.intro}
         </p>
-        <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {sec.list.map((p) => {
+        <div class="mt-12 grid gap-6 sm:grid-cols-2">
+          {sec.list.map((p, idx) => {
             const image = img(p.image);
             const logo = img(p.logo);
             const isContain = p.display === "contain";
+            const rightCol = idx % 2 === 1;
             return (
               <article class="tile relative aspect-square overflow-hidden group bg-brand-blue" tabindex="0">
                 {image && (
@@ -73,7 +74,10 @@ const sections = [
                   />
                 )}
                 {!isContain && !p.noBadge && (
-                  <div class="absolute top-3 left-1/2 -translate-x-1/2 bg-white rounded px-3 py-2 shadow-sm flex items-center justify-center max-w-[78%]">
+                  <div class:list={[
+                    "absolute top-4 z-20 bg-white rounded px-3 py-2 shadow-sm flex items-center justify-center max-w-[45%]",
+                    rightCol ? "right-4" : "left-4"
+                  ]}>
                     {logo ? (
                       <Image src={logo} alt={p.title} class="max-h-10 w-auto object-contain" />
                     ) : (
