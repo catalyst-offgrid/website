@@ -94,7 +94,7 @@ export const projects: Project[] = [
     slug: "brilho-mozambique",
     title: "BRILHO \u2014 Mozambique Off-Grid Market",
     image: "brilho-backdrop.jpg",
-    // TODO: drop a BRILHO logo at src/assets/images/experience/brilho-logo.png and set `logo: "brilho-logo.png"`
+    logo: "brilho-logo.png",
     body: `<p>Since 2018, Catalyst has played a key role in supporting SNV's BRILHO program, which aims to catalyze Mozambique's off-grid energy market. Catalyst has supported:</p>
 <ul>
   <li>The design and rollout of the Market Development Fund, which includes RBF, catalytic grants, and TA.</li>
