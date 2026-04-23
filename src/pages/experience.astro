@@ -113,3 +113,25 @@ const sections = [
     </div>
   </section>
 </BaseLayout>
+
+<script is:inline>
+  function initCatalystTileTap() {
+    var tiles = document.querySelectorAll(".tile");
+    tiles.forEach(function (t) {
+      if (t.dataset.tapBound === "1") return;
+      t.dataset.tapBound = "1";
+      t.addEventListener("click", function (e) {
+        var wasOpen = t.classList.contains("is-open");
+        document.querySelectorAll(".tile.is-open").forEach(function (o) {
+          if (o !== t) o.classList.remove("is-open");
+        });
+        t.classList.toggle("is-open", !wasOpen);
+      });
+    });
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initCatalystTileTap);
+  } else {
+    initCatalystTileTap();
+  }
+</script>
