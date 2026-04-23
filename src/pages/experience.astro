@@ -78,7 +78,9 @@ const sections = [
                     "absolute top-4 z-20 flex items-center max-w-[45%]",
                     rightCol ? "right-4 justify-end" : "left-4 justify-start"
                   ]}>
-                    {logo ? (
+                    {p.logo && p.logo.endsWith(".svg") ? (
+                      <img src={`/logos/${p.logo}`} alt={p.title} class="max-h-12 w-auto object-contain drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]" />
+                    ) : logo ? (
                       <Image src={logo} alt={p.title} class="max-h-12 w-auto object-contain drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]" />
                     ) : (
                       <span class="font-display text-sm font-bold text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.7)] leading-tight">{p.title}</span>

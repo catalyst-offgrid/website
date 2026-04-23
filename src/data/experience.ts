@@ -33,9 +33,7 @@ export const projects: Project[] = [
     slug: "get-invest-finance-readiness",
     title: "GET.invest Finance Readiness Support",
     image: "get-invest-backdrop.jpg",
-    // GET.invest logo not supplied; using composite was cleaner in earlier builds.
-    // For now, suppress badge — the photo-composite reads as the project visual.
-    noBadge: true,
+    logo: "get-invest-logo.svg",
     body: `Catalyst is a proud member of <a href="https://www.get-invest.eu/finance-access-advisory/finance-readiness-support/" target="_blank" rel="noopener">GET.invest's Finance Readiness Support</a> program. To date, we've supported 11 energy access enterprises, helping them de-risk key elements of their business models and enhance their bankability to investors.`,
     section: "enterprise",
   },
