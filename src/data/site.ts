@@ -3,6 +3,8 @@ export const site = {
   tagline: "Energy Access in Emerging Markets",
   url: "https://catalyst-advisors.com",
   contactEmail: "info@catalyst-advisors.com",
+  jobsEmail: "jobs@catalyst-advisors.com",
+  address: "1935 Addison Street, Suite A, Berkeley, California, 94704",
   formspreeEndpoint: "https://formspree.io/f/mnjlogyq",
   nav: [
     { label: "Home", href: "/" },
@@ -15,5 +17,4 @@ export const site = {
     { label: "Join Our Team", href: "/joinourteam" },
     { label: "Privacy Policy", href: "/privacy-policy" },
   ],
-  socials: [] as { label: string; href: string }[],
 } as const;
