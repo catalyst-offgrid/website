@@ -3,21 +3,29 @@ import mapPin from "../assets/images/icons/map-pin.svg?raw";
 const year = new Date().getFullYear();
 ---
 <footer class="bg-brand-blue text-white">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-8 grid gap-10 md:grid-cols-2">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-8 grid gap-8 sm:gap-10 grid-cols-2 md:grid-cols-3">
 
-    <!-- Col 1: Where we work -->
+    <!-- Col 1: Headquarters -->
     <div class="flex gap-4">
       <span class="block w-8 h-8 shrink-0 text-brand-gold" set:html={mapPin}></span>
       <div>
-        <h3 class="text-brand-gold font-display text-sm tracking-widest uppercase">Where we work</h3>
+        <h3 class="text-brand-gold font-display text-sm tracking-widest uppercase">Headquarters</h3>
         <p class="mt-3 text-sm leading-relaxed text-white/90">
-          Catalyst is headquartered in Berkeley, California. Our team's decentralized, global presence includes New York, Nairobi, Paris, Maputo, Lusaka, Lagos and Washington DC.
+          Catalyst is headquartered in Berkeley, California.
         </p>
       </div>
     </div>
 
-    <!-- Col 2: About Catalyst + social -->
+    <!-- Col 2: Global presence -->
     <div>
+      <h3 class="text-brand-gold font-display text-sm tracking-widest uppercase">Global Presence</h3>
+      <p class="mt-3 text-sm leading-relaxed text-white/90">
+        Our team's decentralized, global presence includes New York, Nairobi, Paris, Maputo, Lusaka, Lagos and Washington DC.
+      </p>
+    </div>
+
+    <!-- Col 3: About Catalyst + social -->
+    <div class="col-span-2 md:col-span-1">
       <div class="flex items-center justify-between gap-3">
         <h3 class="text-brand-gold font-display text-sm tracking-widest uppercase">About Catalyst</h3>
         <div class="flex gap-3">
@@ -44,7 +52,6 @@ const year = new Date().getFullYear();
         <li><a href="/experience" class="hover:text-brand-gold">Experience</a></li>
         <li><a href="/innovations" class="hover:text-brand-gold">Innovations</a></li>
         <li><a href="/contact" class="hover:text-brand-gold">Contact</a></li>
-        <li><a href="/joinourteam" class="hover:text-brand-gold">Join us</a></li>
       </ul>
       <p class="text-xs text-white/70 text-center sm:text-right">
         &copy; {year} Catalyst Energy Advisors. <a href="/privacy-policy" class="underline hover:text-brand-gold">Privacy Policy</a>.
