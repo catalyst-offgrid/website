@@ -129,7 +129,7 @@
 .tile-overlay {
   position: absolute;
   inset: 0;
-  background: var(--color-brand-blue);
+  background: rgba(251, 178, 40, 0.92); /* brand-gold @ 92% — matches Wix */
   color: #fff;
   opacity: 0;
   visibility: hidden;
@@ -170,12 +170,12 @@
   line-height: 1.45;
 }
 .tile-overlay .tile-body a {
-  color: #FBB228; /* brand gold */
+  color: #fff;
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 .tile-overlay .tile-body a:hover {
-  color: #fff;
+  color: var(--color-brand-blue);
 }
 .tile-overlay .tile-body p + p,
 .tile-overlay .tile-body p + ul,
