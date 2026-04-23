@@ -11,34 +11,56 @@ function projImg(filename: string) {
   const entry = Object.entries(projectImages).find(([k]) => k.endsWith("/" + filename));
   return entry?.[1].default;
 }
+
+const navButtonClass =
+  "bg-brand-blue text-white font-semibold px-6 py-3 rounded inline-flex items-center gap-2 hover:bg-brand-blue-dark transition";
 ---
 <BaseLayout title="Experience">
+  <!-- Hero band -->
   <section class="bg-white">
-    <div class="max-w-5xl mx-auto px-6 pt-16 pb-8 text-center">
+    <div class="max-w-5xl mx-auto px-6 pt-16 pb-12 text-center">
       <h1 class="section-heading">Our Experience</h1>
-      <p class="mt-4 text-slate-700 leading-relaxed max-w-3xl mx-auto">
-        We focus on catalyzing energy access in emerging markets through three core streams.
+      <p class="mt-4 text-brand-blue leading-relaxed max-w-3xl mx-auto">
+        We focus on catalyzing energy access in emerging markets through three core business units:
       </p>
-      <div class="mt-8 inline-flex gap-0 border border-slate-200 rounded overflow-hidden" role="tablist">
-        <button type="button" data-tab="ed" class="tab-btn bg-brand-blue text-white px-6 py-3 text-sm font-semibold">Enterprise Development</button>
-        <button type="button" data-tab="si" class="tab-btn bg-white text-brand-blue px-6 py-3 text-sm font-semibold">Strategy &amp; Insights</button>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <a href="#enterprise-development" class={navButtonClass}>
+          Enterprise Development <span aria-hidden>&rsaquo;</span>
+        </a>
+        <a href="#strategy-insights" class={navButtonClass}>
+          Strategy &amp; Insights <span aria-hidden>&rsaquo;</span>
+        </a>
+        <a href="#innovation" class={navButtonClass}>
+          Innovation <span aria-hidden>&rsaquo;</span>
+        </a>
       </div>
     </div>
   </section>
 
   <!-- Enterprise Development -->
-  <section id="panel-ed" class="tab-panel bg-white">
-    <div class="max-w-6xl mx-auto px-6 pb-16">
-      <h2 class="text-center font-display text-2xl font-light text-brand-blue mb-2">Enterprise Development</h2>
-      <p class="text-center text-slate-700 max-w-2xl mx-auto mb-10">
+  <section id="enterprise-development" class="bg-white scroll-mt-24">
+    <div class="max-w-6xl mx-auto px-6 py-12">
+      <h2 class="section-heading mb-4">Enterprise Development</h2>
+      <p class="text-center text-brand-blue max-w-2xl mx-auto mb-10">
         Thanks to our industry DNA, we thrive when mentoring and coaching energy access companies. A few examples of our enterprise development work:
       </p>
       <div class="grid gap-6 sm:grid-cols-2">
         {enterpriseProjects.map((p) => {
           const img = projImg(p.image);
+          const logo = p.logo ? projImg(p.logo) : null;
           return (
-            <article class="tile relative overflow-hidden rounded group" tabindex="0">
-              {img && <Image src={img} alt={p.title} class="w-full h-64 object-cover" width={900} height={600} />}
+            <article class="tile relative overflow-hidden rounded aspect-square group" tabindex="0">
+              {img && (
+                <Image src={img} alt="" class="absolute inset-0 w-full h-full object-cover" width={900} height={900} />
+              )}
+              {logo && (
+                <div class="absolute top-4 left-1/2 -translate-x-1/2 bg-white/90 rounded-md px-4 py-2 shadow-sm flex items-center justify-center" style="max-width: 60%;">
+                  <Image src={logo} alt={p.title} class="max-h-12 w-auto object-contain" />
+                </div>
+              )}
+              <div class="absolute bottom-0 inset-x-0 bg-brand-blue/80 text-white text-center text-sm font-semibold px-3 py-2">
+                {p.title}
+              </div>
               <div class="tile-overlay">
                 <h3 class="font-display font-semibold text-lg mb-2">{p.title}</h3>
                 <p class="text-sm leading-relaxed">{p.body}</p>
@@ -51,18 +73,29 @@ function projImg(filename: string) {
   </section>
 
   <!-- Strategy & Insights -->
-  <section id="panel-si" class="tab-panel hidden bg-white">
-    <div class="max-w-6xl mx-auto px-6 pb-16">
-      <h2 class="text-center font-display text-2xl font-light text-brand-blue mb-2">Strategy &amp; Insights</h2>
-      <p class="text-center text-slate-700 max-w-2xl mx-auto mb-10">
-        Catalyst delivers market intelligence, financial analysis, and strategic advisory to key energy access stakeholders.
+  <section id="strategy-insights" class="bg-white scroll-mt-24">
+    <div class="max-w-6xl mx-auto px-6 py-12">
+      <h2 class="section-heading mb-4">Strategy &amp; Insights</h2>
+      <p class="text-center text-brand-blue max-w-2xl mx-auto mb-10">
+        Catalyst delivers market intelligence, financial analysis, and strategic advisory to key energy access stakeholders. We assess investment trends, evaluate program and project performance, and generate actionable insights to drive sector growth and impact.
       </p>
       <div class="grid gap-6 sm:grid-cols-2">
         {insightsProjects.map((p) => {
           const img = projImg(p.image);
+          const logo = p.logo ? projImg(p.logo) : null;
           return (
-            <article class="tile relative overflow-hidden rounded group" tabindex="0">
-              {img && <Image src={img} alt={p.title} class="w-full h-64 object-cover" width={900} height={600} />}
+            <article class="tile relative overflow-hidden rounded aspect-square group" tabindex="0">
+              {img && (
+                <Image src={img} alt="" class="absolute inset-0 w-full h-full object-cover" width={900} height={900} />
+              )}
+              {logo && (
+                <div class="absolute top-4 left-1/2 -translate-x-1/2 bg-white/90 rounded-md px-4 py-2 shadow-sm flex items-center justify-center" style="max-width: 60%;">
+                  <Image src={logo} alt={p.title} class="max-h-12 w-auto object-contain" />
+                </div>
+              )}
+              <div class="absolute bottom-0 inset-x-0 bg-brand-blue/80 text-white text-center text-sm font-semibold px-3 py-2">
+                {p.title}
+              </div>
               <div class="tile-overlay">
                 <h3 class="font-display font-semibold text-lg mb-2">{p.title}</h3>
                 <p class="text-sm leading-relaxed">{p.body}</p>
@@ -74,6 +107,19 @@ function projImg(filename: string) {
     </div>
   </section>
 
+  <!-- Innovation -->
+  <section id="innovation" class="bg-white scroll-mt-24">
+    <div class="max-w-4xl mx-auto px-6 py-12 text-center">
+      <h2 class="section-heading mb-4">Innovation</h2>
+      <p class="text-brand-blue max-w-2xl mx-auto mb-8 leading-relaxed">
+        We originate, incubate, and scale breakthrough ideas to accelerate universal access to power. Through <strong>VentureBuilder</strong>, the <strong>Access Insights Platform (AIP)</strong>, and the <strong>Micro Asset Finance Lab</strong>, Catalyst pairs capital, data, and hands-on venture-building to move promising innovations from concept to market.
+      </p>
+      <a href="/innovations" class="inline-block bg-brand-gold text-brand-blue font-semibold px-8 py-3 rounded hover:bg-brand-gold-deep transition">
+        Learn more on the Innovations page &rsaquo;
+      </a>
+    </div>
+  </section>
+
   <section class="bg-white">
     <div class="max-w-4xl mx-auto px-6 pb-16 text-center">
       <a href="/contact" class="inline-block bg-brand-gold text-brand-blue font-semibold px-8 py-3 rounded hover:bg-brand-gold-deep transition">Explore our Experience</a>
@@ -81,28 +127,3 @@ function projImg(filename: string) {
     </div>
   </section>
 </BaseLayout>
-
-<script is:inline>
-(function () {
-  var buttons = document.querySelectorAll('.tab-btn');
-  var panels = {
-    ed: document.getElementById('panel-ed'),
-    si: document.getElementById('panel-si')
-  };
-  buttons.forEach(function (b) {
-    b.addEventListener('click', function () {
-      var key = b.getAttribute('data-tab');
-      buttons.forEach(function (other) {
-        var on = other === b;
-        other.classList.toggle('bg-brand-blue', on);
-        other.classList.toggle('text-white', on);
-        other.classList.toggle('bg-white', !on);
-        other.classList.toggle('text-brand-blue', !on);
-      });
-      Object.keys(panels).forEach(function (k) {
-        if (panels[k]) panels[k].classList.toggle('hidden', k !== key);
-      });
-    });
-  });
-})();
-</script>
