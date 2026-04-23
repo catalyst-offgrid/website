@@ -1,17 +1,12 @@
 ---
-import { Image } from "astro:assets";
 import { site } from "../data/site";
-import logoIcon from "../assets/images/logos/catalyst-icon.png";
+import lockup from "../assets/images/logos/catalyst-lockup.svg?raw";
 const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
 ---
 <header class="bg-brand-blue text-white sticky top-0 z-50">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
-    <a href="/" class="flex items-center gap-3">
-      <Image src={logoIcon} alt="Catalyst" class="h-9 w-9" width={40} height={40} />
-      <span class="flex flex-col leading-none">
-        <span class="font-display text-xl tracking-[0.2em] font-light">CATALYST</span>
-        <span class="hidden sm:inline text-[9px] tracking-[0.35em] text-white/70 mt-1">ENERGY ADVISORS</span>
-      </span>
+    <a href="/" class="flex items-center" aria-label="Catalyst Energy Advisors home">
+      <span class="block" set:html={lockup}></span>
     </a>
     <nav aria-label="Primary">
       <ul class="flex items-center gap-2 sm:gap-5">
