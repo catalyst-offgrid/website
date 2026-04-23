@@ -1,24 +1,29 @@
 export interface Partner {
   name: string;
-  logo: string; // filename in src/assets/images/partners/
+  logo?: string; // filename in src/assets/images/partners/; omit for text-only fallback
 }
 
-// Order matches the Wix home-page partner wall display order.
+// Order mirrors the Wix home-page partner wall (4 across × 4 down).
 export const partners: Partner[] = [
+  // Row 1
   { name: "Acumen", logo: "acumen.png" },
-  { name: "GOGLA", logo: "gogla.png" },
-  { name: "GET.invest", logo: "get-invest.png" },
   { name: "IKEA Foundation", logo: "ikea-foundation.png" },
-  { name: "British International Investment", logo: "british-international-investment.png" },
   { name: "Lightrock", logo: "lightrock.jpg" },
-  { name: "The Rockefeller Foundation", logo: "rockefeller-foundation.png" },
-  { name: "GEAPP", logo: "geapp.png" },
-  { name: "Norfund", logo: "norfund.jpg" },
   { name: "Nefco", logo: "nefco.png" },
+  // Row 2
+  { name: "GOGLA", logo: "gogla.png" },
+  { name: "British International Investment", logo: "british-international-investment.png" },
+  { name: "The Rockefeller Foundation", logo: "rockefeller-foundation.png" },
   { name: "Sustainable Energy for All", logo: "seforall.jpg" },
+  // Row 3
+  { name: "GET.invest", logo: "get-invest.png" },
+  { name: "Global Energy Alliance for People and Planet", logo: "geapp.png" },
+  { name: "Norfund", logo: "norfund.jpg" },
   { name: "IFC", logo: "ifc.png" },
+  // Row 4
   { name: "Shell Foundation", logo: "shell-foundation.png" },
   { name: "Energia", logo: "energia.png" },
+  { name: "The World Bank", logo: "world-bank.png" },
   { name: "Global Innovation Fund", logo: "global-innovation-fund.png" },
 ];
 

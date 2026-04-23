@@ -128,11 +128,27 @@ function partnerImg(filename: string) {
   <section class="bg-white">
     <div class="max-w-6xl mx-auto px-6 pb-24">
       <h2 class="section-heading">Some of Our Partners And Clients</h2>
-      <div class="mt-14 grid grid-cols-2 md:grid-cols-4 gap-x-10 gap-y-12 items-center justify-items-center">
+      <div class="mt-14 grid grid-cols-2 md:grid-cols-4 gap-x-12 gap-y-14 items-center justify-items-center">
         {partners.map((p) => {
-          const img = partnerImg(p.logo);
-          if (!img) return null;
-          return <Image src={img} alt={p.name} class="max-h-16 w-auto object-contain" />;
+          const img = p.logo ? partnerImg(p.logo) : undefined;
+          if (img) {
+            return (
+              <Image
+                src={img}
+                alt={p.name}
+                class="max-h-20 w-auto max-w-[180px] object-contain"
+              />
+            );
+          }
+          return (
+            <div class="flex flex-col items-center text-center text-brand-blue">
+              <svg class="w-8 h-8 text-brand-blue" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M3 12h18M12 3c2.5 3 4 6 4 9s-1.5 6-4 9M12 3c-2.5 3-4 6-4 9s1.5 6 4 9" stroke-linecap="round"></path>
+              </svg>
+              <div class="mt-2 text-[11px] font-semibold tracking-wider leading-tight uppercase">The<br />World<br />Bank</div>
+            </div>
+          );
         })}
       </div>
     </div>
