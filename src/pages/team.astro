@@ -1,29 +1,67 @@
 ---
+import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Hero from "../components/Hero.astro";
-import TeamCard from "../components/TeamCard.astro";
-import { team } from "../data/team";
+import { team, getInitials } from "../data/team";
 
 const core = team.filter((m) => m.group === "core");
 const advisors = team.filter((m) => m.group === "advisor");
+
+const headshots = import.meta.glob<{ default: ImageMetadata }>(
+  "../assets/images/team/*.{png,jpg,jpeg,webp}",
+  { eager: true }
+);
+function headshot(file?: string) {
+  if (!file) return null;
+  const entry = Object.entries(headshots).find(([k]) => k.endsWith("/" + file));
+  return entry?.[1].default ?? null;
+}
 ---
 <BaseLayout title="Team">
-  <Hero title="Our team" subtitle="A decentralized, global team of energy access practitioners." />
+  <section class="bg-white">
+    <div class="max-w-6xl mx-auto px-6 pt-16 pb-6">
+      <h1 class="section-heading">Our Core Team</h1>
+    </div>
+  </section>
 
-  <section>
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-16">
-      <h2 class="font-display text-3xl font-light text-brand-blue">Our core team</h2>
-      <div class="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {core.map((m) => <TeamCard name={m.name} role={m.role} bio={m.bio} />)}
+  <section class="bg-white">
+    <div class="max-w-6xl mx-auto px-6 pb-20">
+      <div class="grid gap-x-10 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+        {core.map((m) => {
+          const img = headshot(m.headshot);
+          return (
+            <article class="text-center flex flex-col items-center">
+              {img ? (
+                <Image src={img} alt={m.name} class="w-36 h-36 rounded-full object-cover" width={288} height={288} />
+              ) : (
+                <div class="w-36 h-36 rounded-full bg-brand-blue text-white flex items-center justify-center font-display text-3xl">
+                  {getInitials(m.name)}
+                </div>
+              )}
+              <h3 class="mt-4 font-display text-lg font-semibold text-brand-blue">{m.name}</h3>
+              <p class="text-sm text-brand-gold font-semibold">{m.role}</p>
+              {m.bio && <p class="mt-3 text-sm text-slate-700 leading-relaxed max-w-xs">{m.bio}</p>}
+              <a href="#" aria-label={`${m.name} on LinkedIn`} class="mt-3 w-8 h-8 rounded-full bg-slate-200 text-brand-blue flex items-center justify-center hover:bg-brand-gold/30">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.555v-5.569c0-1.328-.025-3.037-1.852-3.037-1.853 0-2.136 1.447-2.136 2.94v5.666H9.352V9h3.414v1.561h.05c.476-.9 1.637-1.85 3.37-1.85 3.602 0 4.268 2.37 4.268 5.455v6.284zM5.337 7.433a2.063 2.063 0 1 1 0-4.126 2.063 2.063 0 0 1 0 4.126zM7.114 20.45H3.555V9h3.56v11.45zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.225.792 24 1.771 24h20.451C23.2 24 24 23.225 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              </a>
+            </article>
+          );
+        })}
       </div>
     </div>
   </section>
 
-  <section class="bg-slate-50">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-16">
-      <h2 class="font-display text-3xl font-light text-brand-blue">Affiliated advisors</h2>
+  <section class="bg-brand-blue text-white">
+    <div class="max-w-6xl mx-auto px-6 py-16">
+      <h2 class="text-center font-display font-light text-3xl sm:text-4xl">
+        <span class="text-white">Affiliated</span> <span class="text-brand-gold">Advisors</span>
+      </h2>
       <div class="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {advisors.map((m) => <TeamCard name={m.name} role={m.role} bio={m.bio} />)}
+        {advisors.map((m) => (
+          <article>
+            <h3 class="font-display text-base font-semibold text-brand-gold uppercase tracking-wider">{m.name}</h3>
+            <p class="mt-2 text-sm text-white/85 leading-relaxed">{m.bio}</p>
+          </article>
+        ))}
       </div>
     </div>
   </section>

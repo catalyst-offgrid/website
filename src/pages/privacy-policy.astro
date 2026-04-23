@@ -2,37 +2,49 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 <BaseLayout title="Privacy Policy">
-  <section>
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 py-16 prose prose-slate prose-headings:font-display prose-headings:text-brand-blue">
-      <h1>Catalyst Privacy Policy</h1>
-      <p>This Privacy Policy describes how your personal information is collected, used, and shared when you visit <a href="https://catalyst-advisors.com">catalyst-advisors.com</a> (the "Site").</p>
+  <section class="bg-white">
+    <div class="max-w-3xl mx-auto px-6 pt-16 pb-12">
+      <h1 class="font-display font-light text-3xl sm:text-4xl text-brand-gold mb-8">Catalyst Privacy policy</h1>
 
-      <h2>Personal information we collect</h2>
-      <p>We collect Device Information using technologies including:</p>
-      <ul>
-        <li><strong>Cookies</strong> — data files placed on your device that often include an anonymous unique identifier. For more information about cookies and how to disable them, visit <a href="http://www.allaboutcookies.org">allaboutcookies.org</a>.</li>
-        <li><strong>Log files</strong> — track actions occurring on the Site and collect data including your IP address, browser type, internet service provider, referring/exit pages, and date/time stamps.</li>
-      </ul>
-      <p>Additionally, when you contact us through the Site, we will collect information that you provide directly, including your name, organization, email address, and phone number. We refer to this as "Contact Information."</p>
-      <p>When we talk about "Personal Information" in this policy, we are talking about both Device Information and Contact Information.</p>
+      <div class="space-y-5 text-slate-700 leading-relaxed text-[15px]">
+        <p>This Privacy Policy describes how your personal information is collected, used, and shared when you visit <a href="https://catalyst-advisors.com" class="text-brand-gold hover:underline">catalyst-advisors.com</a> (the "Site").</p>
 
-      <h2>How we use your personal information</h2>
-      <p>We use Contact Information strictly to communicate with you.</p>
-      <p>We use Device Information to help us understand the individuals and organizations interested in our work, and to improve and optimize the Site.</p>
+        <h2 class="font-display text-brand-blue font-semibold uppercase tracking-wider text-sm pt-4">Personal Information We Collect</h2>
+        <p>When you visit the Site, we automatically collect certain information about your device, including information about your web browser, IP address, time zone, and some of the cookies that are installed on your device. Additionally, as you browse the Site, we collect information about the individual web pages that you view, what websites or search terms referred you to the Site, and information about how you interact with the Site. We refer to this automatically-collected information as "Device Information."</p>
+        <p>We collect Device Information using the following technologies:</p>
+        <ul class="list-disc pl-6 space-y-2">
+          <li>"Cookies" are data files that are placed on your device or computer and often include an anonymous unique identifier. For more information about cookies, and how to disable cookies, visit <a href="http://www.allaboutcookies.org" class="text-brand-gold hover:underline">http://www.allaboutcookies.org</a>.</li>
+          <li>"Log files" track actions occurring on the Site, and collect data including your IP address, browser type, Internet service provider, referring/exit pages, and date/time stamps.</li>
+        </ul>
+        <p>Additionally when you contact us through the Site, we will collect information that you provide directly yourself, including your name, organization, email address, and phone number. We refer to this information as "Contact Information."</p>
+        <p>When we talk about "Personal Information" in this Privacy Policy, we are talking both about Device Information and Contact Information.</p>
 
-      <h2>Sharing your personal information</h2>
-      <p>We will not share your Personal Information with third parties unless we receive your explicit permission to do so.</p>
-      <p>We use Google Analytics to help us understand how visitors use the Site — learn more at <a href="https://www.google.com/intl/en/policies/privacy/">Google's privacy policy</a> and opt out at <a href="https://tools.google.com/dlpage/gaoptout">Google Analytics Opt-out</a>.</p>
-      <p>We may also share Personal Information to comply with applicable laws, respond to lawful requests, or protect our rights.</p>
+        <h2 class="font-display text-brand-blue font-semibold uppercase tracking-wider text-sm pt-4">How Do We Use Your Personal Information?</h2>
+        <p>We use the Contact Information that we collect strictly to communicate with you.</p>
+        <p>We use the Device Information that we collect to help us better understand the individuals and organizations that are interested in our company and service, and more generally to improve and optimize our Site (for example, by generating analytics about how our visitors browse and interact with the Site, and to assess the success of our marketing and advertising campaigns).</p>
 
-      <h2>Do not track</h2>
-      <p>We do not alter our Site's data collection and use practices when we see a Do Not Track signal from your browser.</p>
+        <h2 class="font-display text-brand-blue font-semibold uppercase tracking-wider text-sm pt-4">Sharing Your Personal Information</h2>
+        <p>We will not share your personal Information with third parties unless we receive your explicit permission to do so.</p>
+        <p>We also use Google Analytics to help us understand how our customers use the Site — you can read more about how Google uses your Personal Information here: <a href="https://www.google.com/intl/en/policies/privacy/" class="text-brand-gold hover:underline">https://www.google.com/intl/en/policies/privacy/</a>. You can also opt-out of Google Analytics here: <a href="https://tools.google.com/dlpage/gaoptout" class="text-brand-gold hover:underline">https://tools.google.com/dlpage/gaoptout</a>.</p>
+        <p>Finally, we may also share your Personal Information to comply with applicable laws and regulations, to respond to a subpoena, search warrant or other lawful request for information we receive, or to otherwise protect our rights.</p>
 
-      <h2>Your rights</h2>
-      <p>If you are a European resident, you have the right to access personal information we hold about you and to ask that it be corrected, updated, or deleted. Contact us to exercise this right.</p>
+        <h2 class="font-display text-brand-blue font-semibold uppercase tracking-wider text-sm pt-4">Do Not Track</h2>
+        <p>Please note that we do not alter our Site's data collection and use practices when we see a Do Not Track signal from your browser.</p>
 
-      <h2>Contact</h2>
-      <p>For more information about our privacy practices, questions, or complaints, email <a href="mailto:info@catalyst-advisors.com">info@catalyst-advisors.com</a>.</p>
+        <h2 class="font-display text-brand-blue font-semibold uppercase tracking-wider text-sm pt-4">Your Rights</h2>
+        <p>If you are a European resident, you have the right to access personal information we hold about you and to ask that your personal information be corrected, updated, or deleted. If you would like to exercise this right, please contact us through the contact information below.</p>
+        <p>Additionally, if you are a European resident we note that we are processing your information in order to fulfill obligations we might have with you (for example if you contact us through the Site), or otherwise to pursue our legitimate business interests listed above. Additionally, please note that your information will be transferred outside of Europe, including to the United States.</p>
+
+        <h2 class="font-display text-brand-blue font-semibold uppercase tracking-wider text-sm pt-4">Data Retention</h2>
+        <p>When you contact us through the Site, we will maintain your Contact Information for our records unless and until you ask us to delete this information.</p>
+
+        <h2 class="font-display text-brand-blue font-semibold uppercase tracking-wider text-sm pt-4">Changes</h2>
+        <p>We may update this privacy policy from time to time in order to reflect, for example, changes to our practices or for other operational, legal or regulatory reasons.</p>
+
+        <h2 class="font-display text-brand-blue font-semibold uppercase tracking-wider text-sm pt-4">Contact Us</h2>
+        <p>For more information about our privacy practices, if you have questions, or if you would like to make a complaint, please contact us by e-mail at <a href="mailto:info@catalyst-advisors.com" class="text-brand-gold hover:underline">info@catalyst-advisors.com</a> or by mail using the details provided below:</p>
+        <p>Catalyst Energy Advisors, 1935 Addison Street, Suite A, Berkeley, California, 94704</p>
+      </div>
     </div>
   </section>
 </BaseLayout>

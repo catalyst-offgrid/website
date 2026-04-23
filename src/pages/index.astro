@@ -1,93 +1,112 @@
 ---
 import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Hero from "../components/Hero.astro";
-import ValuePillar from "../components/ValuePillar.astro";
-import ExpertiseArea from "../components/ExpertiseArea.astro";
 import { values } from "../data/values";
 import { expertise } from "../data/expertise";
-import { innovations, partners } from "../data/partners";
-import nightlights from "../assets/images/heroes/nightlights.jpg";
-import ikea from "../assets/images/partners/ikea-foundation.png";
-import lightrock from "../assets/images/partners/lightrock.jpg";
-import mapLegend from "../assets/images/map/map-legend.png";
+import { partners } from "../data/partners";
+import heroVillage from "../assets/images/heroes/home-village.jpg";
+import worldMap from "../assets/images/heroes/world-map.png";
+
+// Pre-load partner logos via glob so <Image> can optimize them.
+const partnerImages = import.meta.glob<{ default: ImageMetadata }>(
+  "../assets/images/partners/*.{png,jpg,jpeg,webp}",
+  { eager: true }
+);
+function partnerImg(filename: string) {
+  const entry = Object.entries(partnerImages).find(([k]) => k.endsWith("/" + filename));
+  return entry?.[1].default;
+}
 ---
 <BaseLayout>
-  <Hero
-    eyebrow="Catalyst Energy Advisors"
-    title="Energy access in emerging markets."
-    subtitle="A specialized consulting firm focused exclusively on closing the energy access deficit. We help transform the markets that power lives and livelihoods."
-  />
-
-  <section class="bg-slate-50">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-16 grid gap-10 md:grid-cols-2 items-center">
-      <div>
-        <div class="text-brand-gold text-sm font-semibold tracking-widest uppercase">Catalyst</div>
-        <p class="font-display text-xl text-brand-blue mt-3">
-          /ˈkæt̬.əl.ɪst/ — someone or something that causes <em>big change.</em>
-        </p>
-        <p class="mt-4 text-slate-700 leading-relaxed">
-          Through its work, our firm seeks to manifest its name. Our values underpin our expertise.
-        </p>
-      </div>
-      <Image src={nightlights} alt="NASA nightlights map of the world" class="rounded shadow-sm" />
-    </div>
-  </section>
-
-  <section>
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-20">
-      <h2 class="font-display text-3xl font-light text-brand-blue">Our values</h2>
-      <div class="mt-8 grid gap-5 sm:grid-cols-2">
-        {values.map((v) => <ValuePillar title={v.title} body={v.body} />)}
-      </div>
-    </div>
-  </section>
-
-  <section class="bg-slate-50">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-20">
-      <h2 class="font-display text-3xl font-light text-brand-blue">Our expertise</h2>
-      <div class="mt-8 grid gap-6 md:grid-cols-2">
-        {expertise.map((e) => <ExpertiseArea title={e.title} body={e.body} />)}
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-20">
-      <h2 class="font-display text-3xl font-light text-brand-blue">Innovations</h2>
-      <p class="mt-4 text-slate-700 max-w-3xl leading-relaxed">
-        We're entrepreneurs, and have a natural itch to identify solutions to market failures and opportunities we see in the energy access space. This includes conceptualizing and rolling out:
+  <!-- HERO -->
+  <section class="relative">
+    <Image src={heroVillage} alt="Aerial view of a village in sub-Saharan Africa" class="absolute inset-0 w-full h-full object-cover" width={1600} height={900} />
+    <div class="absolute inset-0 bg-brand-blue/70"></div>
+    <div class="relative max-w-6xl mx-auto px-6 py-24 sm:py-32 text-white">
+      <h1 class="font-display font-light text-3xl sm:text-4xl md:text-5xl max-w-3xl leading-tight">
+        <span class="text-brand-gold">Catalyst Energy Advisors</span> is a specialized consulting firm that focuses exclusively on the energy access deficit in emerging markets.
+      </h1>
+      <p class="mt-6 text-lg sm:text-xl text-white/90 max-w-2xl font-light">
+        We help transform markets that power lives and livelihoods.
       </p>
-      <div class="mt-8 grid gap-6 md:grid-cols-3">
-        {innovations.map((i) => (
-          <a href={i.url} target="_blank" rel="noopener" class="block p-6 bg-white border border-slate-200 hover:border-brand-cyan hover:shadow-sm transition">
-            <div class="font-display text-lg font-semibold text-brand-blue">{i.name}</div>
-            <p class="mt-2 text-sm text-slate-700 leading-relaxed">{i.summary}</p>
-          </a>
+      <div class="mt-8 flex flex-wrap gap-4">
+        <a href="/experience" class="inline-block bg-brand-gold text-brand-blue font-semibold px-6 py-3 rounded hover:bg-brand-gold-deep transition">Our Experience</a>
+        <a href="/contact" class="inline-block border border-white text-white font-semibold px-6 py-3 rounded hover:bg-white/10 transition">Contact Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEFINITION PANEL -->
+  <section class="bg-brand-blue-dark text-white">
+    <div class="max-w-4xl mx-auto px-6 py-16 text-center">
+      <p class="font-display text-xl sm:text-2xl font-light leading-relaxed">
+        <span class="text-brand-gold font-normal">Catalyst</span> <span class="text-white/60">/ˈkæt̬.əl.ɪst/</span> — someone or something that causes <em class="text-brand-gold not-italic">big change.</em>
+      </p>
+      <p class="mt-6 text-white/85 leading-relaxed max-w-3xl mx-auto">
+        Through its work, our firm seeks to manifest its name. Our values underpin our expertise.
+      </p>
+    </div>
+  </section>
+
+  <!-- OUR VALUES -->
+  <section class="bg-white">
+    <div class="max-w-6xl mx-auto px-6 py-20">
+      <h2 class="section-heading">Our Values</h2>
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {values.map((v) => (
+          <div class="border-t-2 border-brand-gold pt-5">
+            <h3 class="font-display text-lg font-semibold text-brand-blue">{v.title}</h3>
+            <p class="mt-3 text-sm text-slate-700 leading-relaxed">{v.body}</p>
+          </div>
         ))}
       </div>
     </div>
   </section>
 
+  <!-- OUR EXPERTISE -->
   <section class="bg-slate-50">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-20">
-      <h2 class="font-display text-3xl font-light text-brand-blue">Where we've worked</h2>
-      <p class="mt-4 text-slate-700 max-w-3xl">
-        Catalyst is headquartered in Berkeley, California. Our team's decentralized, global presence includes New York, Nairobi, Paris, Maputo, Lusaka, Lagos, and Washington DC.
-      </p>
-      <Image src={mapLegend} alt="Map of countries where Catalyst has worked" class="mt-8 rounded" />
+    <div class="max-w-6xl mx-auto px-6 py-20">
+      <h2 class="section-heading">Our Expertise</h2>
+      <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {expertise.map((e, i) => {
+          const gold = (i % 2) === 0;
+          return (
+            <div class:list={[
+              "p-6 rounded-sm",
+              gold ? "bg-brand-gold text-brand-blue" : "bg-brand-blue text-white"
+            ]}>
+              <h3 class="font-display text-base font-semibold">{e.title}</h3>
+              <p class={`mt-3 text-sm leading-relaxed ${gold ? "text-brand-blue/90" : "text-white/90"}`}>{e.body}</p>
+            </div>
+          );
+        })}
+      </div>
     </div>
   </section>
 
-  <section>
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-16">
-      <h2 class="font-display text-2xl font-light text-brand-blue">Some of our partners and clients</h2>
-      <div class="mt-8 flex flex-wrap items-center gap-10">
-        <Image src={ikea} alt="IKEA Foundation" class="h-14 w-auto opacity-80" />
-        <Image src={lightrock} alt="Lightrock" class="h-10 w-auto opacity-80" />
-        {partners.map((p) => (
-          <a href={p.url} target="_blank" rel="noopener" class="text-brand-blue font-semibold hover:text-brand-cyan">{p.name}</a>
-        ))}
+  <!-- WHERE WE'VE WORKED -->
+  <section class="bg-white">
+    <div class="max-w-6xl mx-auto px-6 py-20">
+      <h2 class="section-heading">Where We've Worked</h2>
+      <div class="mt-10 grid md:grid-cols-2 gap-10 items-center">
+        <p class="text-slate-700 leading-relaxed">
+          Catalyst's team comes from the energy access industry, having assembled best-in-class experts based around the world, many of whom have spent considerable time in emerging markets working on engagements with, for, and on behalf of private-sector, multilateral, non-profit, and government entities. The team's experience extends to over 50 countries and covers a range of energy technologies from pico-PV products to utility-scale hydro and solar facilities.
+        </p>
+        <Image src={worldMap} alt="Map of countries where Catalyst has worked" width={800} height={500} />
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTNERS AND CLIENTS -->
+  <section class="bg-white">
+    <div class="max-w-6xl mx-auto px-6 pb-20">
+      <h2 class="section-heading">Some of Our Partners And Clients</h2>
+      <div class="mt-12 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-8 gap-y-10 items-center justify-items-center">
+        {partners.map((p) => {
+          const img = partnerImg(p.logo);
+          if (!img) return null;
+          return <Image src={img} alt={p.name} class="max-h-16 w-auto object-contain" />;
+        })}
       </div>
     </div>
   </section>

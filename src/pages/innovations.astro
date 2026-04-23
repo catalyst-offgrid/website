@@ -1,27 +1,49 @@
 ---
+import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Hero from "../components/Hero.astro";
 import { innovations } from "../data/partners";
+import vbLogo from "../assets/images/innovations/venturebuilder.png";
+import aipLogo from "../assets/images/innovations/aip.png";
+
+const logos: Record<string, ImageMetadata | null> = {
+  "VentureBuilder": vbLogo,
+  "Access Insights Platform (AIP)": aipLogo,
+  "Micro Asset Finance Lab": null, // TODO: confirm/source MAF Lab logo asset
+};
 ---
 <BaseLayout title="Innovations">
-  <Hero
-    title="Our innovations."
-    subtitle="We build the platforms and tools the sector needs — then spin them into independent ventures."
-  />
+  <section class="bg-white">
+    <div class="max-w-5xl mx-auto px-6 pt-16 pb-8 text-center">
+      <h1 class="section-heading">Transforming Markets Through Innovation</h1>
+      <p class="mt-6 text-slate-700 max-w-2xl mx-auto">
+        We originate, incubate, and scale breakthrough ideas to accelerate universal access to power.
+      </p>
+    </div>
+  </section>
 
-  <section>
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-20 space-y-10">
-      {innovations.map((i) => (
-        <article class="grid gap-4 md:grid-cols-[200px_1fr] items-start border-b border-slate-200 pb-10">
-          <div class="font-display text-2xl text-brand-blue">{i.name}</div>
-          <div>
-            <p class="text-slate-700 leading-relaxed">{i.summary}</p>
-            <a href={i.url} target="_blank" rel="noopener" class="inline-block mt-3 text-brand-cyan font-semibold hover:underline">
-              Visit {i.name} →
-            </a>
-          </div>
-        </article>
-      ))}
+  <section class="bg-white">
+    <div class="max-w-3xl mx-auto px-6 pb-20 space-y-16">
+      {innovations.map((i, idx) => {
+        const logo = logos[i.name];
+        return (
+          <article class={idx > 0 ? "pt-16 border-t border-slate-200" : ""}>
+            <div class="flex justify-center mb-6">
+              {logo ? (
+                <Image src={logo} alt={i.name} class="max-h-16 w-auto object-contain" />
+              ) : (
+                <div class="font-display text-2xl text-brand-blue flex items-center gap-2">
+                  <span class="text-brand-gold">◆</span> {i.name}
+                </div>
+              )}
+            </div>
+            <p class="text-slate-700 leading-relaxed text-center">{i.summary}</p>
+            <p class="mt-4 text-sm text-center">
+              <span class="text-slate-600">Learn more: </span>
+              <a href={i.url} target="_blank" rel="noopener" class="text-brand-gold hover:underline">{i.url.replace(/^https?:\/\//, "")}</a>
+            </p>
+          </article>
+        );
+      })}
     </div>
   </section>
 </BaseLayout>
