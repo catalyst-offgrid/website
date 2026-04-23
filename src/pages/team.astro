@@ -18,13 +18,13 @@ function headshot(file?: string) {
 ---
 <BaseLayout title="Team">
   <section class="bg-white">
-    <div class="max-w-5xl mx-auto px-6 sm:px-12 lg:px-20 pt-16 pb-6">
+    <div class="max-w-5xl mx-auto px-6 sm:px-8 lg:px-10 pt-16 pb-6">
       <h1 class="section-heading section-heading-lg">Our Core Team</h1>
     </div>
   </section>
 
   <section class="bg-white">
-    <div class="max-w-5xl mx-auto px-6 sm:px-12 lg:px-20 pb-20">
+    <div class="max-w-5xl mx-auto px-6 sm:px-8 lg:px-10 pb-20">
       <div class="grid gap-x-10 gap-y-16 sm:grid-cols-2 lg:grid-cols-3">
         {core.map((m) => {
           const img = headshot(m.headshot);
@@ -61,7 +61,7 @@ function headshot(file?: string) {
   </section>
 
   <section class="bg-white">
-    <div class="max-w-5xl mx-auto px-6 sm:px-12 lg:px-20 py-16">
+    <div class="max-w-5xl mx-auto px-6 sm:px-8 lg:px-10 py-16">
       <h2 class="text-center font-display font-light text-4xl sm:text-5xl">
         <span class="text-brand-blue">Affiliated</span> <span class="text-brand-gold">Advisors</span>
       </h2>
