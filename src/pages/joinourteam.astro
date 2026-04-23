@@ -2,71 +2,73 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 <BaseLayout title="Join Our Team">
+  <div class="flex flex-col flex-1">
 
-  <!-- HERO -->
-  <section class="bg-white">
-    <div class="max-w-6xl mx-auto px-6 sm:px-10 lg:px-16 pt-16 pb-12">
-      <div class="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] gap-14 lg:gap-20 items-start">
+    <!-- HERO -->
+    <section class="bg-white flex-1">
+      <div class="max-w-6xl mx-auto px-6 sm:px-10 lg:px-16 pt-16 pb-12">
+        <div class="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] gap-14 lg:gap-20 items-start">
 
-        <!-- LEFT: heading + accent -->
-        <div class="lg:pt-2">
-          <p class="font-display text-sm tracking-[0.22em] uppercase text-brand-gold">Careers</p>
-          <h1 class="mt-4 font-display font-light text-5xl sm:text-6xl leading-[1.02] text-brand-blue">
-            Join<br/><span class="text-brand-gold italic font-normal">Our Team</span>
-          </h1>
-          <div class="mt-8 border-l-2 border-brand-gold pl-5 max-w-sm">
-            <p class="text-[15px] text-slate-600 leading-relaxed">
-              A fully decentralized, global team of practitioners working to power emerging markets.
-            </p>
+          <!-- LEFT: heading + accent -->
+          <div class="lg:pt-2">
+            <p class="font-display text-sm tracking-[0.22em] uppercase text-brand-gold">Careers</p>
+            <h1 class="mt-4 font-display font-light text-5xl sm:text-6xl leading-[1.02] text-brand-blue">
+              Join<br/><span class="text-brand-gold italic font-normal">Our Team</span>
+            </h1>
+            <div class="mt-8 border-l-2 border-brand-gold pl-5 max-w-sm">
+              <p class="text-base text-slate-600 leading-relaxed">
+                A fully decentralized, global team of practitioners working to power emerging markets.
+              </p>
+            </div>
+          </div>
+
+          <!-- RIGHT: three content blocks -->
+          <div class="space-y-8">
+
+            <div class="border-t-2 border-brand-blue pt-6">
+              <p class="font-display text-xs tracking-[0.2em] uppercase text-brand-gold mb-3">Who we're looking for</p>
+              <p class="text-base text-slate-700 leading-relaxed">
+                Catalyst is always looking for highly motivated individuals with a strong interest in energy access and climate change mitigation to join our team and support delivery of several mandates. Our team is fully decentralized and works remotely in Africa, Europe and the US.
+              </p>
+            </div>
+
+            <div class="border-t-2 border-brand-blue pt-6">
+              <p class="font-display text-xs tracking-[0.2em] uppercase text-brand-gold mb-3">Our DNA</p>
+              <p class="text-base text-slate-700 leading-relaxed">
+                Catalyst's DNA is practitioners. We are interested in people with prior experience in energy access enterprises — PAYGo solar, mini-grids, C+I solar, clean cooking — as well as individuals with a background in management or strategy consulting in energy access or a related field.
+              </p>
+            </div>
+
+            <div class="border-t-2 border-brand-blue pt-6">
+              <p class="font-display text-xs tracking-[0.2em] uppercase text-brand-gold mb-3">Equal opportunities</p>
+              <p class="text-base text-slate-700 leading-relaxed">
+                Catalyst values a diverse team and strives to increase the diversity of thought, perspectives, ideas and experience. We are committed to equal opportunities for all candidates, without attention to age, race, color, religion, sex, sexual orientation, gender identity, national origin, veteran, or disability status.
+              </p>
+            </div>
+
           </div>
         </div>
+      </div>
+    </section>
 
-        <!-- RIGHT: three content blocks -->
-        <div class="space-y-8">
-
-          <div class="border-t-2 border-brand-blue pt-6">
-            <p class="font-display text-xs tracking-[0.2em] uppercase text-brand-gold mb-3">Who we're looking for</p>
-            <p class="text-[15px] text-slate-700 leading-relaxed">
-              Catalyst is always looking for highly motivated individuals with a strong interest in energy access and climate change mitigation to join our team and support delivery of several mandates. Our team is fully decentralized and works remotely in Africa, Europe and the US.
-            </p>
-          </div>
-
-          <div class="border-t-2 border-brand-blue pt-6">
-            <p class="font-display text-xs tracking-[0.2em] uppercase text-brand-gold mb-3">Our DNA</p>
-            <p class="text-[15px] text-slate-700 leading-relaxed">
-              Catalyst's DNA is practitioners. We are interested in people with prior experience in energy access enterprises — PAYGo solar, mini-grids, C+I solar, clean cooking — as well as individuals with a background in management or strategy consulting in energy access or a related field.
-            </p>
-          </div>
-
-          <div class="border-t-2 border-brand-blue pt-6">
-            <p class="font-display text-xs tracking-[0.2em] uppercase text-brand-gold mb-3">Equal opportunities</p>
-            <p class="text-[15px] text-slate-700 leading-relaxed">
-              Catalyst values a diverse team and strives to increase the diversity of thought, perspectives, ideas and experience. We are committed to equal opportunities for all candidates, without attention to age, race, color, religion, sex, sexual orientation, gender identity, national origin, veteran, or disability status.
-            </p>
-          </div>
-
+    <!-- CTA BAND -->
+    <section class="bg-brand-gold">
+      <div class="max-w-6xl mx-auto px-6 sm:px-10 lg:px-16 py-12 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8">
+        <div>
+          <p class="font-display text-xs tracking-[0.22em] uppercase text-brand-blue">Sound like you?</p>
+          <p class="mt-3 text-brand-blue text-base leading-relaxed max-w-lg font-medium">
+            Send your CV and a short cover letter. We read every application from practitioners who care about energy access.
+          </p>
         </div>
+        <a
+          href="mailto:jobs@catalyst-advisors.com"
+          class="shrink-0 inline-flex items-center gap-3 border-2 border-brand-blue text-brand-blue font-display text-sm tracking-[0.15em] uppercase px-6 py-3 hover:bg-brand-blue hover:text-brand-gold transition-colors"
+        >
+          jobs@catalyst-advisors.com
+          <span aria-hidden="true" class="text-lg">&rsaquo;</span>
+        </a>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- CTA BAND -->
-  <section class="bg-brand-gold">
-    <div class="max-w-6xl mx-auto px-6 sm:px-10 lg:px-16 py-12 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8">
-      <div>
-        <p class="font-display text-xs tracking-[0.22em] uppercase text-brand-blue">Sound like you?</p>
-        <p class="mt-3 text-brand-blue text-[15px] leading-relaxed max-w-lg font-medium">
-          Send your CV and a short cover letter. We read every application from practitioners who care about energy access.
-        </p>
-      </div>
-      <a
-        href="mailto:jobs@catalyst-advisors.com"
-        class="shrink-0 inline-flex items-center gap-3 border-2 border-brand-blue text-brand-blue font-display text-sm tracking-[0.15em] uppercase px-6 py-3 hover:bg-brand-blue hover:text-brand-gold transition-colors"
-      >
-        jobs@catalyst-advisors.com
-        <span aria-hidden="true" class="text-lg">&rsaquo;</span>
-      </a>
-    </div>
-  </section>
-
+  </div>
 </BaseLayout>
