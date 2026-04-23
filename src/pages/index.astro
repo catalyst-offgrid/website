@@ -117,7 +117,7 @@ function partnerImg(filename: string) {
   <section class="bg-white">
     <div class="max-w-6xl mx-auto px-6 pb-24">
       <h2 class="section-heading">Some of Our Partners And Clients</h2>
-      <div class="mt-14 grid grid-cols-2 md:grid-cols-4 gap-x-12 gap-y-14 items-center justify-items-center">
+      <div class="mt-14 grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-8 items-center justify-items-center">
         {partners.map((p) => {
           const img = p.logo ? partnerImg(p.logo) : undefined;
           if (img) {
