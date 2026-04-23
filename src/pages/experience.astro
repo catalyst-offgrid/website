@@ -27,7 +27,7 @@ const sections = [
 <BaseLayout title="Experience">
   <!-- Intro band + three scroll-anchor buttons -->
   <section class="bg-white">
-    <div class="max-w-5xl mx-auto px-6 pt-16 pb-8 text-center">
+    <div class="max-w-5xl mx-auto px-6 pt-10 pb-8 text-center">
       <h1 class="section-heading">Our Experience</h1>
       <p class="mt-5 text-slate-700 leading-relaxed max-w-3xl mx-auto">
         We focus on catalyzing energy access in emerging markets through three core business units:
@@ -46,9 +46,9 @@ const sections = [
     </div>
   </section>
 
-  {sections.map((sec) => (
+  {sections.map((sec, secIdx) => (
     <section id={sec.id} class="bg-white scroll-mt-24">
-      <div class="max-w-4xl mx-auto px-6 pt-16 pb-12">
+      <div class:list={["max-w-4xl mx-auto px-6 pb-12", secIdx === 0 ? "pt-8" : "pt-16"]}>
         <h2 class="section-heading">{sec.copy.heading}</h2>
         <p class="mt-5 text-center text-slate-700 leading-relaxed max-w-3xl mx-auto">
           {sec.copy.intro}
@@ -117,7 +117,7 @@ const sections = [
 
   <!-- Innovation -->
   <section id="innovation" class="bg-white scroll-mt-24">
-    <div class="max-w-4xl mx-auto px-6 pt-16 pb-20 text-center">
+    <div class="max-w-4xl mx-auto px-6 pt-8 pb-20 text-center">
       <h2 class="section-heading">{sectionCopy.innovation.heading}</h2>
       <p class="mt-5 text-slate-700 max-w-3xl mx-auto leading-relaxed">
         {sectionCopy.innovation.intro}
@@ -132,7 +132,7 @@ const sections = [
   </section>
 
   <section class="bg-white">
-    <div class="max-w-4xl mx-auto px-6 pb-16 text-center">
+    <div class="max-w-4xl mx-auto px-6 pb-3 text-center">
       <p class="text-xs text-slate-500">
         Photo credits: Acumen, BRILHO, Hailey Tucker (2023), SEforALL, Vecteezy, Zuwa Energy
       </p>
