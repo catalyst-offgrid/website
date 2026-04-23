@@ -31,7 +31,20 @@ function headshot(file?: string) {
           return (
             <article class="text-center flex flex-col items-center">
               {img ? (
-                <Image src={img} alt={m.name} class="w-44 h-44 rounded-full object-cover" width={352} height={352} />
+                m.headshotScale && m.headshotScale !== 1 ? (
+                  <div class="w-44 h-44 rounded-full overflow-hidden bg-slate-100">
+                    <Image
+                      src={img}
+                      alt={m.name}
+                      class="w-full h-full object-cover"
+                      style={`transform: scale(${m.headshotScale}); transform-origin: center;`}
+                      width={352}
+                      height={352}
+                    />
+                  </div>
+                ) : (
+                  <Image src={img} alt={m.name} class="w-44 h-44 rounded-full object-cover" width={352} height={352} />
+                )
               ) : (
                 <div class="w-44 h-44 rounded-full bg-brand-blue text-white flex items-center justify-center font-display text-4xl">
                   {getInitials(m.name)}

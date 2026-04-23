@@ -4,6 +4,8 @@ export interface TeamMember {
   bio?: string;
   /** Filename in src/assets/images/team/ — imported dynamically on the team page */
   headshot?: string;
+  /** Optional zoom within the circular crop (1 = default; <1 zooms out, >1 zooms in). */
+  headshotScale?: number;
   linkedin?: string;
   group: "core" | "advisor";
 }
@@ -99,6 +101,7 @@ export const team: TeamMember[] = [
     role: "Head of Enterprise Development",
     bio: "Russell brings expertise in leadership and organisational culture, risk management, financial services, and project management to Catalyst. Most recently, he led the Global Distributors Collective (GDC), supporting 200 last-mile distributors across 60 countries. He also served as Managing Director of a solar/clean cooking social enterprise in Zambia, and spent 15 years in UK financial services.",
     headshot: "russell-lyseight.jpg",
+    headshotScale: 0.82,
     linkedin: "https://www.linkedin.com/in/russell-lyseight-23a1874/",
     group: "core",
   },
