@@ -75,13 +75,13 @@ const sections = [
                 )}
                 {!isContain && !p.noBadge && (
                   <div class:list={[
-                    "absolute top-4 z-20 bg-white rounded px-3 py-2 shadow-sm flex items-center justify-center max-w-[45%]",
-                    rightCol ? "right-4" : "left-4"
+                    "absolute top-4 z-20 flex items-center max-w-[45%]",
+                    rightCol ? "right-4 justify-end" : "left-4 justify-start"
                   ]}>
                     {logo ? (
-                      <Image src={logo} alt={p.title} class="max-h-10 w-auto object-contain" />
+                      <Image src={logo} alt={p.title} class="max-h-12 w-auto object-contain drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]" />
                     ) : (
-                      <span class="font-display text-sm font-semibold text-brand-blue text-center leading-tight">{p.title}</span>
+                      <span class="font-display text-sm font-bold text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.7)] leading-tight">{p.title}</span>
                     )}
                   </div>
                 )}
