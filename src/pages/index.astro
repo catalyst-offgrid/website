@@ -7,7 +7,7 @@ import { partners } from "../data/partners";
 import heroVillage from "../assets/images/heroes/home-village.jpg";
 import worldMap from "../assets/images/heroes/world-map.png";
 import nightlights from "../assets/images/heroes/nightlights.jpg";
-import catalystIcon from "../assets/images/logos/catalyst-icon-a.svg?raw";
+import catalystLockup from "../assets/images/logos/catalyst-lockup.svg?raw";
 
 // Pre-load partner logos via glob so <Image> can optimize them.
 const partnerImages = import.meta.glob<{ default: ImageMetadata }>(
@@ -45,7 +45,7 @@ function partnerImg(filename: string) {
     <div class="absolute inset-0 bg-brand-blue/50"></div>
     <div class="relative max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-10 items-center">
       <div class="flex justify-center md:justify-start">
-        <div class="w-[200px] h-[200px] flex items-center justify-center" set:html={catalystIcon}></div>
+        <div class="w-[200px] flex items-center justify-center" set:html={catalystLockup}></div>
       </div>
       <div>
         <p class="font-display text-2xl sm:text-3xl font-light leading-relaxed">
