@@ -10,3 +10,12 @@ dist/
 .env
 .env.local
 .env.*.local
+
+# Phase 1 mirror folders (checked out temporarily for image extraction)
+/index_files/
+/team_files/
+/experience_files/
+/innovations_files/
+/contact_files/
+/joinourteam_files/
+/privacy-policy_files/
