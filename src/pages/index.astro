@@ -119,6 +119,9 @@ function partnerImg(filename: string) {
       <h2 class="section-heading">Some of Our Partners And Clients</h2>
       <div class="mt-6 grid grid-cols-2 md:grid-cols-4 gap-x-2 gap-y-8 items-center justify-items-center">
         {partners.map((p) => {
+          if (p.logo?.endsWith(".svg")) {
+            return <img src={`/logos/${p.logo}`} alt={p.name} class="max-h-20 w-auto max-w-[180px] object-contain" />;
+          }
           const img = p.logo ? partnerImg(p.logo) : undefined;
           if (img) {
             return (

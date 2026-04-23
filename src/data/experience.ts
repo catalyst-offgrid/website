@@ -109,6 +109,7 @@ export const projects: Project[] = [
     slug: "p3-geapp",
     title: "Powering People and Planet (P3)",
     image: "p3-backdrop.jpg",
+    logo: "geapp-logo.svg",
     body: `In 2022, Catalyst led the development of <a href="https://energyalliance.org/wp-content/uploads/2023/01/GEAPP_P3_PDF_report_120122.pdf" target="_blank" rel="noopener">Powering People and Planet (P3)</a>, GEAPP's first annual impact report, launched at COP27. The report examines GEAPP's mission, impact methodology, and global projects, providing an evidence-based assessment of progress. It offers a candid look at impact results and issues a global call to action for expanding reliable, affordable clean energy in energy-poor countries to drive sustainable development and mitigate climate change.`,
     section: "strategy",
     display: "contain",

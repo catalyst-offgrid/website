@@ -17,7 +17,7 @@ export const partners: Partner[] = [
   { name: "Sustainable Energy for All", logo: "seforall.jpg" },
   // Row 3
   { name: "GET.invest", logo: "get-invest.png" },
-  { name: "Global Energy Alliance for People and Planet", logo: "geapp.png" },
+  { name: "Global Energy Alliance for People and Planet", logo: "geapp-logo.svg" },
   { name: "Norfund", logo: "norfund.jpg" },
   { name: "IFC", logo: "ifc.png" },
   // Row 4

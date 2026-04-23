@@ -110,7 +110,7 @@ const sections = [
                     const logoCls = isMulti ? "max-h-8 w-auto object-contain" : (p.logoLarge ? "max-h-16 w-auto object-contain" : "max-h-12 w-auto object-contain");
                     if (logoList.length === 0) return null;
                     return (
-                      <div class:list={["flex items-center gap-3 mb-4 shrink-0", rightCol ? "ml-auto" : ""]}>
+                      <div class:list={["flex items-center gap-3 mb-4 shrink-0", rightCol ? "ml-auto" : "", !isMulti ? "max-w-[45%]" : ""]}>
                         {logoList.map((filename) => {
                           if (filename.endsWith(".svg")) return <img src={`/logos/${filename}`} alt="" class={logoCls} />;
                           const meta = img(filename);
