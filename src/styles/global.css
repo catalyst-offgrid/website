@@ -95,6 +95,7 @@
   html {
     font-family: var(--font-sans);
     color: var(--color-brand-blue);
+    font-size: 17px; /* bump root: 16px -> 17px (~6%) so all rem-based sizes lift slightly */
   }
   body {
     font-family: var(--font-sans);
