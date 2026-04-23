@@ -60,7 +60,10 @@ const sections = [
             const isContain = p.display === "contain";
             const rightCol = idx % 2 === 1;
             return (
-              <article class="tile relative aspect-square overflow-hidden group bg-slate-100" tabindex="0">
+              <article class:list={[
+                "tile relative overflow-hidden group bg-slate-100",
+                sec.id === "strategy-insights" ? "aspect-[4/5]" : "aspect-square"
+              ]} tabindex="0">
                 {image && (
                   <Image
                     src={image}
