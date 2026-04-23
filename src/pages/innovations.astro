@@ -51,13 +51,15 @@ const sections = [
   </section>
 
   <section class="bg-white">
-    <div class="max-w-3xl mx-auto px-6 pb-20 space-y-14">
+    <div class="max-w-4xl mx-auto px-6 pb-20 space-y-14">
       {sections.map((i, idx) => (
-        <article class={idx > 0 ? "pt-14 border-t border-slate-200" : ""}>
+        <article class={idx > 0 ? "pt-14 border-t-2 border-brand-blue" : ""}>
           <div class="flex justify-center mb-6">
-            <Image src={i.logo} alt={i.name} class="max-h-24 w-auto object-contain" />
+            <a href={i.url} target="_blank" rel="noopener" aria-label={i.name}>
+              <Image src={i.logo} alt={i.name} class="max-h-24 w-auto object-contain hover:opacity-85 transition-opacity" />
+            </a>
           </div>
-          <div class="space-y-4 text-slate-700 leading-relaxed text-center">
+          <div class="space-y-4 text-slate-700 leading-relaxed text-justify">
             {i.paragraphs.map((p) => (
               <p>{p}</p>
             ))}

@@ -6,15 +6,18 @@ const year = new Date().getFullYear();
 ---
 <footer class="bg-brand-blue text-white">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 py-14 grid gap-10 md:grid-cols-3">
-    <div class="flex gap-4">
-      <span class="block w-8 h-8 shrink-0 text-brand-gold" set:html={mapPin}></span>
-      <p class="text-sm leading-relaxed text-white/90">
-        Catalyst is headquartered in Berkeley, California. Our team's decentralized, global presence includes New York, Nairobi, Paris, Maputo, Lusaka, Lagos and Washington DC.
-      </p>
+    <div>
+      <div class="flex gap-4">
+        <span class="block w-8 h-8 shrink-0 text-brand-gold" set:html={mapPin}></span>
+        <p class="text-sm leading-relaxed text-white/90">
+          Catalyst is headquartered in Berkeley, California. Our team's decentralized, global presence includes New York, Nairobi, Paris, Maputo, Lusaka, Lagos and Washington DC.
+        </p>
+      </div>
+      <a href="/joinourteam" class="mt-6 inline-block text-brand-gold font-display text-sm tracking-widest uppercase hover:text-white transition-colors">Join our team</a>
     </div>
 
     <div>
-      <a href="/joinourteam" class="text-brand-gold font-display text-sm tracking-widest uppercase hover:text-white transition-colors">Join our team</a>
+      <a href="/contact" class="text-brand-gold font-display text-sm tracking-widest uppercase hover:text-white transition-colors">Contact us</a>
       <a href={`mailto:${site.contactEmail}`} class="mt-3 inline-flex items-center gap-3 text-brand-gold hover:text-white transition-colors">
         <span class="block w-5 h-5" set:html={envelope}></span>
         <span class="text-sm">{site.contactEmail}</span>
@@ -43,7 +46,7 @@ const year = new Date().getFullYear();
         <li><a href="/" class="hover:text-brand-gold">Home</a></li>
         <li><a href="/team" class="hover:text-brand-gold">Team</a></li>
         <li><a href="/experience" class="hover:text-brand-gold">Experience</a></li>
-        <li><a href="/joinourteam" class="hover:text-brand-gold">More</a></li>
+        <li><a href="/innovations" class="hover:text-brand-gold">Innovations</a></li>
       </ul>
       <p class="text-xs text-white/70">
         &copy; {year} Catalyst Energy Advisors. All rights reserved. Catalyst Privacy Policy can be found <a href="/privacy-policy" class="underline hover:text-brand-gold">here</a>.
