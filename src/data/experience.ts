@@ -3,32 +3,24 @@ export interface Project {
   title: string;
   /** Filename (in src/assets/images/experience/) of the background photo. */
   image: string;
-  /**
-   * Optional filename of a partner logo to overlay on the photo. If omitted,
-   * a text fallback (title) is shown on the tile face, OR the badge is
-   * suppressed entirely via `noBadge`.
-   */
+  /** Single partner logo filename. */
   logo?: string;
-  /**
-   * Description as clean HTML (from Wix source). May contain `<a>`, `<strong>`,
-   * `<em>`, `<p>`, `<ul>`, `<li>` — rendered via `set:html` in the page. See
-   * `.tile-body` styles in `global.css` for link/list formatting.
-   */
+  /** Multiple logos rendered side-by-side across the top of the tile. Overrides `logo`. */
+  logos?: string[];
+  /** Make the badge logo larger (e.g. Acumen, GOGLA, SEforALL). */
+  logoLarge?: boolean;
+  /** Description as clean HTML (from Wix source). */
   body: string;
   section: "enterprise" | "strategy" | "innovation";
-  /**
-   * How the image should fill the tile.
-   * "cover" (default) crops the photo to fill the square.
-   * "contain" fits the full image inside the square with brand-blue padding —
-   * used for report-cover tiles so the cover isn't cropped.
-   */
+  /** "cover" (default) crops to fill; "contain" fits inside with padding for report covers. */
   display?: "cover" | "contain";
-  /** Skip the logo/title badge on the tile face (e.g. composites with logo baked in). */
+  /** Suppress the logo/title badge entirely. */
   noBadge?: boolean;
 }
 
 export const projects: Project[] = [
   // ===== Enterprise Development =====
+  // Row 1
   {
     slug: "get-invest-finance-readiness",
     title: "GET.invest Finance Readiness Support",
@@ -38,47 +30,58 @@ export const projects: Project[] = [
     section: "enterprise",
   },
   {
-    slug: "gogla-elevate",
-    title: "GOGLA ELEVATE \u2014 Investor Readiness Training",
-    image: "gogla-elevate-backdrop.png",
-    logo: "gogla-logo.png",
-    body: `In 2022, Catalyst was retained by GOGLA to deliver a series of trainings for 19 companies taking part in GOGLA ELEVATE - an investment readiness program for off-grid solar companies across Africa. Through a series of online group modules and in-person workshops, this training cultivated the entrepreneurs' knowledge and skills related to three core themes: telling a compelling business story, preparing for and identifying investment opportunities, and analyzing and improving the profitability of their products.`,
+    slug: "mcfa-nefco",
+    title: "Modern Cooking Facility for Africa",
+    image: "mcfa-backdrop.jpg",
+    logos: ["mcfa-logo.png", "nefco-logo.png"],
+    body: `Catalyst was selected to and continues to establish and streamline processes for delivering technical assistance for the <a href="https://www.moderncooking.africa/" target="_blank" rel="noopener">Modern Cooking Facility for Africa</a>. We help identify, prioritize, and collaborate with NEFCO to determine the technical assistance for contracted cookstove providers and subsequently deliver that support through 4 core work packages: gender initiatives, environmental systems and monitoring, credit management, core operations, and corporate finance.`,
     section: "enterprise",
   },
+  // Row 2
   {
     slug: "acumen-hardest-to-reach",
     title: "Acumen\u2019s Hardest to Reach Fund",
     image: "acumen-backdrop.jpg",
     logo: "acumen-logo.png",
+    logoLarge: true,
     body: `Catalyst provides strategic advisory for <a href="https://acumen.org/programs/hardest-to-reach/" target="_blank" rel="noopener">Acumen's Hardest to Reach fund</a>. This support includes guidance on pipeline for HTR debt and equity facilities, semi-annual "state of the industry" updates, and advice on the design and deployment of technical assistance activities for companies qualified for financing under the program.`,
+    section: "enterprise",
+  },
+  {
+    slug: "ifc-paygo",
+    title: "IFC Nigeria Distributor TA",
+    image: "ifc-nigeria-backdrop.jpg",
+    logo: "ifc-logo.png",
+    body: `Catalyst developed and delivered a capacity-building curriculum for small-scale (1kW-5kW) distributed solar sales and distribution businesses in Nigeria to help companies scale their activities and impact through a cohort training series featuring online and in-person workshops. Catalyst has also supported the IFC in assessing the viability of a standardized backup servicing agreement for PAYGo businesses in the off-grid solar industry and developing a roadmap.`,
+    section: "enterprise",
+  },
+  // Row 3
+  {
+    slug: "gogla-elevate",
+    title: "GOGLA ELEVATE \u2014 Investor Readiness Training",
+    image: "gogla-elevate-backdrop.png",
+    logo: "gogla-logo.png",
+    logoLarge: true,
+    body: `In 2022, Catalyst was retained by GOGLA to deliver a series of trainings for 19 companies taking part in GOGLA ELEVATE - an investment readiness program for off-grid solar companies across Africa. Through a series of online group modules and in-person workshops, this training cultivated the entrepreneurs' knowledge and skills related to three core themes: telling a compelling business story, preparing for and identifying investment opportunities, and analyzing and improving the profitability of their products.`,
     section: "enterprise",
   },
   {
     slug: "get-invest-mobilisation",
     title: "GET.invest Mobilisation partner associations",
     image: "group-capacity-building-backdrop.png",
-    logo: "alliance-rural-electrification-logo.png",
+    logos: [
+      "startup-energy-logo.webp",
+      "gdc-logo.png",
+      "alliance-rural-electrification-logo.png",
+      "gogla-logo.png",
+      "get-invest-logo.svg",
+    ],
     body: `Catalyst has been engaged to provide group capacity-building and training sessions to selected cohorts, for GET.invest Mobilisation unit partner associations. These sessions are to be delivered to the association members including The Alliance for Rural Electrification, GOGLA, Global Distributor Collective, and StartUp Energy. These trainings have been anchored around 4 core themes: Energy access finance; Investor relations and expectations; Business development and core operations; and Credit risk management.`,
-    section: "enterprise",
-  },
-  {
-    slug: "mcfa-nefco",
-    title: "Modern Cooking Facility for Africa",
-    image: "mcfa-backdrop.jpg",
-    logo: "mcfa-logo.png",
-    body: `Catalyst was selected to and continues to establish and streamline processes for delivering technical assistance for the <a href="https://www.moderncooking.africa/" target="_blank" rel="noopener">Modern Cooking Facility for Africa</a>. We help identify, prioritize, and collaborate with NEFCO to determine the technical assistance for contracted cookstove providers and subsequently deliver that support through 4 core work packages: gender initiatives, environmental systems and monitoring, credit management, core operations, and corporate finance.`,
-    section: "enterprise",
-  },
-  {
-    slug: "ifc-paygo",
-    title: "IFC PAYGo & Nigeria Distributed Solar",
-    image: "ifc-nigeria-backdrop.jpg",
-    logo: "ifc-logo.png",
-    body: `Catalyst developed and delivered a capacity-building curriculum for small-scale (1kW-5kW) distributed solar sales and distribution businesses in Nigeria to help companies scale their activities and impact through a cohort training series featuring online and in-person workshops. Catalyst has also supported the IFC in assessing the viability of a standardized backup servicing agreement for PAYGo businesses in the off-grid solar industry and developing a roadmap.`,
     section: "enterprise",
   },
 
   // ===== Strategy & Insights =====
+  // Row 1
   {
     slug: "rockefeller-green-power-gap",
     title: "The Green Power Gap",
@@ -88,13 +91,19 @@ export const projects: Project[] = [
     display: "contain",
   },
   {
-    slug: "transforming-a-billion-lives",
-    title: "Transforming a Billion Lives",
-    image: "billion-lives-backdrop.jpg",
-    body: `In 2021, the Rockefeller Foundation tasked Catalyst with quantifying the job creation potential associated with deploying DREs in developing countries. We developed a predictive model to forecast the full spectrum of employment\u2014from direct deployment to downstream jobs created by reliable power access. Our model and in-depth case studies provided the foundational evidence base for the Foundation's flagship report, '<a href="https://www.rockefellerfoundation.org/wp-content/uploads/2021/09/Transforming-a-Billion-Lives-The-Job-Creation-Potential-from-a-Green-Power-Transition-in-the-Energy-Poor-World.pdf" target="_blank" rel="noopener">Transforming a Billion Lives</a>,' shaping the narrative on how green energy investment drives economic growth and informs policy.`,
+    slug: "brilho-mozambique",
+    title: "BRILHO \u2014 Mozambique Off-Grid Market",
+    image: "brilho-backdrop.jpg",
+    // TODO: drop a BRILHO logo at src/assets/images/experience/brilho-logo.png and set `logo: "brilho-logo.png"`
+    body: `<p>Since 2018, Catalyst has played a key role in supporting SNV's BRILHO program, which aims to catalyze Mozambique's off-grid energy market. Catalyst has supported:</p>
+<ul>
+  <li>The design and rollout of the Market Development Fund, which includes RBF, catalytic grants, and TA.</li>
+  <li>Implementation through due diligence of SHS, ICS, and mini-grid companies, as well as TA for distributors.</li>
+  <li>Drafting of <a href="https://brilhomoz.com/documents/Resources/BRILHO_Transforming-off-grid-energy-access-in-Mozambique_FINAL.pdf" target="_blank" rel="noopener">BRILHO's flagship report</a>, highlighting achievements in financing, policy reform, institutional strengthening, and demand activation.</li>
+</ul>`,
     section: "strategy",
-    display: "contain",
   },
+  // Row 2
   {
     slug: "p3-geapp",
     title: "Powering People and Planet (P3)",
@@ -104,14 +113,6 @@ export const projects: Project[] = [
     display: "contain",
   },
   {
-    slug: "seforall-sierra-leone",
-    title: "SEforALL Sierra Leone Healthcare",
-    image: "seforall-backdrop.jpg",
-    logo: "seforall-logo.png",
-    body: `Catalyst conducted an impact assessment and developmental evaluation of SEforALL's Healthcare Electrification Project in Sierra Leone. The work aimed to assess the program's effectiveness in electrifying health facilities and its broader impacts on service delivery, patient outcomes, and sustainability. Using a mixed-methods approach, Catalyst is evaluating health, economic, and environmental benefits while identifying lessons for scaling and replication. The study also developed a results framework and measurement tools to enhance future health facility electrification efforts in Sierra Leone and beyond.`,
-    section: "strategy",
-  },
-  {
     slug: "shell-sdg7",
     title: "Shell Foundation \u2014 Achieving SDG 7",
     image: "shell-sdg7-backdrop.jpg",
@@ -119,17 +120,23 @@ export const projects: Project[] = [
     body: `In 2017, Catalyst, in partnership with Shell Foundation, developed the groundbreaking report <a href="https://shellfoundation.org/wp-content/uploads/2018/10/Catalyst-Report.pdf" target="_blank" rel="noopener">Achieving SDG 7: The Need to Disrupt Off-Grid Electricity Financing in Africa</a>, highlighting the funding gap preventing universal energy access. The report examines the scale of investment required and proposes innovative financing solutions to accelerate off-grid electrification. By combining predictive modeling with enterprise-level insights, it outlines a pathway for scaling solar home systems and mini-grids, ensuring that underserved households can access modern, reliable energy.`,
     section: "strategy",
   },
+  // Row 3
   {
-    slug: "brilho-mozambique",
-    title: "BRILHO \u2014 Mozambique Off-Grid Market",
-    image: "brilho-backdrop.jpg",
-    body: `<p>Since 2018, Catalyst has played a key role in supporting SNV's BRILHO program, which aims to catalyze Mozambique's off-grid energy market. Catalyst has supported:</p>
-<ul>
-  <li>The design and rollout of the Market Development Fund, which includes RBF, catalytic grants, and TA.</li>
-  <li>Implementation through due diligence of SHS, ICS, and mini-grid companies, as well as TA for distributors.</li>
-  <li>Drafting of <a href="https://brilhomoz.com/documents/Resources/BRILHO_Transforming-off-grid-energy-access-in-Mozambique_FINAL.pdf" target="_blank" rel="noopener">BRILHO's flagship report</a>, highlighting achievements in financing, policy reform, institutional strengthening, and demand activation.</li>
-</ul>`,
+    slug: "seforall-sierra-leone",
+    title: "SEforALL Sierra Leone Healthcare",
+    image: "seforall-backdrop.jpg",
+    logo: "seforall-logo.png",
+    logoLarge: true,
+    body: `Catalyst conducted an impact assessment and developmental evaluation of SEforALL's Healthcare Electrification Project in Sierra Leone. The work aimed to assess the program's effectiveness in electrifying health facilities and its broader impacts on service delivery, patient outcomes, and sustainability. Using a mixed-methods approach, Catalyst is evaluating health, economic, and environmental benefits while identifying lessons for scaling and replication. The study also developed a results framework and measurement tools to enhance future health facility electrification efforts in Sierra Leone and beyond.`,
     section: "strategy",
+  },
+  {
+    slug: "transforming-a-billion-lives",
+    title: "Transforming a Billion Lives",
+    image: "billion-lives-backdrop.jpg",
+    body: `In 2021, the Rockefeller Foundation tasked Catalyst with quantifying the job creation potential associated with deploying DREs in developing countries. We developed a predictive model to forecast the full spectrum of employment\u2014from direct deployment to downstream jobs created by reliable power access. Our model and in-depth case studies provided the foundational evidence base for the Foundation's flagship report, '<a href="https://www.rockefellerfoundation.org/wp-content/uploads/2021/09/Transforming-a-Billion-Lives-The-Job-Creation-Potential-from-a-Green-Power-Transition-in-the-Energy-Poor-World.pdf" target="_blank" rel="noopener">Transforming a Billion Lives</a>,' shaping the narrative on how green energy investment drives economic growth and informs policy.`,
+    section: "strategy",
+    display: "contain",
   },
 ];
 
