@@ -1,29 +1,38 @@
 ---
 import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { enterpriseProjects, insightsProjects } from "../data/experience";
+import { projects, sectionCopy } from "../data/experience";
 
-const projectImages = import.meta.glob<{ default: ImageMetadata }>(
+const imgs = import.meta.glob<{ default: ImageMetadata }>(
   "../assets/images/experience/*.{png,jpg,jpeg,webp}",
   { eager: true }
 );
-function projImg(filename: string) {
-  const entry = Object.entries(projectImages).find(([k]) => k.endsWith("/" + filename));
-  return entry?.[1].default;
+function img(filename?: string) {
+  if (!filename) return null;
+  const entry = Object.entries(imgs).find(([k]) => k.endsWith("/" + filename));
+  return entry?.[1].default ?? null;
 }
 
+const enterprise = projects.filter((p) => p.section === "enterprise");
+const strategy = projects.filter((p) => p.section === "strategy");
+
 const navButtonClass =
-  "bg-brand-blue text-white font-semibold px-6 py-3 rounded inline-flex items-center gap-2 hover:bg-brand-blue-dark transition";
+  "bg-brand-blue text-white font-semibold px-6 py-3 inline-flex items-center gap-2 hover:bg-brand-blue-dark transition";
+
+const sections = [
+  { id: "enterprise-development", copy: sectionCopy.enterprise, list: enterprise },
+  { id: "strategy-insights", copy: sectionCopy.strategy, list: strategy },
+];
 ---
 <BaseLayout title="Experience">
-  <!-- Hero band -->
+  <!-- Intro band + three scroll-anchor buttons -->
   <section class="bg-white">
-    <div class="max-w-5xl mx-auto px-6 pt-16 pb-12 text-center">
+    <div class="max-w-5xl mx-auto px-6 pt-16 pb-8 text-center">
       <h1 class="section-heading">Our Experience</h1>
-      <p class="mt-4 text-brand-blue leading-relaxed max-w-3xl mx-auto">
+      <p class="mt-5 text-slate-700 leading-relaxed max-w-3xl mx-auto">
         We focus on catalyzing energy access in emerging markets through three core business units:
       </p>
-      <div class="mt-8 flex flex-wrap justify-center gap-4">
+      <div class="mt-10 flex flex-wrap justify-center gap-4">
         <a href="#enterprise-development" class={navButtonClass}>
           Enterprise Development <span aria-hidden>&rsaquo;</span>
         </a>
@@ -37,84 +46,56 @@ const navButtonClass =
     </div>
   </section>
 
-  <!-- Enterprise Development -->
-  <section id="enterprise-development" class="bg-white scroll-mt-24">
-    <div class="max-w-6xl mx-auto px-6 py-12">
-      <h2 class="section-heading mb-4">Enterprise Development</h2>
-      <p class="text-center text-brand-blue max-w-2xl mx-auto mb-10">
-        Thanks to our industry DNA, we thrive when mentoring and coaching energy access companies. A few examples of our enterprise development work:
-      </p>
-      <div class="grid gap-6 sm:grid-cols-2">
-        {enterpriseProjects.map((p) => {
-          const img = projImg(p.image);
-          const logo = p.logo ? projImg(p.logo) : null;
-          return (
-            <article class="tile relative overflow-hidden rounded aspect-square group" tabindex="0">
-              {img && (
-                <Image src={img} alt="" class="absolute inset-0 w-full h-full object-cover" width={900} height={900} />
-              )}
-              {logo && (
-                <div class="absolute top-4 left-1/2 -translate-x-1/2 bg-white/90 rounded-md px-4 py-2 shadow-sm flex items-center justify-center" style="max-width: 60%;">
-                  <Image src={logo} alt={p.title} class="max-h-12 w-auto object-contain" />
+  {sections.map((sec) => (
+    <section id={sec.id} class="bg-white scroll-mt-24">
+      <div class="max-w-6xl mx-auto px-6 pt-16 pb-12">
+        <h2 class="section-heading">{sec.copy.heading}</h2>
+        <p class="mt-5 text-center text-slate-700 leading-relaxed max-w-3xl mx-auto">
+          {sec.copy.intro}
+        </p>
+        <div class="mt-12 grid gap-6 sm:grid-cols-2">
+          {sec.list.map((p) => {
+            const image = img(p.image);
+            const logo = img(p.logo);
+            return (
+              <article class="tile relative aspect-square overflow-hidden group" tabindex="0">
+                {image && (
+                  <Image
+                    src={image}
+                    alt={p.title}
+                    class="absolute inset-0 w-full h-full object-cover"
+                    width={900}
+                    height={900}
+                  />
+                )}
+                {logo && (
+                  <div class="absolute top-4 left-1/2 -translate-x-1/2 bg-white/95 rounded-md px-4 py-2 shadow-sm flex items-center justify-center" style="max-width: 60%;">
+                    <Image src={logo} alt="" class="max-h-8 w-auto object-contain" />
+                  </div>
+                )}
+                <div class="tile-overlay">
+                  <h3 class="font-display font-semibold text-lg mb-2">{p.title}</h3>
+                  <p class="text-sm leading-relaxed">{p.body}</p>
                 </div>
-              )}
-              <div class="absolute bottom-0 inset-x-0 bg-brand-blue/80 text-white text-center text-sm font-semibold px-3 py-2">
-                {p.title}
-              </div>
-              <div class="tile-overlay">
-                <h3 class="font-display font-semibold text-lg mb-2">{p.title}</h3>
-                <p class="text-sm leading-relaxed">{p.body}</p>
-              </div>
-            </article>
-          );
-        })}
+              </article>
+            );
+          })}
+        </div>
       </div>
-    </div>
-  </section>
-
-  <!-- Strategy & Insights -->
-  <section id="strategy-insights" class="bg-white scroll-mt-24">
-    <div class="max-w-6xl mx-auto px-6 py-12">
-      <h2 class="section-heading mb-4">Strategy &amp; Insights</h2>
-      <p class="text-center text-brand-blue max-w-2xl mx-auto mb-10">
-        Catalyst delivers market intelligence, financial analysis, and strategic advisory to key energy access stakeholders. We assess investment trends, evaluate program and project performance, and generate actionable insights to drive sector growth and impact.
-      </p>
-      <div class="grid gap-6 sm:grid-cols-2">
-        {insightsProjects.map((p) => {
-          const img = projImg(p.image);
-          const logo = p.logo ? projImg(p.logo) : null;
-          return (
-            <article class="tile relative overflow-hidden rounded aspect-square group" tabindex="0">
-              {img && (
-                <Image src={img} alt="" class="absolute inset-0 w-full h-full object-cover" width={900} height={900} />
-              )}
-              {logo && (
-                <div class="absolute top-4 left-1/2 -translate-x-1/2 bg-white/90 rounded-md px-4 py-2 shadow-sm flex items-center justify-center" style="max-width: 60%;">
-                  <Image src={logo} alt={p.title} class="max-h-12 w-auto object-contain" />
-                </div>
-              )}
-              <div class="absolute bottom-0 inset-x-0 bg-brand-blue/80 text-white text-center text-sm font-semibold px-3 py-2">
-                {p.title}
-              </div>
-              <div class="tile-overlay">
-                <h3 class="font-display font-semibold text-lg mb-2">{p.title}</h3>
-                <p class="text-sm leading-relaxed">{p.body}</p>
-              </div>
-            </article>
-          );
-        })}
-      </div>
-    </div>
-  </section>
+    </section>
+  ))}
 
   <!-- Innovation -->
   <section id="innovation" class="bg-white scroll-mt-24">
-    <div class="max-w-4xl mx-auto px-6 py-12 text-center">
-      <h2 class="section-heading mb-4">Innovation</h2>
-      <p class="text-brand-blue max-w-2xl mx-auto mb-8 leading-relaxed">
-        We originate, incubate, and scale breakthrough ideas to accelerate universal access to power. Through <strong>VentureBuilder</strong>, the <strong>Access Insights Platform (AIP)</strong>, and the <strong>Micro Asset Finance Lab</strong>, Catalyst pairs capital, data, and hands-on venture-building to move promising innovations from concept to market.
+    <div class="max-w-4xl mx-auto px-6 pt-16 pb-20 text-center">
+      <h2 class="section-heading">{sectionCopy.innovation.heading}</h2>
+      <p class="mt-5 text-slate-700 max-w-3xl mx-auto leading-relaxed">
+        {sectionCopy.innovation.intro}
       </p>
-      <a href="/innovations" class="inline-block bg-brand-gold text-brand-blue font-semibold px-8 py-3 rounded hover:bg-brand-gold-deep transition">
+      <a
+        href="/innovations"
+        class="mt-10 inline-block bg-brand-gold text-brand-blue font-semibold px-8 py-3 hover:bg-brand-gold-deep transition"
+      >
         Learn more on the Innovations page &rsaquo;
       </a>
     </div>
@@ -122,8 +103,9 @@ const navButtonClass =
 
   <section class="bg-white">
     <div class="max-w-4xl mx-auto px-6 pb-16 text-center">
-      <a href="/contact" class="inline-block bg-brand-gold text-brand-blue font-semibold px-8 py-3 rounded hover:bg-brand-gold-deep transition">Explore our Experience</a>
-      <p class="mt-6 text-xs text-slate-500">Photo credits: BRILHO, Hailey Tucker (2023), SEforALL, Vecteezy, Zuwa Energy</p>
+      <p class="text-xs text-slate-500">
+        Photo credits: Acumen, BRILHO, Hailey Tucker (2023), SEforALL, Vecteezy, Zuwa Energy
+      </p>
     </div>
   </section>
 </BaseLayout>
