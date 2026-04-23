@@ -105,6 +105,23 @@ const sections = [
                   );
                 })()}
                 <div class="tile-overlay">
+                  {!isContain && !p.noBadge && (() => {
+                    const logoList = p.logos && p.logos.length > 0 ? p.logos : (p.logo ? [p.logo] : []);
+                    const isMulti = logoList.length > 1;
+                    const logoCls = isMulti ? "max-h-8 w-auto object-contain" : (p.logoLarge ? "max-h-16 w-auto object-contain" : "max-h-12 w-auto object-contain");
+                    if (logoList.length === 0) return null;
+                    return (
+                      <div class:list={["flex items-center gap-3 mb-3 shrink-0", isMulti ? "justify-center" : "justify-start"]}>
+                        {logoList.map((filename) => {
+                          if (filename.endsWith(".svg")) {
+                            return <img src={`/logos/${filename}`} alt="" class={logoCls} />;
+                          }
+                          const meta = img(filename);
+                          return meta ? <Image src={meta} alt="" class={logoCls} /> : null;
+                        })}
+                      </div>
+                    );
+                  })()}
                   <div class="tile-body" set:html={p.body}></div>
                 </div>
               </article>
