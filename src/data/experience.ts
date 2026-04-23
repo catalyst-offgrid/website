@@ -23,6 +23,8 @@ export interface Project {
    * used for report-cover tiles so the cover isn't cropped.
    */
   display?: "cover" | "contain";
+  /** Skip the white logo/title badge on the tile face — for composite images where the logo is already baked into the photo. */
+  noBadge?: boolean;
 }
 
 export const projects: Project[] = [
@@ -31,13 +33,15 @@ export const projects: Project[] = [
     slug: "get-invest-finance-readiness",
     title: "GET.invest Finance Readiness Support",
     image: "get-invest.png", // composite: GET.invest logo already baked into photo
+    noBadge: true,
     body: `Catalyst is a proud member of <a href="https://www.get-invest.eu/finance-access-advisory/finance-readiness-support/" target="_blank" rel="noopener">GET.invest's Finance Readiness Support</a> program. To date, we've supported 11 energy access enterprises, helping them de-risk key elements of their business models and enhance their bankability to investors.`,
     section: "enterprise",
   },
   {
     slug: "gogla-elevate",
     title: "GOGLA ELEVATE \u2014 Investor Readiness Training",
-    image: "gogla-elevate.png", // composite: group photo
+    image: "gogla-elevate.png",
+    logo: "gogla-logo.png",
     body: `In 2022, Catalyst was retained by GOGLA to deliver a series of trainings for 19 companies taking part in GOGLA ELEVATE - an investment readiness program for off-grid solar companies across Africa. Through a series of online group modules and in-person workshops, this training cultivated the entrepreneurs' knowledge and skills related to three core themes: telling a compelling business story, preparing for and identifying investment opportunities, and analyzing and improving the profitability of their products.`,
     section: "enterprise",
   },
@@ -57,9 +61,10 @@ export const projects: Project[] = [
     section: "enterprise",
   },
   {
-    slug: "dzuwa-energy",
-    title: "DZUWA Energy",
+    slug: "get-invest-mobilisation",
+    title: "GET.invest Mobilisation partner associations",
     image: "dzuwa.jpg",
+    logo: "get-invest-logo.png",
     body: `Catalyst has been engaged to provide group capacity-building and training sessions to selected cohorts, for GET.invest Mobilisation unit partner associations. These sessions are to be delivered to the association members including The Alliance for Rural Electrification, GOGLA, Global Distributor Collective, and StartUp Energy. These trainings have been anchored around 4 core themes: Energy access finance; Investor relations and expectations; Business development and core operations; and Credit risk management.`,
     section: "enterprise",
   },
@@ -67,6 +72,7 @@ export const projects: Project[] = [
     slug: "mcfa-nefco",
     title: "Modern Cooking Facility for Africa",
     image: "solar-installer.jpg",
+    logo: "mcfa.png",
     body: `Catalyst was selected to and continues to establish and streamline processes for delivering technical assistance for the <a href="https://www.moderncooking.africa/" target="_blank" rel="noopener">Modern Cooking Facility for Africa</a>. We help identify, prioritize, and collaborate with NEFCO to determine the technical assistance for contracted cookstove providers and subsequently deliver that support through 4 core work packages: gender initiatives, environmental systems and monitoring, credit management, core operations, and corporate finance.`,
     section: "enterprise",
   },
