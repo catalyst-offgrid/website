@@ -6,7 +6,7 @@ export interface Value {
 export const values: Value[] = [
   {
     title: "Grounded in Reality",
-    body: "We lead from our experience. Our work is informed by what happens on the ground — and by the data that helps us understand it. We test, learn, and adapt to deliver solutions that last.",
+    body: "We lead from our experience. Our work is informed by what happens on the ground - and by the data that helps us understand it. We test, learn, and adapt to deliver solutions that last.",
   },
   {
     title: "Driven to Transform",
@@ -14,7 +14,7 @@ export const values: Value[] = [
   },
   {
     title: "Powered by Partnership",
-    body: "We build change together — across sectors, geographies, and perspectives. We listen, learn, and openly share both successes and failures.",
+    body: "We build change together - across sectors, geographies, and perspectives. We listen, learn, and openly share both success and failure.",
   },
   {
     title: "Centering Equity",

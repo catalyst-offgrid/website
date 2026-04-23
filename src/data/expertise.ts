@@ -22,7 +22,7 @@ export const expertise: ExpertiseArea[] = [
   },
   {
     title: "Credit risk management",
-    body: "Extending credit to unbanked customers has unlocked a revolution in the energy access sector, known as Pay-as-you-go (PAYGo). Our team leverages its experience in building asset financing businesses to help clients move beyond traditional PAYGo toward specialized micro asset finance models.",
+    body: "Extending credit to unbanked customers has unlocked a revolution in the energy access sector, known as Pay-as-you go (PAYGo). Our team leverages its experience in building asset financing businesses to help clients move beyond traditional PAYGo toward specialized micro asset finance models.",
   },
   {
     title: "Program design and implementation",
