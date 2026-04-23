@@ -135,12 +135,24 @@
   transition: opacity 250ms ease;
   display: flex;
   flex-direction: column;
-  padding: 1.5rem 1.75rem;
+  justify-content: center;
+  padding: 2rem;
   overflow: auto;
+  text-align: left;
+}
+.tile-overlay h3 {
+  font-size: 1.25rem;
+  line-height: 1.25;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+.tile-overlay p {
+  font-size: 0.95rem;
+  line-height: 1.5;
 }
 .tile:hover .tile-overlay,
 .tile:focus-within .tile-overlay {
-  opacity: 0.96;
+  opacity: 0.97;
 }
 
 @media (max-width: 640px) {
@@ -151,5 +163,11 @@
     background: #fff;
     color: var(--color-brand-blue);
     padding: 1rem 0.25rem 0;
+  }
+  .tile-overlay h3 {
+    font-size: 1.125rem;
+  }
+  .tile-overlay p {
+    font-size: 0.9rem;
   }
 }

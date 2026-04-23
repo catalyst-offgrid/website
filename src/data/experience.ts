@@ -12,6 +12,13 @@ export interface Project {
   /** Description, verbatim from Wix HTML. */
   body: string;
   section: "enterprise" | "strategy" | "innovation";
+  /**
+   * How the image should fill the tile.
+   * "cover" (default) crops the photo to fill the square.
+   * "contain" fits the full image inside the square with brand-blue padding —
+   * used for report-cover tiles so the cover isn't cropped.
+   */
+  display?: "cover" | "contain";
 }
 
 export const projects: Project[] = [
@@ -19,8 +26,7 @@ export const projects: Project[] = [
   {
     slug: "get-invest-finance-readiness",
     title: "GET.invest Finance Readiness Support",
-    image: "get-invest.png", // composite: solar farm photo
-    logo: "get-invest-logo.png",
+    image: "get-invest.png", // composite: GET.invest logo already baked into photo
     body:
       "Catalyst is a proud member of GET.invest\u2019s Finance Readiness Support program. To date, we\u2019ve supported 11 energy access enterprises, helping them de-risk key elements of their business models and enhance their bankability to investors.",
     section: "enterprise",
@@ -62,7 +68,6 @@ export const projects: Project[] = [
     slug: "mcfa-nefco",
     title: "Modern Cooking Facility for Africa",
     image: "solar-installer.jpg",
-    logo: "mcfa.png",
     body:
       "Catalyst was selected to and continues to establish and streamline processes for delivering technical assistance for the Modern Cooking Facility for Africa. We help identify, prioritize, and collaborate with NEFCO to determine the technical assistance for contracted cookstove providers and subsequently deliver that support through 4 core work packages: gender initiatives, environmental systems and monitoring, credit management, core operations, and corporate finance.",
     section: "enterprise",
@@ -76,6 +81,7 @@ export const projects: Project[] = [
     body:
       "In 2024, Catalyst, in partnership with The Rockefeller Foundation, developed The Green Power Gap report to examine the energy shortfall across 72 developing countries and ideate innovative solutions for expanding clean energy access. The report highlights key policy and technology strategies to bypass fossil fuels, leapfrogging directly to clean energy systems that ensure sustainable growth and a resilient, energy abundant future.",
     section: "strategy",
+    display: "contain",
   },
   {
     slug: "transforming-a-billion-lives",
@@ -84,6 +90,7 @@ export const projects: Project[] = [
     body:
       "In 2021, the Rockefeller Foundation tasked Catalyst with quantifying the job creation potential associated with deploying DREs in developing countries. We developed a predictive model to forecast the full spectrum of employment\u2014from direct deployment to downstream jobs created by reliable power access. Our model and in-depth case studies provided the foundational evidence base for the Foundation\u2019s flagship report, \u2018Transforming a Billion Lives,\u2019 shaping the narrative on how green energy investment drives economic growth and informs policy.",
     section: "strategy",
+    display: "contain",
   },
   {
     slug: "p3-geapp",
@@ -92,6 +99,7 @@ export const projects: Project[] = [
     body:
       "In 2022, Catalyst led the development of Powering People and Planet (P3), GEAPP\u2019s first annual impact report, launched at COP27. The report examines GEAPP\u2019s mission, impact methodology, and global projects, providing an evidence-based assessment of progress. It offers a candid look at impact results and issues a global call to action for expanding reliable, affordable clean energy in energy-poor countries to drive sustainable development and mitigate climate change.",
     section: "strategy",
+    display: "contain",
   },
   {
     slug: "seforall-sierra-leone",

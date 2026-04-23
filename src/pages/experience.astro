@@ -53,29 +53,33 @@ const sections = [
         <p class="mt-5 text-center text-slate-700 leading-relaxed max-w-3xl mx-auto">
           {sec.copy.intro}
         </p>
-        <div class="mt-12 grid gap-6 sm:grid-cols-2">
+        <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {sec.list.map((p) => {
             const image = img(p.image);
             const logo = img(p.logo);
+            const isContain = p.display === "contain";
             return (
-              <article class="tile relative aspect-square overflow-hidden group" tabindex="0">
+              <article class="tile relative aspect-square overflow-hidden group bg-brand-blue" tabindex="0">
                 {image && (
                   <Image
                     src={image}
                     alt={p.title}
-                    class="absolute inset-0 w-full h-full object-cover"
+                    class:list={[
+                      "absolute inset-0 w-full h-full",
+                      isContain ? "object-contain p-4" : "object-cover",
+                    ]}
                     width={900}
                     height={900}
                   />
                 )}
-                {logo && (
-                  <div class="absolute top-4 left-1/2 -translate-x-1/2 bg-white/95 rounded-md px-4 py-2 shadow-sm flex items-center justify-center" style="max-width: 70%;">
-                    <Image src={logo} alt="" class="max-h-10 w-auto object-contain" />
+                {logo && !isContain && (
+                  <div class="absolute top-3 left-1/2 -translate-x-1/2 bg-white rounded px-3 py-1.5 shadow-sm flex items-center justify-center" style="max-width: 70%;">
+                    <Image src={logo} alt="" class="max-h-8 w-auto object-contain" />
                   </div>
                 )}
                 <div class="tile-overlay">
-                  <h3 class="font-display font-semibold text-lg mb-2">{p.title}</h3>
-                  <p class="text-sm leading-relaxed">{p.body}</p>
+                  <h3>{p.title}</h3>
+                  <p>{p.body}</p>
                 </div>
               </article>
             );
