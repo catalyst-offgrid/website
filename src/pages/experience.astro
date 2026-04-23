@@ -79,7 +79,7 @@ const sections = [
                 )}
                 <div class="tile-overlay">
                   <h3>{p.title}</h3>
-                  <p>{p.body}</p>
+                  <div class="tile-body" set:html={p.body}></div>
                 </div>
               </article>
             );
