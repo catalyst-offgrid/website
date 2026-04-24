@@ -5,7 +5,7 @@ import { values } from "../data/values";
 import { expertise } from "../data/expertise";
 import { partners, innovations } from "../data/partners";
 import catalystIcon from "../assets/images/logos/catalyst-blue.png";
-import heroVillage from "../assets/images/heroes/home-village.jpg";
+import heroPoster from "../assets/images/heroes/home-hero-poster.jpg";
 import nightlights from "../assets/images/heroes/nightlights.jpg";
 import worldMap from "../assets/images/map/world-map.png";
 
@@ -20,8 +20,22 @@ function partnerImg(filename: string) {
 ---
 <BaseLayout>
   <!-- HERO -->
-  <section class="relative min-h-[600px] flex items-center overflow-hidden">
-    <Image src={heroVillage} alt="" class="absolute inset-0 w-full h-full object-cover" width={2000} height={1125} />
+  <section class="hero-section relative min-h-[600px] flex items-center overflow-hidden">
+    <!-- Poster image: loads instantly, visible until video plays -->
+    <Image src={heroPoster} alt="" class="hero-poster absolute inset-0 w-full h-full object-cover" width={1600} height={900} />
+    <!-- Video: fades in once it can play; hidden on mobile + reduced-motion -->
+    <video
+      class="hero-video absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-700"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+      poster={heroPoster.src}
+      aria-hidden="true"
+    >
+      <source src="/videos/home-hero.mp4" type="video/mp4" />
+    </video>
     <div class="relative max-w-7xl mx-auto w-full px-6 py-16 flex justify-center text-white">
       <div class="relative w-full max-w-5xl bg-emerald-950/55 backdrop-blur-[1px] px-8 sm:px-14 py-10 sm:py-14">
         <h1 class="font-display font-bold text-3xl sm:text-4xl leading-tight">
@@ -146,3 +160,42 @@ function partnerImg(filename: string) {
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  /* On small screens or reduced-motion, skip the video entirely — poster stays */
+  @media (max-width: 767px), (prefers-reduced-motion: reduce) {
+    .hero-video { display: none !important; }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    function initHeroVideo() {
+      var v = document.querySelector(".hero-video");
+      if (!v) return;
+      // Respect reduced-motion: remove video element entirely so it never downloads
+      if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        v.remove();
+        return;
+      }
+      // On narrow viewports, skip video to save mobile bandwidth
+      if (window.matchMedia && window.matchMedia("(max-width: 767px)").matches) {
+        v.remove();
+        return;
+      }
+      v.addEventListener("canplay", function () {
+        v.classList.remove("opacity-0");
+      }, { once: true });
+      // Some browsers block autoplay; attempt play explicitly
+      var p = v.play();
+      if (p && typeof p.catch === "function") {
+        p.catch(function () { /* silently fall back to poster */ });
+      }
+    }
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initHeroVideo);
+    } else {
+      initHeroVideo();
+    }
+  })();
+</script>
