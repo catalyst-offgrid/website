@@ -173,24 +173,31 @@ function partnerImg(filename: string) {
     function initHeroVideo() {
       var v = document.querySelector(".hero-video");
       if (!v) return;
+      var log = function (m) { try { console.log("[hero-video]", m); } catch (e) {} };
       // Respect reduced-motion: remove video element entirely so it never downloads
       if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        v.remove();
-        return;
+        log("reduced-motion -> removed"); v.remove(); return;
       }
       // On narrow viewports, skip video to save mobile bandwidth
       if (window.matchMedia && window.matchMedia("(max-width: 767px)").matches) {
-        v.remove();
-        return;
+        log("narrow viewport -> removed"); v.remove(); return;
       }
-      v.addEventListener("canplay", function () {
-        v.classList.remove("opacity-0");
-      }, { once: true });
+      var reveal = function () { v.classList.remove("opacity-0"); log("revealed, readyState=" + v.readyState); };
+      // If video is already playable by the time this runs, reveal immediately
+      if (v.readyState >= 3) {
+        reveal();
+      } else {
+        v.addEventListener("canplay", reveal, { once: true });
+        v.addEventListener("loadeddata", reveal, { once: true });
+        v.addEventListener("playing", reveal, { once: true });
+      }
+      v.addEventListener("error", function () { log("error: " + (v.error && v.error.message)); });
       // Some browsers block autoplay; attempt play explicitly
       var p = v.play();
       if (p && typeof p.catch === "function") {
-        p.catch(function () { /* silently fall back to poster */ });
+        p.catch(function (err) { log("play() rejected: " + err.message); });
       }
+      log("init complete, src=" + (v.currentSrc || "(pending)"));
     }
     if (document.readyState === "loading") {
       document.addEventListener("DOMContentLoaded", initHeroVideo);
