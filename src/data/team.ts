@@ -80,7 +80,7 @@ export const team: TeamMember[] = [
   },
   {
     name: "Kat Harrison",
-    role: "Advisor",
+    role: "Head of Impact",
     bio: "Kat is a leader in the off-grid energy sector for customer voice and impact. She has been working on understanding, measuring, and sharing insights on the impact of energy access for end-users for over a decade, having specialised in impact measurement, M&E, and insights for international development for ~20 years.",
     headshot: "kat-harrison.jpg",
     linkedin: "https://www.linkedin.com/in/katjharrison/",
