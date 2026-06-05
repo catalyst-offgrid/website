@@ -10,7 +10,7 @@ export const site = {
     { label: "Home", href: "/" },
     { label: "Team", href: "/team" },
     { label: "Experience", href: "/experience" },
-    { label: "Innovations", href: "/innovations" },
+    { label: "Impact Studio", href: "/impact-studio" },
     { label: "Contact", href: "/contact" },
   ],
   footerLinks: [

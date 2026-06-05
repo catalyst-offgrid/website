@@ -1,0 +1,211 @@
+---
+// Impact Studio — Catalyst's overarching innovation platform and its initiatives.
+import { Image } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import impactStudio from "../assets/images/innovations/impact-studio.png";
+import aipLogo from "../assets/images/innovations/aip.png";
+import paygoLab from "../assets/images/innovations/paygo-lab.png";
+import bus from "../assets/images/innovations/bus.png";
+import rbfWorks from "../assets/images/innovations/rbf-works.png";
+import venturebuilder from "../assets/images/innovations/venturebuilder.png";
+
+// First four render in the 2×2 grid; AIP renders last as a full-width card.
+const initiatives = [
+  {
+    name: "Back-Up Servicer (BUS) Initiative",
+    logo: bus,
+    body: "The Back-Up Servicer (BUS) Initiative addresses a critical vulnerability in the off-grid solar sector: the disruption of customer service and cash flows when a PAYGo operator fails, a default risk that currently deters institutional capital. To solve this, the initiative is designing a neutral, pan-African safety net to maintain continuous payment processing and system operations during operator distress. By securing revenue links and ensuring uninterrupted energy access, the BUS Initiative aims to protect investor capital, lower financing costs, and make off-grid solar structurally bankable across the continent.",
+    url: null,
+    label: null,
+    note: null,
+  },
+  {
+    name: "RBF Works",
+    logo: rbfWorks,
+    body: "RBF Works is an industry-wide collaborative initiative that aims to improve how clean energy funding is deployed by making results-based financing (RBF) more sustainable, inclusive, and aligned with national electrification goals. Acting as a hub for learning and collaboration, it helps transform RBF from a short-term funding mechanism into a long-term market-building tool, supporting a resilient provider ecosystem and moving the sector beyond fragmented grant-based approaches.",
+    url: null,
+    label: null,
+    note: null,
+  },
+  {
+    name: "PAYGo Lab",
+    logo: paygoLab,
+    body: "The PAYGo Lab addresses a systemic industry challenge: an overemphasis on rapid sales over sustainable credit management, which has left average sector collection rates at just 70%. As a hands-on partner, the Lab pairs industry experts with companies to build the robust credit systems and tools needed to manage portfolios at scale. Ultimately, the Lab transforms fragmented practices into a bankable, sustainable ecosystem, making last-mile credit work to safely expand asset access.",
+    url: "https://www.maf-lab.com/",
+    label: "www.maf-lab.com",
+    note: "Rebranded to the Micro Asset Finance (MAF) Lab in 2025.",
+  },
+  {
+    name: "VentureBuilder",
+    logo: venturebuilder,
+    body: "VentureBuilder was established to scale African-owned off-grid solar companies by pairing equity investments with intensive enterprise development to overcome persistent gaps in patient capital. As the vehicle winds down its active operations, its focus has shifted to preserving its institutional legacy. The Studio will soon publish a candid retrospective, translating nearly a decade of frontier execution into unfiltered insights to guide the next generation of sector interventions.",
+    url: "https://www.venture-builder.com/",
+    label: "www.venture-builder.com",
+    note: null,
+  },
+];
+
+const aip = {
+  name: "Access Insights Platform",
+  logo: aipLogo,
+  body: "The Access Insights Platform (AIP) is an open-source geospatial platform that unifies fragmented last-mile delivery data. AIP uses the Multi-Tier Framework (MTF) to map energy access as a realistic spectrum, blending demographic, infrastructure, and economic data into clear visual analytics. By democratizing this information, AIP empowers enterprises, governments, and development partners to replace guesswork with data-driven clarity, optimizing strategic decisions and maximizing deployment impact.",
+  url: "https://accessinsights.org",
+  label: "accessinsights.org",
+  note: null,
+};
+---
+<BaseLayout title="Impact Studio" description="The Impact Studio is Catalyst's dedicated platform for designing and scaling market-shaping solutions that accelerate energy access — including the Access Insights Platform, PAYGo Lab, RBF Works, VentureBuilder, and the Back-Up Servicer Initiative.">
+  <!-- ===================== HERO ===================== -->
+  <section class="bg-white">
+    <div class="max-w-5xl mx-auto px-6 pt-20 pb-10">
+      <div class="grid lg:grid-cols-[auto_1fr] gap-10 lg:gap-14 items-start">
+        <div>
+          <Image src={impactStudio} alt="Impact Studio" class="h-[2.475rem] sm:h-[3.15rem] w-auto object-contain mb-9" />
+          <h1 class="font-display font-bold italic text-brand-gold leading-[1.1] text-3xl sm:text-[2.1rem]">
+            Transforming markets<br class="hidden sm:block" />through innovation.
+          </h1>
+        </div>
+
+        <!-- Definition -->
+        <div class="def3">
+          <p class="def3-lead">
+            <span class="def3-word">Impact Studio</span>
+            <span class="def3-ipa">/ˈɪm.pækt ˈstjuː.di.oʊ/ · noun</span>
+          </p>
+          <p class="def3-body">
+            An <span class="rv3" tabindex="0"><span class="rv3-old">venture</span>impact</span> studio is an organization that creates <span class="rv3" tabindex="0"><span class="rv3-old">startups</span>interventions</span> that deliver impact, typically by providing the ideas, initial team, strategic direction, and capital for the <span class="rv3" tabindex="0"><span class="rv3-old">startup</span>concept</span> to reach <span class="rv3" tabindex="0"><span class="rv3-old">product-market fit</span>scale</span>.
+          </p>
+          <p class="def3-hint">Hover the <span>highlighted</span> words — see how we’ve reimagined the venture studio for impact.</p>
+        </div>
+      </div>
+
+      <div class="mt-12 space-y-5">
+        <p class="text-slate-700 leading-relaxed text-lg text-justify">The Impact Studio is Catalyst’s dedicated platform for designing and scaling market-shaping solutions that accelerate energy access. Building on over a decade of sector leadership, the Studio institutionalizes our innovation work—moving beyond standalone projects to create lasting, systemic change.</p>
+        <p class="text-slate-700 leading-relaxed text-lg text-justify">We originate and incubate demand-led initiatives that unlock the full commercial and social value of energy for customers, companies, capital providers, and countries — turning bold ideas into practical, market-ready solutions that strengthen and scale clean energy markets.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== INITIATIVES ===================== -->
+  <section class="bg-slate-50 border-t border-slate-200">
+    <div class="max-w-6xl mx-auto px-6 pt-16 pb-2">
+      <h2 class="section-heading">Initiatives of the Studio</h2>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-6 pb-24 pt-8">
+      <!-- 2×2 grid -->
+      <div class="card-grid">
+        {initiatives.map((i) => (
+          <article class="card">
+            <div class="card-logo">
+              {i.url ? (
+                <a href={i.url} target="_blank" rel="noopener" aria-label={i.name}>
+                  <Image src={i.logo} alt={i.name} class:list={["w-auto object-contain", i.name === "PAYGo Lab" ? "max-h-20" : "max-h-14"]} />
+                </a>
+              ) : (
+                <Image src={i.logo} alt={i.name} class:list={["w-auto object-contain", i.name === "PAYGo Lab" ? "max-h-20" : "max-h-14"]} />
+              )}
+            </div>
+            <p class="card-body">{i.body}</p>
+            {i.note && <p class="card-note">{i.note}</p>}
+            {i.url && (
+              <p class="card-link">
+                <a href={i.url} target="_blank" rel="noopener">{i.label} <span aria-hidden="true">&rsaquo;</span></a>
+              </p>
+            )}
+          </article>
+        ))}
+      </div>
+
+      <!-- AIP — full-width closing card -->
+      <article class="card card-wide">
+        <div class="card-wide-grid">
+          <div class="card-wide-logo">
+            <a href={aip.url} target="_blank" rel="noopener" aria-label={aip.name}>
+              <Image src={aip.logo} alt={aip.name} class="max-h-16 w-auto object-contain" />
+            </a>
+          </div>
+          <div>
+            <p class="card-body">{aip.body}</p>
+            <p class="card-link">
+              <a href={aip.url} target="_blank" rel="noopener">{aip.label} <span aria-hidden="true">&rsaquo;</span></a>
+            </p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===================== CTA ===================== -->
+  <section class="bg-brand-blue">
+    <div class="max-w-5xl mx-auto px-6 py-16 text-center">
+      <p class="font-display text-3xl sm:text-4xl font-light text-white leading-tight">Build the future with us.</p>
+      <p class="mt-4 text-white/75 leading-relaxed max-w-2xl mx-auto">Connect with Kat Harrison, Head of the Impact Studio, to explore partnership opportunities and collaborate on solutions to the sector’s most pressing challenges.</p>
+      <a href="mailto:kat@catalyst-advisors.com" class="mt-8 inline-flex items-center gap-2 bg-brand-gold text-brand-blue font-semibold px-8 py-3.5 rounded-lg hover:bg-brand-gold-deep transition-colors">Connect with Kat <span aria-hidden="true">&rsaquo;</span></a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* ---------- Definition ---------- */
+  .def3 { border-left: 3px solid var(--color-brand-gold); padding-left: 1.6rem; }
+  .def3-lead { display: flex; flex-direction: column; gap: 0.2rem; margin-bottom: 0.9rem; }
+  .def3-word { font-family: var(--font-display); font-weight: 700; font-size: 1.35rem; color: var(--color-brand-blue); }
+  .def3-ipa { font-style: italic; color: #94a3b8; font-size: 0.95rem; }
+  .def3-body { font-size: 1.18rem; line-height: 1.75; color: #334155; text-align: justify; }
+  .def3-hint { margin-top: 1.1rem; font-size: 0.84rem; color: #94a3b8; line-height: 1.5; }
+  .def3-hint span { background: rgba(251,178,40,0.25); color: var(--color-brand-gold-deep); font-weight: 600; padding: 0 0.3em; border-radius: 3px; }
+
+  /* ---------- Highlight-chip reveal ---------- */
+  .rv3 {
+    position: relative; background: rgba(251,178,40,0.22); color: var(--color-brand-blue); font-weight: 600;
+    padding: 0.02em 0.28em; border-radius: 4px; cursor: help; white-space: nowrap;
+    box-shadow: inset 0 -2px 0 var(--color-brand-gold); transition: background 0.15s ease; outline: none;
+  }
+  .rv3:hover, .rv3:focus, .rv3.is-open { background: rgba(251,178,40,0.45); }
+  .rv3-old {
+    position: absolute; left: 50%; bottom: 100%; margin-bottom: 10px; transform: translateX(-50%) translateY(4px);
+    background: var(--color-brand-blue); color: #fff; font-weight: 400; font-size: 0.8em; white-space: nowrap;
+    padding: 5px 11px; border-radius: 6px; text-decoration: line-through; text-decoration-color: var(--color-brand-gold);
+    text-decoration-thickness: 2px; opacity: 0; visibility: hidden; transition: all 0.18s ease; pointer-events: none;
+    box-shadow: 0 8px 22px rgba(0,46,93,0.22); z-index: 5;
+  }
+  .rv3-old::after {
+    content: ""; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+    border: 6px solid transparent; border-top-color: var(--color-brand-blue);
+  }
+  .rv3:hover .rv3-old, .rv3:focus .rv3-old, .rv3.is-open .rv3-old {
+    opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0);
+  }
+
+  /* ---------- Cards ---------- */
+  .card {
+    position: relative; background: #fff; border: 1px solid #e6ebf1; border-radius: 14px;
+    padding: 2.1rem 2rem; transition: box-shadow 0.18s ease, transform 0.18s ease;
+  }
+  .card:hover { box-shadow: 0 18px 40px rgba(0,46,93,0.10); transform: translateY(-3px); }
+  .card-logo { min-height: 4rem; display: flex; align-items: center; margin-bottom: 1.25rem; }
+  .card-body { color: #475569; line-height: 1.7; font-size: 1.0rem; text-align: justify; }
+  .card-note { margin-top: 0.7rem; font-style: italic; color: #94a3b8; font-size: 0.9rem; }
+  .card-link { margin-top: 1.1rem; font-size: 0.98rem; }
+  .card-link a { color: var(--color-brand-gold-deep); font-weight: 600; }
+  .card-link a:hover { text-decoration: underline; }
+
+  .card-grid { display: grid; grid-template-columns: 1fr; gap: 1.75rem; }
+  @media (min-width: 768px) { .card-grid { grid-template-columns: 1fr 1fr; } }
+
+  /* AIP closing card — full width, logo beside text */
+  .card-wide { margin-top: 1.75rem; }
+  .card-wide-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; align-items: center; }
+  @media (min-width: 768px) { .card-wide-grid { grid-template-columns: 0.6fr 2fr; gap: 2.75rem; } }
+  .card-wide-logo { display: flex; align-items: center; justify-content: flex-start; }
+</style>
+
+<script is:inline>
+  document.querySelectorAll(".rv3").forEach(function (el) {
+    el.addEventListener("click", function () { el.classList.toggle("is-open"); });
+    el.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); el.classList.toggle("is-open"); }
+    });
+  });
+</script>
