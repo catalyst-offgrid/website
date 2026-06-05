@@ -155,8 +155,8 @@ export const sectionCopy = {
       "Catalyst delivers market intelligence, financial analysis, and strategic advisory to key energy access stakeholders. We assess investment trends, evaluate program and project performance, and generate actionable insights to drive sector growth and impact.",
   },
   innovation: {
-    heading: "Innovation",
+    heading: "Impact Studio",
     intro:
-      "We originate, incubate, and scale breakthrough ideas to accelerate universal access to power. Through VentureBuilder, the Access Insights Platform (AIP), and the Micro Asset Finance Lab, Catalyst pairs capital, data, and hands-on venture-building to move promising innovations from concept to market.",
+      "The Impact Studio is Catalyst’s platform for designing and scaling market-shaping solutions that accelerate energy access. We originate, incubate, and scale demand-led initiatives — pairing capital, data, and hands-on venture-building to move promising ideas from concept to scale.",
   },
 };
