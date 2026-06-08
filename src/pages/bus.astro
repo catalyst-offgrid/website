@@ -1,0 +1,231 @@
+---
+// Back-Up Servicer (BUS) Initiative — Impact Studio initiative page.
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const DECK_EMBED =
+  "https://docs.google.com/presentation/d/1Ak38OGhLG-CzL6yRn9ISrS7z78YEvcO7ajctZEkqMxk/embed?start=false&loop=false&delayms=5000";
+
+const entityTypes = [
+  "DFI / donor / lender / investment fund",
+  "Energy company (originator)",
+  "Technology / service provider",
+  "Industry association",
+  "Government",
+  "Other",
+];
+---
+<BaseLayout
+  title="Back-Up Servicer (BUS) Initiative"
+  description="The Back-Up Servicer (BUS) Initiative is an Impact Studio effort to build a neutral, pan-African safety net that keeps customers powered and payments flowing when a PAYGo operator is in distress — making off-grid solar structurally bankable."
+>
+  <!-- ===================== HERO ===================== -->
+  <section class="bg-white">
+    <div class="max-w-4xl mx-auto px-6 pt-20 pb-8">
+      <p class="font-display text-xs sm:text-sm tracking-[0.28em] uppercase text-brand-gold mb-5">An Impact Studio Initiative</p>
+      <h1 class="font-display font-light text-brand-blue leading-[1.08] text-4xl sm:text-5xl">
+        Back-Up Servicer <span class="whitespace-nowrap">(BUS) Initiative</span>
+      </h1>
+      <p class="mt-6 text-lg text-slate-600 leading-relaxed max-w-2xl">
+        A neutral, pan-African safety net that keeps customers powered and payments flowing when a PAYGo operator falls into distress — making off-grid solar structurally bankable.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== BODY ===================== -->
+  <section class="bg-white">
+    <div class="max-w-4xl mx-auto px-6 pb-14 space-y-5">
+      <p class="text-slate-700 leading-relaxed text-justify">The Back-Up Servicer (BUS) Initiative addresses a critical, systemic vulnerability in the off-grid solar sector: the disruption of service continuity and portfolio management when a PAYGo company is in distress or ceases operations. Currently, total dependency on a single provider means operator insolvency immediately locks customer devices, strips users of essential energy access, and severs technical links to underlying cash flows. This default risk acts as a major roadblock for institutional capital, stranding assets and stalling the massive investments required to achieve universal energy access.</p>
+      <p class="text-slate-700 leading-relaxed text-justify">This foundational initiative is developing a neutral, industry-wide pan-African safety net to maintain continuous payment processing and system operations if an operator is in distress or fails. By establishing pre-agreed triggers, data pipelines, and step-in rights before a crisis occurs, the BUSco entity would preserve live links to revenue, protect investor capital, and ensure customers keep their power.</p>
+      <p class="text-slate-700 leading-relaxed text-justify">The Initiative is focusing on technical design and testing critical assumptions today to build a viable, investment-grade BUSco entity for the future. By establishing a robust and credible BUS, the initiative aims to drive widespread adoption among funders and institutional lenders who embed it into their financing structures — ultimately lowering the cost of capital, making off-grid solar structurally bankable, and permanently safeguarding essential energy access for populations across the continent.</p>
+    </div>
+  </section>
+
+  <!-- ===================== INTRO DECK ===================== -->
+  <section class="bg-slate-50 border-t border-slate-200">
+    <div class="max-w-5xl mx-auto px-6 py-16">
+      <h2 class="section-heading mb-3">Intro deck</h2>
+      <p class="text-center text-slate-600 max-w-2xl mx-auto mb-10">A short walkthrough of the problem, the BUSco concept, and where the initiative is headed.</p>
+      <div class="deck-frame">
+        <iframe
+          src={DECK_EMBED}
+          title="Back-Up Servicer (BUS) Initiative — intro deck"
+          frameborder="0"
+          allowfullscreen
+          loading="lazy"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SIGN UP ===================== -->
+  <section class="bg-white">
+    <div class="max-w-2xl mx-auto px-6 py-16 text-center">
+      <h2 class="section-heading mb-4">Get involved</h2>
+      <p class="text-slate-600 leading-relaxed max-w-xl mx-auto">
+        Sign up to take part in our market consultation during the development phase — or simply to be kept updated as the initiative progresses.
+      </p>
+
+      <button id="signup-toggle" type="button" class="signup-btn">
+        Sign up / stay updated <span aria-hidden="true">&rsaquo;</span>
+      </button>
+
+      <form id="signup-form" class="signup-form" hidden novalidate>
+        <div class="field">
+          <label for="f-name">Name <span class="req">*</span></label>
+          <input id="f-name" name="name" type="text" required autocomplete="name" />
+        </div>
+        <div class="field">
+          <label for="f-org">Organization <span class="req">*</span></label>
+          <input id="f-org" name="organization" type="text" required autocomplete="organization" />
+        </div>
+        <div class="field">
+          <label for="f-title">Job title</label>
+          <input id="f-title" name="jobTitle" type="text" autocomplete="organization-title" />
+        </div>
+        <div class="field">
+          <label for="f-email">Email <span class="req">*</span></label>
+          <input id="f-email" name="email" type="email" required autocomplete="email" />
+        </div>
+        <div class="field">
+          <label for="f-entity">Type of entity <span class="req">*</span></label>
+          <select id="f-entity" name="entityType" required>
+            <option value="" disabled selected>Select one…</option>
+            {entityTypes.map((t) => <option value={t}>{t}</option>)}
+          </select>
+        </div>
+        <fieldset class="field">
+          <legend>Interested in being part of the market consultation? <span class="req">*</span></legend>
+          <div class="radios">
+            <label class="radio"><input type="radio" name="consultation" value="Yes" required /> Yes</label>
+            <label class="radio"><input type="radio" name="consultation" value="No" /> No, just keep me updated</label>
+          </div>
+        </fieldset>
+
+        <p id="form-error" class="form-error" hidden></p>
+        <button type="submit" class="submit-btn">Submit</button>
+        <p class="form-note">We'll only use your details to contact you about the BUS Initiative.</p>
+      </form>
+
+      <div id="signup-success" class="signup-success" hidden>
+        <p class="success-title">Thank you — you're on the list.</p>
+        <p class="success-body">We'll be in touch about the BUS Initiative and the market consultation.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Deck embed — responsive 16:9 */
+  .deck-frame {
+    position: relative; width: 100%; padding-top: 56.25%;
+    border-radius: 12px; overflow: hidden; background: #fff;
+    box-shadow: 0 18px 50px rgba(0,46,93,0.12); border: 1px solid #e2e8f0;
+  }
+  .deck-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+  /* Sign-up toggle button */
+  .signup-btn {
+    margin-top: 2rem; display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--color-brand-gold); color: var(--color-brand-blue); font-weight: 600;
+    padding: 0.85rem 1.8rem; border-radius: 8px; cursor: pointer;
+    transition: background 0.15s ease;
+  }
+  .signup-btn:hover { background: var(--color-brand-gold-deep); }
+  .signup-btn[hidden] { display: none; }
+
+  /* Form */
+  .signup-form {
+    margin-top: 2.25rem; text-align: left;
+    border: 1px solid #e6ebf1; border-radius: 14px; padding: 1.75rem 1.6rem;
+    background: #fff; box-shadow: 0 10px 30px rgba(0,46,93,0.06);
+  }
+  .signup-form[hidden] { display: none; }
+  .field { margin-bottom: 1.1rem; }
+  .field label, .field legend {
+    display: block; font-size: 0.85rem; font-weight: 600; color: var(--color-brand-blue);
+    margin-bottom: 0.4rem;
+  }
+  .req { color: var(--color-brand-gold-deep); }
+  .field input, .field select {
+    width: 100%; border: 1px solid #cbd5e1; border-radius: 7px; padding: 0.6rem 0.7rem;
+    font-size: 0.98rem; color: #1e293b; background: #fff; transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .field input:focus, .field select:focus {
+    outline: none; border-color: var(--color-brand-gold);
+    box-shadow: 0 0 0 3px rgba(251,178,40,0.25);
+  }
+  .radios { display: flex; flex-wrap: wrap; gap: 1.25rem; margin-top: 0.2rem; }
+  .radio { display: inline-flex; align-items: center; gap: 0.45rem; font-weight: 400; color: #334155; font-size: 0.98rem; cursor: pointer; }
+  .radio input { width: auto; }
+  fieldset.field { border: 0; padding: 0; margin: 0 0 1.1rem; }
+
+  .submit-btn {
+    margin-top: 0.4rem; width: 100%; background: var(--color-brand-blue); color: #fff; font-weight: 600;
+    padding: 0.8rem 1.2rem; border-radius: 8px; cursor: pointer; transition: background 0.15s ease;
+  }
+  .submit-btn:hover { background: var(--color-brand-blue-dark); }
+  .submit-btn:disabled { opacity: 0.6; cursor: progress; }
+  .form-note { margin-top: 0.9rem; font-size: 0.78rem; color: #94a3b8; text-align: center; }
+  .form-error {
+    margin-bottom: 0.9rem; font-size: 0.85rem; color: #b91c1c; background: #fef2f2;
+    border: 1px solid #fecaca; border-radius: 7px; padding: 0.55rem 0.7rem;
+  }
+  .form-error[hidden] { display: none; }
+
+  .signup-success { margin-top: 2.25rem; }
+  .signup-success[hidden] { display: none; }
+  .success-title { font-family: var(--font-display); font-size: 1.4rem; font-weight: 600; color: var(--color-brand-blue); }
+  .success-body { margin-top: 0.5rem; color: #475569; }
+</style>
+
+<script is:inline>
+  (function () {
+    // Deployed Google Apps Script web-app URL — appends submissions to the BUS Initiative Sign-ups sheet.
+    var FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbxHbmDg2cm7vajregdPLhI1opj2YGZFicS1v2ltJGZAphTCw73TTq3eda8tUzLHj6f-/exec";
+
+    var toggle = document.getElementById("signup-toggle");
+    var form = document.getElementById("signup-form");
+    var success = document.getElementById("signup-success");
+    var errorBox = document.getElementById("form-error");
+    if (!toggle || !form) return;
+
+    toggle.addEventListener("click", function () {
+      toggle.hidden = true;
+      form.hidden = false;
+      var first = form.querySelector("input, select");
+      if (first) first.focus();
+    });
+
+    function showError(msg) { errorBox.textContent = msg; errorBox.hidden = false; }
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      errorBox.hidden = true;
+
+      if (!form.checkValidity()) {
+        showError("Please complete the required fields (and a valid email).");
+        form.reportValidity();
+        return;
+      }
+
+      var submitBtn = form.querySelector(".submit-btn");
+      submitBtn.disabled = true;
+
+      var done = function () {
+        form.hidden = true;
+        success.hidden = false;
+        success.scrollIntoView({ behavior: "smooth", block: "center" });
+      };
+
+      // Preview mode: no endpoint configured yet — show the success flow without posting.
+      if (!FORM_ENDPOINT) { done(); return; }
+
+      fetch(FORM_ENDPOINT, { method: "POST", mode: "no-cors", body: new FormData(form) })
+        .then(done)
+        .catch(function () {
+          submitBtn.disabled = false;
+          showError("Something went wrong sending your details. Please try again or email us.");
+        });
+    });
+  })();
+</script>

@@ -15,8 +15,8 @@ const initiatives = [
     name: "Back-Up Servicer (BUS) Initiative",
     logo: bus,
     body: "The Back-Up Servicer (BUS) Initiative addresses a critical vulnerability in the off-grid solar sector: the disruption of customer service and cash flows when a PAYGo operator fails, a default risk that currently deters institutional capital. To solve this, the initiative is designing a neutral, pan-African safety net to maintain continuous payment processing and system operations during operator distress. By securing revenue links and ensuring uninterrupted energy access, the BUS Initiative aims to protect investor capital, lower financing costs, and make off-grid solar structurally bankable across the continent.",
-    url: null,
-    label: null,
+    url: "/bus",
+    label: "Learn more",
     note: null,
   },
   {
@@ -99,7 +99,7 @@ const aip = {
           <article class="card">
             <div class="card-logo">
               {i.url ? (
-                <a href={i.url} target="_blank" rel="noopener" aria-label={i.name}>
+                <a href={i.url} target={i.url.startsWith("http") ? "_blank" : undefined} rel={i.url.startsWith("http") ? "noopener" : undefined} aria-label={i.name}>
                   <Image src={i.logo} alt={i.name} class:list={["w-auto object-contain", i.name === "PAYGo Lab" ? "max-h-20" : "max-h-14"]} />
                 </a>
               ) : (
@@ -110,7 +110,7 @@ const aip = {
             {i.note && <p class="card-note">{i.note}</p>}
             {i.url && (
               <p class="card-link">
-                <a href={i.url} target="_blank" rel="noopener">{i.label} <span aria-hidden="true">&rsaquo;</span></a>
+                <a href={i.url} target={i.url.startsWith("http") ? "_blank" : undefined} rel={i.url.startsWith("http") ? "noopener" : undefined}>{i.label} <span aria-hidden="true">&rsaquo;</span></a>
               </p>
             )}
           </article>
