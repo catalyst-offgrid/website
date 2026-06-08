@@ -1,6 +1,8 @@
 ---
 // Back-Up Servicer (BUS) Initiative — Impact Studio initiative page.
+import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import busLogo from "../assets/images/innovations/bus.png";
 
 const DECK_EMBED =
   "https://docs.google.com/presentation/d/1Ak38OGhLG-CzL6yRn9ISrS7z78YEvcO7ajctZEkqMxk/embed?start=false&loop=false&delayms=5000";
@@ -21,13 +23,20 @@ const entityTypes = [
   <!-- ===================== HERO ===================== -->
   <section class="bg-white">
     <div class="max-w-4xl mx-auto px-6 pt-20 pb-8">
-      <p class="font-display text-xs sm:text-sm tracking-[0.28em] uppercase text-brand-gold mb-5">An Impact Studio Initiative</p>
-      <h1 class="font-display font-light text-brand-blue leading-[1.08] text-4xl sm:text-5xl">
-        Back-Up Servicer <span class="whitespace-nowrap">(BUS) Initiative</span>
-      </h1>
-      <p class="mt-6 text-lg text-slate-600 leading-relaxed max-w-2xl">
-        A neutral, pan-African safety net that keeps customers powered and payments flowing when a PAYGo operator falls into distress — making off-grid solar structurally bankable.
-      </p>
+      <div class="grid lg:grid-cols-[1fr_auto] gap-8 lg:gap-12 items-center">
+        <div>
+          <p class="font-display text-xs sm:text-sm tracking-[0.28em] uppercase text-brand-gold mb-5">An Impact Studio Initiative</p>
+          <h1 class="font-display font-light text-brand-blue leading-[1.08] text-4xl sm:text-5xl">
+            Back-Up Servicer <span class="whitespace-nowrap">(BUS) Initiative</span>
+          </h1>
+          <p class="mt-6 text-lg text-slate-600 leading-relaxed max-w-2xl">
+            A neutral, pan-African safety net that keeps customers powered and payments flowing when a PAYGo operator falls into distress — making off-grid solar structurally bankable.
+          </p>
+        </div>
+        <div class="lg:justify-self-end shrink-0">
+          <Image src={busLogo} alt="BUSco" class="w-56 sm:w-64 h-auto object-contain" />
+        </div>
+      </div>
     </div>
   </section>
 
@@ -53,6 +62,12 @@ const entityTypes = [
           allowfullscreen
           loading="lazy"
         ></iframe>
+      </div>
+      <div class="text-center mt-7">
+        <a href="/bus-intro-deck.pdf" download="BUSco Intro Deck - May 2026.pdf" class="deck-download">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>
+          Download deck (PDF)
+        </a>
       </div>
     </div>
   </section>
@@ -122,6 +137,16 @@ const entityTypes = [
     box-shadow: 0 18px 50px rgba(0,46,93,0.12); border: 1px solid #e2e8f0;
   }
   .deck-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+  /* Download deck (PDF) button */
+  .deck-download {
+    display: inline-flex; align-items: center; gap: 0.55rem;
+    border: 2px solid var(--color-brand-blue); color: var(--color-brand-blue);
+    font-weight: 600; font-size: 0.95rem; padding: 0.6rem 1.4rem; border-radius: 8px;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .deck-download:hover { background: var(--color-brand-blue); color: #fff; }
+  .deck-download svg { width: 1.05rem; height: 1.05rem; }
 
   /* Sign-up toggle button */
   .signup-btn {
