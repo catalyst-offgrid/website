@@ -64,15 +64,17 @@ const entityTypes = [
 
   <!-- ===================== SIGN UP ===================== -->
   <section class="bg-white">
-    <div class="max-w-2xl mx-auto px-6 py-16 text-center">
-      <h2 class="section-heading mb-4">Get involved</h2>
-      <p class="text-slate-600 leading-relaxed max-w-xl mx-auto">
-        Sign up to take part in our market consultation during the development phase — or simply to be kept updated as the initiative progresses.
-      </p>
+    <div class="max-w-2xl mx-auto px-6 py-16">
+      <h2 class="section-heading mb-8">Get involved</h2>
 
-      <button id="signup-toggle" type="button" class="signup-btn">
-        Sign up / stay updated <span aria-hidden="true">&rsaquo;</span>
-      </button>
+      <div id="signup-intro" class="signup-intro">
+        <p class="signup-text">
+          Sign up to take part in our market consultation during the development phase — or simply to be kept updated as the initiative progresses.
+        </p>
+        <button id="signup-toggle" type="button" class="signup-btn shrink-0">
+          Sign up / stay updated <span aria-hidden="true">&rsaquo;</span>
+        </button>
+      </div>
 
       <form id="signup-form" class="signup-form" hidden novalidate>
         <div class="field">
@@ -138,11 +140,21 @@ const entityTypes = [
   .deck-download:hover { background: var(--color-brand-blue); color: #fff; }
   .deck-download svg { width: 1.05rem; height: 1.05rem; }
 
+  /* Get involved — text + button as two columns */
+  .signup-intro {
+    display: flex; flex-direction: column; align-items: flex-start; gap: 1.5rem; text-align: left;
+  }
+  @media (min-width: 640px) {
+    .signup-intro { flex-direction: row; align-items: center; justify-content: space-between; gap: 2.5rem; }
+  }
+  .signup-intro[hidden] { display: none; }
+  .signup-text { color: #475569; line-height: 1.7; }
+
   /* Sign-up toggle button */
   .signup-btn {
-    margin-top: 2rem; display: inline-flex; align-items: center; gap: 0.5rem;
+    display: inline-flex; align-items: center; gap: 0.5rem;
     background: var(--color-brand-gold); color: var(--color-brand-blue); font-weight: 600;
-    padding: 0.85rem 1.8rem; border-radius: 8px; cursor: pointer;
+    padding: 0.85rem 1.8rem; border-radius: 8px; cursor: pointer; white-space: nowrap;
     transition: background 0.15s ease;
   }
   .signup-btn:hover { background: var(--color-brand-gold-deep); }
@@ -187,7 +199,7 @@ const entityTypes = [
   }
   .form-error[hidden] { display: none; }
 
-  .signup-success { margin-top: 2.25rem; }
+  .signup-success { margin-top: 2.25rem; text-align: center; }
   .signup-success[hidden] { display: none; }
   .success-title { font-family: var(--font-display); font-size: 1.4rem; font-weight: 600; color: var(--color-brand-blue); }
   .success-body { margin-top: 0.5rem; color: #475569; }
@@ -199,13 +211,14 @@ const entityTypes = [
     var FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbxHbmDg2cm7vajregdPLhI1opj2YGZFicS1v2ltJGZAphTCw73TTq3eda8tUzLHj6f-/exec";
 
     var toggle = document.getElementById("signup-toggle");
+    var intro = document.getElementById("signup-intro");
     var form = document.getElementById("signup-form");
     var success = document.getElementById("signup-success");
     var errorBox = document.getElementById("form-error");
     if (!toggle || !form) return;
 
     toggle.addEventListener("click", function () {
-      toggle.hidden = true;
+      if (intro) intro.hidden = true;
       form.hidden = false;
       var first = form.querySelector("input, select");
       if (first) first.focus();
