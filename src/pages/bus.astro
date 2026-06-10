@@ -4,9 +4,6 @@ import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import busLogo from "../assets/images/innovations/bus.png";
 
-const DECK_EMBED =
-  "https://docs.google.com/presentation/d/1XerK7XFrX7L904mzdZZCTzsPg2Svb_e6C1HcZfN6j-Q/embed?start=false&loop=false&delayms=5000";
-
 const entityTypes = [
   "DFI / donor / lender / investment fund",
   "Energy company (originator)",
@@ -44,14 +41,20 @@ const entityTypes = [
   <section class="bg-slate-50 border-t border-slate-200">
     <div class="max-w-5xl mx-auto px-6 py-16">
       <h2 class="section-heading mb-10">Overview</h2>
-      <div class="deck-frame">
-        <iframe
-          src={DECK_EMBED}
-          title="Back-Up Servicer (BUS) Initiative — intro deck"
-          frameborder="0"
-          allowfullscreen
-          loading="lazy"
-        ></iframe>
+      <div id="deck" class="deck" data-pdf="/bus-overview-deck.pdf">
+        <div class="deck-stage">
+          <canvas id="deck-canvas" class="deck-canvas"></canvas>
+          <button type="button" class="deck-nav deck-prev" aria-label="Previous slide" hidden>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+          </button>
+          <button type="button" class="deck-nav deck-next" aria-label="Next slide" hidden>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+          </button>
+          <p class="deck-loading">Loading deck…</p>
+        </div>
+        <div class="deck-bar">
+          <span class="deck-counter" aria-live="polite"></span>
+        </div>
       </div>
       <div class="text-center mt-7">
         <a href="/bus-overview-deck.pdf" download="BUS Initiative Overview Deck.pdf" class="deck-download">
@@ -122,13 +125,30 @@ const entityTypes = [
 </BaseLayout>
 
 <style>
-  /* Deck embed — responsive 16:9 */
-  .deck-frame {
-    position: relative; width: 100%; padding-top: 56.25%;
-    border-radius: 12px; overflow: hidden; background: #fff;
-    box-shadow: 0 18px 50px rgba(0,46,93,0.12); border: 1px solid #e2e8f0;
+  /* PDF deck viewer */
+  .deck { width: 100%; }
+  .deck-stage {
+    position: relative; width: 100%; background: #fff; border: 1px solid #e2e8f0;
+    border-radius: 12px; overflow: hidden; box-shadow: 0 18px 50px rgba(0,46,93,0.12);
+    min-height: 240px; display: flex; align-items: center; justify-content: center;
   }
-  .deck-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .deck-stage:focus-visible { outline: 3px solid rgba(251,178,40,0.5); outline-offset: 2px; }
+  .deck-canvas { display: block; width: 100%; height: auto; }
+  .deck-loading { position: absolute; color: #94a3b8; font-size: 0.95rem; padding: 0 1rem; text-align: center; }
+  .deck-nav {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 44px; height: 44px; border-radius: 50%; border: none;
+    background: rgba(0,46,93,0.82); color: #fff; display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: background 0.15s ease, opacity 0.15s ease; z-index: 2;
+  }
+  .deck-nav:hover { background: var(--color-brand-blue); }
+  .deck-nav svg { width: 22px; height: 22px; }
+  .deck-prev { left: 12px; }
+  .deck-next { right: 12px; }
+  .deck-nav[hidden] { display: none; }
+  .deck-nav:disabled { opacity: 0.25; cursor: default; }
+  .deck-bar { display: flex; align-items: center; justify-content: center; margin-top: 0.9rem; min-height: 1.2rem; }
+  .deck-counter { font-family: var(--font-display); font-size: 0.9rem; color: var(--color-brand-blue); font-weight: 600; letter-spacing: 0.03em; }
 
   /* Download deck (PDF) button */
   .deck-download {
@@ -204,6 +224,86 @@ const entityTypes = [
   .success-title { font-family: var(--font-display); font-size: 1.4rem; font-weight: 600; color: var(--color-brand-blue); }
   .success-body { margin-top: 0.5rem; color: #475569; }
 </style>
+
+<script>
+  import * as pdfjsLib from "pdfjs-dist/build/pdf.min.mjs";
+  import workerUrl from "pdfjs-dist/build/pdf.worker.min.mjs?url";
+  pdfjsLib.GlobalWorkerOptions.workerSrc = workerUrl;
+
+  const deck = document.getElementById("deck");
+  if (deck) {
+    const canvas = document.getElementById("deck-canvas");
+    const ctx = canvas.getContext("2d");
+    const stage = deck.querySelector(".deck-stage");
+    const prev = deck.querySelector(".deck-prev");
+    const next = deck.querySelector(".deck-next");
+    const counter = deck.querySelector(".deck-counter");
+    const loading = deck.querySelector(".deck-loading");
+
+    let pdf = null;
+    let current = 1;
+    let rendering = false;
+    let queued = null;
+
+    async function render(num) {
+      if (!pdf) return;
+      if (rendering) { queued = num; return; }
+      rendering = true;
+      const page = await pdf.getPage(num);
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const cssWidth = stage.clientWidth || 800;
+      const base = page.getViewport({ scale: 1 });
+      const viewport = page.getViewport({ scale: (cssWidth * dpr) / base.width });
+      canvas.width = Math.floor(viewport.width);
+      canvas.height = Math.floor(viewport.height);
+      canvas.style.width = cssWidth + "px";
+      canvas.style.height = Math.floor(viewport.height / dpr) + "px";
+      await page.render({ canvasContext: ctx, viewport }).promise;
+      counter.textContent = num + " / " + pdf.numPages;
+      prev.disabled = num <= 1;
+      next.disabled = num >= pdf.numPages;
+      rendering = false;
+      if (queued !== null) { const n = queued; queued = null; render(n); }
+    }
+
+    function go(delta) {
+      if (!pdf) return;
+      const n = current + delta;
+      if (n < 1 || n > pdf.numPages) return;
+      current = n;
+      render(current);
+    }
+
+    prev.addEventListener("click", () => go(-1));
+    next.addEventListener("click", () => go(1));
+    deck.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") { e.preventDefault(); go(-1); }
+      else if (e.key === "ArrowRight") { e.preventDefault(); go(1); }
+    });
+
+    let resizeTimer;
+    window.addEventListener("resize", () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => render(current), 150);
+    });
+
+    pdfjsLib.getDocument({ url: deck.dataset.pdf }).promise
+      .then((doc) => {
+        pdf = doc;
+        loading.hidden = true;
+        if (pdf.numPages > 1) {
+          prev.hidden = false;
+          next.hidden = false;
+          stage.setAttribute("tabindex", "0");
+        }
+        render(1);
+      })
+      .catch((err) => {
+        loading.textContent = "Couldn't load the deck preview here — please use the download button below.";
+        console.error("BUS deck PDF load error:", err);
+      });
+  }
+</script>
 
 <script is:inline>
   (function () {
