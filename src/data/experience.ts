@@ -129,6 +129,7 @@ export const projects: Project[] = [
     title: "Powering the Last Mile",
     image: "powering-the-last-mile.jpg",
     logo: "geapp-logo-white.png",
+    cornerLogos: { topLeft: "geapp-logo-white.png" },
     body: `In 2025, Catalyst led the development of <a href="https://energyalliance.org/wp-content/uploads/2025/03/Universal-Access-Coalition-for-LAC-January-2025-Report.pdf" target="_blank" rel="noopener">Powering the Last Mile</a> for GEAPP — a flagship report charting how to achieve universal energy access across Latin America and the Caribbean. Working through the region's newly formed Universal Access Coalition, Catalyst analyzed the barriers to last-mile electrification across eight focus countries and authored eight detailed country deep-dives alongside the regional report. Together they set out a coordinated, actionable path to bring modern energy to the roughly 16 million people in the region who still live without it.`,
     section: "strategy",
   },

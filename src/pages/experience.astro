@@ -13,6 +13,19 @@ function img(filename?: string) {
   return entry?.[1].default ?? null;
 }
 
+// Logo sizing for the hover-overlay corner logos. Wide single-line wordmarks (GEAPP,
+// Lightrock) render shorter; compact/stacked lockups (the Rockefeller Foundation globe +
+// two-line text) render taller, so every appearance of a given logo reads at a consistent,
+// comparable size across the report tiles.
+const WIDE_WORDMARK_LOGOS = new Set(["geapp-logo-white.png", "lightrock-logo.png"]);
+const isWideLogo = (filename?: string | null) => !!filename && WIDE_WORDMARK_LOGOS.has(filename);
+// Top corner logos are absolutely pinned, so width is capped to keep two side-by-side logos apart.
+const topLogoCls = (filename: string) =>
+  isWideLogo(filename) ? "max-h-7 sm:max-h-8 max-w-[38%]" : "max-h-10 sm:max-h-12 max-w-[52%]";
+// Bottom corner logos flow after the body text; explicit height (not max-h) avoids flex squish.
+const bottomLogoCls = (filename: string) =>
+  isWideLogo(filename) ? "h-7 sm:h-8 w-auto shrink-0" : "h-10 sm:h-12 w-auto shrink-0";
+
 const enterprise = projects.filter((p) => p.section === "enterprise");
 const strategy = projects.filter((p) => p.section === "strategy");
 
@@ -59,6 +72,15 @@ const sections = [
             const logo = img(p.logo);
             const isContain = p.display === "contain";
             const rightCol = idx % 2 === 1;
+            const topCornerLogos = p.cornerLogos
+              ? [p.cornerLogos.topLeft, p.cornerLogos.topRight].filter(Boolean)
+              : [];
+            const topReserveCls =
+              topCornerLogos.length === 0
+                ? ""
+                : topCornerLogos.some((f) => !isWideLogo(f))
+                ? "pt-16 sm:pt-20"
+                : "pt-14 sm:pt-16";
             return (
               <article class:list={[
                 "tile relative overflow-hidden group bg-slate-100",
@@ -112,7 +134,7 @@ const sections = [
                       if (!filename) return null;
                       const meta = img(filename);
                       return meta ? (
-                        <Image src={meta} alt="" class:list={["absolute z-30 max-h-6 sm:max-h-7 max-w-[38%] w-auto object-contain", vPos, hPos]} />
+                        <Image src={meta} alt="" class:list={["absolute z-30 w-auto object-contain", topLogoCls(filename), vPos, hPos]} />
                       ) : null;
                     })
                   ) : (() => {
@@ -130,19 +152,13 @@ const sections = [
                       </div>
                     );
                   })()}
-                  <div
-                    class:list={[
-                      "tile-body",
-                      p.cornerLogos?.topLeft || p.cornerLogos?.topRight ? "pt-14 sm:pt-16" : "",
-                    ]}
-                    set:html={p.body}
-                  ></div>
+                  <div class:list={["tile-body", topReserveCls]} set:html={p.body}></div>
                   {p.cornerLogos && (p.cornerLogos.bottomLeft || p.cornerLogos.bottomRight) && (
                     // Bottom logo flows after the text (not pinned) so it never overlaps long copy.
                     <div class:list={["mt-4 flex items-center gap-3 shrink-0", p.cornerLogos.bottomRight ? "ml-auto justify-end" : "justify-start"]}>
                       {[p.cornerLogos.bottomLeft, p.cornerLogos.bottomRight].filter(Boolean).map((filename) => {
                         const meta = img(filename!);
-                        return meta ? <Image src={meta} alt="" class="max-h-6 sm:max-h-7 max-w-[55%] w-auto object-contain" /> : null;
+                        return meta ? <Image src={meta} alt="" class:list={["object-contain", bottomLogoCls(filename!)]} /> : null;
                       })}
                     </div>
                   )}
