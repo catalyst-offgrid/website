@@ -82,12 +82,12 @@ export const projects: Project[] = [
 
   // ===== Strategy & Insights =====
   {
-    slug: "geapp-powering-the-last-mile",
-    title: "Powering the Last Mile",
-    image: "powering-the-last-mile.jpg",
-    logo: "geapp-logo-white.png",
-    body: `In 2025, Catalyst led the development of <a href="https://energyalliance.org/wp-content/uploads/2025/03/Universal-Access-Coalition-for-LAC-January-2025-Report.pdf" target="_blank" rel="noopener">Powering the Last Mile</a> for GEAPP — a flagship report charting how to achieve universal energy access across Latin America and the Caribbean. Working through the region's newly formed Universal Access Coalition, Catalyst analyzed the barriers to last-mile electrification across eight focus countries and authored eight detailed country deep-dives alongside the regional report. Together they set out a coordinated, actionable path to bring modern energy to the roughly 16 million people in the region who still live without it.`,
+    slug: "geapp-lightrock-structuring-the-last-mile",
+    title: "Structuring for the Last Mile",
+    image: "structuring-the-last-mile.jpg",
+    body: `In 2026, Catalyst co-authored <a href="https://energyalliance.org/wp-content/uploads/2026/06/1.-Structuring-For-The-Last-Mile-Full-Report.pdf" target="_blank" rel="noopener">Structuring for the Last Mile</a>, a think piece on financing the next era of African electrification, with the financial and technical support of Lightrock, GEA, and the Rockefeller Foundation. The report pinpoints what's holding the next wave of electrification back — customers whose needs are structurally different, delivery too fragmented to bring down costs, and private capital mispriced because risk is misallocated — and proposes a new financing architecture to mobilize investment at the scale, and least cost, the last mile now requires.`,
     section: "strategy",
+    noBadge: true,
   },
   {
     slug: "rockefeller-green-power-gap",
@@ -112,13 +112,12 @@ export const projects: Project[] = [
     section: "strategy",
   },
   {
-    slug: "geapp-lightrock-structuring-the-last-mile",
-    title: "Structuring for the Last Mile",
-    image: "structuring-the-last-mile.jpg",
-    body: `In 2026, Catalyst co-authored <a href="https://energyalliance.org/wp-content/uploads/2026/06/1.-Structuring-For-The-Last-Mile-Full-Report.pdf" target="_blank" rel="noopener">Structuring for the Last Mile</a>, a think piece on financing the next era of African electrification, with the financial and technical support of Lightrock, GEA, and the Rockefeller Foundation. The report pinpoints what's holding the next wave of electrification back — customers whose needs are structurally different, delivery too fragmented to bring down costs, and private capital mispriced because risk is misallocated — and proposes a new financing architecture to mobilize investment at the scale, and least cost, the last mile now requires.`,
+    slug: "geapp-powering-the-last-mile",
+    title: "Powering the Last Mile",
+    image: "powering-the-last-mile.jpg",
+    logo: "geapp-logo-white.png",
+    body: `In 2025, Catalyst led the development of <a href="https://energyalliance.org/wp-content/uploads/2025/03/Universal-Access-Coalition-for-LAC-January-2025-Report.pdf" target="_blank" rel="noopener">Powering the Last Mile</a> for GEAPP — a flagship report charting how to achieve universal energy access across Latin America and the Caribbean. Working through the region's newly formed Universal Access Coalition, Catalyst analyzed the barriers to last-mile electrification across eight focus countries and authored eight detailed country deep-dives alongside the regional report. Together they set out a coordinated, actionable path to bring modern energy to the roughly 16 million people in the region who still live without it.`,
     section: "strategy",
-    display: "contain",
-    noBadge: true,
   },
   {
     slug: "p3-geapp",
