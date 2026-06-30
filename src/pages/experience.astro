@@ -21,7 +21,7 @@ const WIDE_WORDMARK_LOGOS = new Set(["geapp-logo-white.png", "lightrock-logo.png
 const isWideLogo = (filename?: string | null) => !!filename && WIDE_WORDMARK_LOGOS.has(filename);
 // Top corner logos are absolutely pinned, so width is capped to keep two side-by-side logos apart.
 const topLogoCls = (filename: string) =>
-  isWideLogo(filename) ? "max-h-7 sm:max-h-8 max-w-[38%]" : "max-h-10 sm:max-h-12 max-w-[52%]";
+  isWideLogo(filename) ? "max-h-8 sm:max-h-9 max-w-[42%]" : "max-h-10 sm:max-h-12 max-w-[52%]";
 // Bottom corner logos flow after the body text; explicit height (not max-h) avoids flex squish.
 const bottomLogoCls = (filename: string) =>
   isWideLogo(filename) ? "h-7 sm:h-8 w-auto shrink-0" : "h-10 sm:h-12 w-auto shrink-0";
