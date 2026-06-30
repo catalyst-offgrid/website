@@ -47,7 +47,7 @@ Minimal report card:
   body: `In 2026, Catalyst ... <a href="https://link-to-report.pdf" target="_blank" rel="noopener">Report Title</a> ...`,
   section: "strategy",
   noBadge: true,                        // the cover already shows the logo? hide the non-hover badge
-  cornerLogos: { topLeft: "partner-logo-white.png" },
+  cornerLogos: { topLeft: "partner-logo.png" },   // ask which version (colour/white/…) if several exist
 },
 ```
 
@@ -80,18 +80,24 @@ badge on the resting tile *and* contributor logos on hover.
 Logos cause ~all of the rework. The rules:
 
 ### 1. Right colour
-The hover overlay is **dark navy**. Logos on it must be **white / reversed** versions.
-A dark or full-colour logo disappears against navy. If you only have a colour logo,
-make a white version first (alpha-mask the artwork to solid white) and save it as a
-**new file** named `*-white.png` — don't reuse the colour one on the overlay.
+The hover overlay background is **brand-gold (amber/yellow)** —
+`rgba(251, 178, 40, 0.92)`, set on `.tile-overlay` in `src/styles/global.css`. It
+handles **full-colour logos just fine**, so **do not blanket-convert logos to white** —
+a white/reversed logo tends to wash out against the yellow. Prefer the colour (or a
+darker) version wherever it reads cleanly.
 
-The non-hover badge sits on a photo, so it usually also wants the **white** version
-(photos are dark enough). Check contrast against the actual cover.
+**If more than one version of a logo is available (colour, white, mono, …), ASK which
+one to use — don't assume.** Treat the full-colour version as the starting point for
+that conversation, not the automatic answer.
+
+The non-hover badge sits on the **cover photo**, not the yellow overlay, so judge its
+colour against that photo independently (a darker photo may justify a lighter logo).
 
 ### 2. Right format & location
 - **Corner logos (`cornerLogos`) must be raster `.png`** living in
   `src/assets/images/experience/`. They are loaded through the image pipeline; a raw
-  `.svg` here renders **0×0** (this bit us — that's why `geapp-logo-white.png` exists).
+  `.svg` here renders **0×0** (this bit us — it's why we ship a raster GEAPP PNG rather
+  than the SVG on these tiles).
 - Badge logos may be `.svg` (put them in `public/logos/`, reference by bare filename)
   or `.png` (in `src/assets/images/experience/`).
 
@@ -165,23 +171,25 @@ a specific corner, remember the badge auto-flips to the outer corner by column.
 1. `npm run build` — must pass.
 2. On `/experience`, open the report tiles (hover, or tap on mobile) and check the
    **hover overlay**:
-   - Every contributor logo is **visible** (white on navy), crisp, and **sized
-     consistently** with the same logo on other cards.
+   - Every contributor logo is **legible** against the **yellow** overlay, crisp, and
+     **sized consistently** with the same logo on other cards.
    - On multi-logo tops, the two logos **don't overlap** — check at a **narrow
      viewport (~390px)**, which is where overlap appears first.
    - Body text isn't crammed against a logo (there's a top reserve for pinned logos).
 3. The **non-hover** tile: badge in the right corner, or absent if `noBadge`.
 
-If logos render 0×0, you used an `.svg` in `cornerLogos` — convert to a trimmed white
-`.png`. If a logo looks too big/small versus its peers, fix its
-`WIDE_WORDMARK_LOGOS` membership (don't add one-off CSS).
+If logos render 0×0, you used an `.svg` in `cornerLogos` — convert to a trimmed `.png`.
+If a logo looks too big/small versus its peers, fix its `WIDE_WORDMARK_LOGOS`
+membership (don't add one-off CSS).
 
 ---
 
 ## Common mistakes (all previously hit)
 
-- ❌ SVG in `cornerLogos` → renders 0×0. ✅ Use a trimmed white PNG.
-- ❌ Colour logo on the navy overlay → invisible. ✅ White/reversed version.
+- ❌ SVG in `cornerLogos` → renders 0×0. ✅ Use a trimmed PNG.
+- ❌ Blanket-converting logos to white → they wash out on the **yellow** overlay.
+  ✅ Use the colour version unless it genuinely doesn't read; **ask** when several
+  versions exist.
 - ❌ `width` **and** `height` on `<Image>` → cover distorts/spills. ✅ `width` only.
 - ❌ Cover not 4:5 → `object-cover` crops off top/bottom logos. ✅ Pad to 4:5.
 - ❌ New wide wordmark not added to `WIDE_WORDMARK_LOGOS` → it dwarfs the others.
