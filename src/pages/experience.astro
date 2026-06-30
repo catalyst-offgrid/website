@@ -104,16 +104,15 @@ const sections = [
                 })()}
                 <div class="tile-overlay">
                   {p.cornerLogos ? (
+                    // Top logos are pinned (safe: text always starts below them).
                     ([
                       ["top-4", "left-4", p.cornerLogos.topLeft],
                       ["top-4", "right-4", p.cornerLogos.topRight],
-                      ["bottom-4", "left-4", p.cornerLogos.bottomLeft],
-                      ["bottom-4", "right-4", p.cornerLogos.bottomRight],
                     ] as const).map(([vPos, hPos, filename]) => {
                       if (!filename) return null;
                       const meta = img(filename);
                       return meta ? (
-                        <Image src={meta} alt="" class:list={["absolute z-30 max-h-9 sm:max-h-10 w-auto object-contain", vPos, hPos]} />
+                        <Image src={meta} alt="" class:list={["absolute z-30 max-h-6 sm:max-h-7 max-w-[38%] w-auto object-contain", vPos, hPos]} />
                       ) : null;
                     })
                   ) : (() => {
@@ -134,11 +133,19 @@ const sections = [
                   <div
                     class:list={[
                       "tile-body",
-                      p.cornerLogos?.topLeft || p.cornerLogos?.topRight ? "pt-10 sm:pt-12" : "",
-                      p.cornerLogos?.bottomLeft || p.cornerLogos?.bottomRight ? "pb-10 sm:pb-12" : "",
+                      p.cornerLogos?.topLeft || p.cornerLogos?.topRight ? "pt-14 sm:pt-16" : "",
                     ]}
                     set:html={p.body}
                   ></div>
+                  {p.cornerLogos && (p.cornerLogos.bottomLeft || p.cornerLogos.bottomRight) && (
+                    // Bottom logo flows after the text (not pinned) so it never overlaps long copy.
+                    <div class:list={["mt-4 flex items-center gap-3 shrink-0", p.cornerLogos.bottomRight ? "ml-auto justify-end" : "justify-start"]}>
+                      {[p.cornerLogos.bottomLeft, p.cornerLogos.bottomRight].filter(Boolean).map((filename) => {
+                        const meta = img(filename!);
+                        return meta ? <Image src={meta} alt="" class="max-h-6 sm:max-h-7 max-w-[55%] w-auto object-contain" /> : null;
+                      })}
+                    </div>
+                  )}
                 </div>
               </article>
             );
