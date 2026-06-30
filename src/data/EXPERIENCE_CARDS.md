@@ -81,17 +81,17 @@ Logos cause ~all of the rework. The rules:
 
 ### 1. Right colour
 The hover overlay background is **brand-gold (amber/yellow)** —
-`rgba(251, 178, 40, 0.92)`, set on `.tile-overlay` in `src/styles/global.css`. It
-handles **full-colour logos just fine**, so **do not blanket-convert logos to white** —
-a white/reversed logo tends to wash out against the yellow. Prefer the colour (or a
-darker) version wherever it reads cleanly.
+`rgba(251, 178, 40, 0.92)`, set on `.tile-overlay` in `src/styles/global.css`. It can
+carry **both colour and white/reversed logos**, so **don't force a single rule in either
+direction**: white is fine, colour is fine. Pick whichever version reads best for that
+specific logo against the yellow, and leave existing logos alone unless there's a reason
+to change them.
 
 **If more than one version of a logo is available (colour, white, mono, …), ASK which
-one to use — don't assume.** Treat the full-colour version as the starting point for
-that conversation, not the automatic answer.
+one to use — don't assume and don't silently convert.**
 
 The non-hover badge sits on the **cover photo**, not the yellow overlay, so judge its
-colour against that photo independently (a darker photo may justify a lighter logo).
+colour against that photo independently.
 
 ### 2. Right format & location
 - **Corner logos (`cornerLogos`) must be raster `.png`** living in
@@ -187,9 +187,9 @@ membership (don't add one-off CSS).
 ## Common mistakes (all previously hit)
 
 - ❌ SVG in `cornerLogos` → renders 0×0. ✅ Use a trimmed PNG.
-- ❌ Blanket-converting logos to white → they wash out on the **yellow** overlay.
-  ✅ Use the colour version unless it genuinely doesn't read; **ask** when several
-  versions exist.
+- ❌ Forcing every logo to one colour (all-white *or* all-colour). ✅ The **yellow**
+  overlay takes both — pick what reads best per logo, and **ask** when several versions
+  exist.
 - ❌ `width` **and** `height` on `<Image>` → cover distorts/spills. ✅ `width` only.
 - ❌ Cover not 4:5 → `object-cover` crops off top/bottom logos. ✅ Pad to 4:5.
 - ❌ New wide wordmark not added to `WIDE_WORDMARK_LOGOS` → it dwarfs the others.
