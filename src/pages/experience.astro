@@ -103,7 +103,20 @@ const sections = [
                   );
                 })()}
                 <div class="tile-overlay">
-                  {!p.noBadge && (() => {
+                  {p.cornerLogos ? (
+                    ([
+                      ["top-4", "left-4", p.cornerLogos.topLeft],
+                      ["top-4", "right-4", p.cornerLogos.topRight],
+                      ["bottom-4", "left-4", p.cornerLogos.bottomLeft],
+                      ["bottom-4", "right-4", p.cornerLogos.bottomRight],
+                    ] as const).map(([vPos, hPos, filename]) => {
+                      if (!filename) return null;
+                      const meta = img(filename);
+                      return meta ? (
+                        <Image src={meta} alt="" class:list={["absolute z-30 max-h-9 sm:max-h-10 w-auto object-contain", vPos, hPos]} />
+                      ) : null;
+                    })
+                  ) : (() => {
                     const logoList = p.logos && p.logos.length > 0 ? p.logos : (p.logo ? [p.logo] : []);
                     const isMulti = logoList.length > 1;
                     const logoCls = isMulti ? "max-h-8 w-auto object-contain" : (p.logoLarge ? "max-h-16 w-auto object-contain" : "max-h-12 w-auto object-contain");
@@ -118,7 +131,14 @@ const sections = [
                       </div>
                     );
                   })()}
-                  <div class="tile-body" set:html={p.body}></div>
+                  <div
+                    class:list={[
+                      "tile-body",
+                      p.cornerLogos?.topLeft || p.cornerLogos?.topRight ? "pt-10 sm:pt-12" : "",
+                      p.cornerLogos?.bottomLeft || p.cornerLogos?.bottomRight ? "pb-10 sm:pb-12" : "",
+                    ]}
+                    set:html={p.body}
+                  ></div>
                 </div>
               </article>
             );

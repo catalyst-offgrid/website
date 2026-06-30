@@ -14,8 +14,15 @@ export interface Project {
   section: "enterprise" | "strategy" | "innovation";
   /** "cover" (default) crops to fill; "contain" fits inside with padding for report covers. */
   display?: "cover" | "contain";
-  /** Suppress the logo/title badge entirely. */
+  /** Suppress the corner badge shown on the non-hover tile (e.g. when the cover photo already carries the logo). Does not affect the hover overlay. */
   noBadge?: boolean;
+  /** Pin up to four logos to the corners of the hover overlay, with body text reserved to fall between them. Overrides the standard single logo row. */
+  cornerLogos?: {
+    topLeft?: string;
+    topRight?: string;
+    bottomLeft?: string;
+    bottomRight?: string;
+  };
 }
 
 export const projects: Project[] = [
@@ -88,6 +95,11 @@ export const projects: Project[] = [
     body: `In 2026, Catalyst co-authored <a href="https://energyalliance.org/wp-content/uploads/2026/06/1.-Structuring-For-The-Last-Mile-Full-Report.pdf" target="_blank" rel="noopener">Structuring for the Last Mile</a>, a think piece on financing the next era of African electrification, with the financial and technical support of Lightrock, GEA, and the Rockefeller Foundation. The report pinpoints what's holding the next wave of electrification back — customers whose needs are structurally different, delivery too fragmented to bring down costs, and private capital mispriced because risk is misallocated — and proposes a new financing architecture to mobilize investment at the scale, and least cost, the last mile now requires.`,
     section: "strategy",
     noBadge: true,
+    cornerLogos: {
+      topLeft: "geapp-logo-white.png",
+      topRight: "lightrock-logo.png",
+      bottomRight: "rockefeller-logo-white.png",
+    },
   },
   {
     slug: "rockefeller-green-power-gap",
@@ -97,6 +109,7 @@ export const projects: Project[] = [
     body: `In 2024, Catalyst, in partnership with The Rockefeller Foundation, developed <a href="https://www.rockefellerfoundation.org/wp-content/uploads/2024/08/The-Green-Power-Gap-Achieving-an-Energy-Abundant-Future-for-Everyone-report-08012024.pdf" target="_blank" rel="noopener">The Green Power Gap</a> report to examine the energy shortfall across 72 developing countries and ideate innovative solutions for expanding clean energy access. The report highlights key policy and technology strategies to bypass fossil fuels, leapfrogging directly to clean energy systems that ensure sustainable growth and a resilient, energy abundant future.`,
     section: "strategy",
     noBadge: true,
+    cornerLogos: { topLeft: "rockefeller-logo-white.png" },
   },
   {
     slug: "brilho-mozambique",
@@ -127,6 +140,7 @@ export const projects: Project[] = [
     body: `In 2022, Catalyst led the development of <a href="https://energyalliance.org/wp-content/uploads/2023/01/GEAPP_P3_PDF_report_120122.pdf" target="_blank" rel="noopener">Powering People and Planet (P3)</a>, GEAPP's first annual impact report, launched at COP27. The report examines GEAPP's mission, impact methodology, and global projects, providing an evidence-based assessment of progress. It offers a candid look at impact results and issues a global call to action for expanding reliable, affordable clean energy in energy-poor countries to drive sustainable development and mitigate climate change.`,
     section: "strategy",
     noBadge: true,
+    cornerLogos: { topLeft: "geapp-logo-white.png" },
   },
   {
     slug: "shell-sdg7",
@@ -150,6 +164,7 @@ export const projects: Project[] = [
     title: "Transforming a Billion Lives",
     image: "billion-lives-backdrop.jpg",
     logo: "rockefeller-logo.png",
+    noBadge: true,
     body: `In 2021, the Rockefeller Foundation tasked Catalyst with quantifying the job creation potential associated with deploying DREs in developing countries. We developed a predictive model to forecast the full spectrum of employment\u2014from direct deployment to downstream jobs created by reliable power access. Our model and in-depth case studies provided the foundational evidence base for the Foundation's flagship report, '<a href="https://www.rockefellerfoundation.org/wp-content/uploads/2021/09/Transforming-a-Billion-Lives-The-Job-Creation-Potential-from-a-Green-Power-Transition-in-the-Energy-Poor-World.pdf" target="_blank" rel="noopener">Transforming a Billion Lives</a>,' shaping the narrative on how green energy investment drives economic growth and informs policy.`,
     section: "strategy",
   },
