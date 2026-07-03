@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { team, getInitials } from "../data/team";
+import { site } from "../data/site";
 
 const core = team.filter((m) => m.group === "core");
 const advisors = team.filter((m) => m.group === "advisor");
@@ -15,8 +16,24 @@ function headshot(file?: string) {
   const entry = Object.entries(headshots).find(([k]) => k.endsWith("/" + file));
   return entry?.[1].default ?? null;
 }
+
+// Person JSON-LD for each team member (rendered site-wide Organization schema lives in BaseLayout).
+const siteURL = (Astro.site ?? new URL(site.url)).toString().replace(/\/$/, "");
+const orgRef = { "@type": "Organization", name: site.name, url: `${siteURL}/` };
+const peopleSchema = team.map((m) => {
+  const img = headshot(m.headshot);
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: m.name,
+    jobTitle: m.role,
+    worksFor: orgRef,
+    ...(m.linkedin ? { sameAs: [m.linkedin] } : {}),
+    ...(img ? { image: new URL(img.src, siteURL).toString() } : {}),
+  };
+});
 ---
-<BaseLayout title="Team" description="Meet the Catalyst Energy Advisors team — a global group of energy access specialists with decades of experience across off-grid solar, mini-grids, and clean cooking in emerging markets.">
+<BaseLayout title="Team" description="Meet the Catalyst Energy Advisors team — a global group of energy access specialists with decades of experience across off-grid solar, mini-grids, and clean cooking in emerging markets." jsonLd={peopleSchema}>
   <section class="bg-white">
     <div class="max-w-5xl mx-auto px-6 sm:px-8 lg:px-10 pt-16 pb-6">
       <h1 class="section-heading section-heading-lg">Our Core Team</h1>

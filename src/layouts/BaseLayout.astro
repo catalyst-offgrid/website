@@ -11,13 +11,40 @@ interface Props {
   ogImage?: string;
   /** Set to true on legal/utility pages to keep them out of search engines. */
   noindex?: boolean;
+  /** Page-specific JSON-LD graph node(s), emitted after the site-wide Organization schema. */
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
-const { title, description, ogImage, noindex } = Astro.props;
+const { title, description, ogImage, noindex, jsonLd } = Astro.props;
 const pageTitle = title ? `${title} | ${site.name}` : `${site.name} | ${site.tagline}`;
 const pageDescription = description ?? site.tagline;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? site.url).toString();
 const ogImageURL = new URL(ogImage ?? "/og-image.png", Astro.site ?? site.url).toString();
+const siteURL = (Astro.site ?? new URL(site.url)).toString().replace(/\/$/, "");
+
+// Site-wide Organization schema (structured data for search engines / knowledge panels).
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": `${siteURL}/#organization`,
+  name: site.name,
+  url: `${siteURL}/`,
+  logo: `${siteURL}/icon-512.png`,
+  description:
+    "Catalyst Energy Advisors is a specialized consulting firm focused exclusively on the energy access deficit in emerging markets.",
+  email: site.contactEmail,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "1935 Addison Street, Suite A",
+    addressLocality: "Berkeley",
+    addressRegion: "CA",
+    postalCode: "94704",
+    addressCountry: "US",
+  },
+  sameAs: ["https://www.linkedin.com/company/catalystadvisors/"],
+};
+
+const schemas = [organizationSchema, ...(jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [])];
 ---
 
 <!doctype html>
@@ -52,6 +79,11 @@ const ogImageURL = new URL(ogImage ?? "/og-image.png", Astro.site ?? site.url).t
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={pageDescription} />
     <meta name="twitter:image" content={ogImageURL} />
+
+    <!-- Structured data (JSON-LD) -->
+    {schemas.map((schema) => (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    ))}
   </head>
   <body class="min-h-screen flex flex-col bg-white">
     <Header />

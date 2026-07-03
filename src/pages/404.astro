@@ -1,0 +1,58 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const quickLinks = [
+  { label: "Team", href: "/team" },
+  { label: "Experience", href: "/experience" },
+  { label: "Impact Studio", href: "/impact-studio" },
+  { label: "Contact", href: "/contact" },
+];
+---
+<BaseLayout
+  title="Page not found"
+  description="The page you were looking for could not be found."
+  noindex
+>
+  <section class="bg-white">
+    <div class="max-w-3xl mx-auto px-6 py-24 sm:py-32 text-center">
+      <p class="font-display font-bold text-brand-gold text-7xl sm:text-8xl leading-none">404</p>
+      <h1 class="mt-6 font-display font-light text-4xl sm:text-5xl text-brand-blue leading-tight">
+        This page took a wrong turn.
+      </h1>
+      <p class="mt-6 text-lg text-slate-600 leading-relaxed max-w-xl mx-auto">
+        The page you&rsquo;re looking for doesn&rsquo;t exist or may have moved.
+        Let&rsquo;s get you back on track.
+      </p>
+
+      <div class="mt-10 flex flex-wrap justify-center gap-4">
+        <a
+          href="/"
+          class="bg-brand-blue text-white font-semibold px-6 py-3 hover:bg-brand-blue-dark transition-colors inline-flex items-center gap-2"
+        >
+          Back to Home <span aria-hidden="true">&rsaquo;</span>
+        </a>
+        <a
+          href="/experience"
+          class="border-2 border-brand-blue text-brand-blue font-semibold px-6 py-3 hover:bg-brand-blue hover:text-white transition-colors inline-flex items-center gap-2"
+        >
+          Our Experience <span aria-hidden="true">&rsaquo;</span>
+        </a>
+      </div>
+
+      <nav aria-label="Helpful links" class="mt-14">
+        <p class="font-display text-xs tracking-[0.2em] uppercase text-slate-400">
+          Or try one of these
+        </p>
+        <ul class="mt-4 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm tracking-wide">
+          {quickLinks.map((l) => (
+            <li>
+              <a href={l.href} class="text-brand-blue hover:text-brand-gold transition-colors">
+                {l.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </div>
+  </section>
+</BaseLayout>
