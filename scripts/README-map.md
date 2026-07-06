@@ -49,6 +49,16 @@ WGS84. The generator excludes any polygon ring that spans the antimeridian (none
 present) and drops Antarctica automatically because the source layer is already clipped
 to ~53.5°N / 58.5°S.
 
+## Cropping / framing
+
+The generator crops to a longitude window (`CROP` in `gen-map.mjs`, currently
+`-119°..152°`) so the map is framed tightly from just west of Mexico to just past New
+Guinea. This drops ~20 scattered Pacific island nations (Fiji, Samoa, Kiribati, Cook
+Islands, …) that otherwise sat near ±180° and padded the map with empty ocean, shrinking
+the visible landmasses. None of them are intervention countries or major landmasses. To
+show more/less of the world, widen or narrow `CROP` and regenerate. The legend floats in
+the open ocean below Indonesia (positioned in `WorldMap.astro`, not baked into the data).
+
 ## Notes / future
 
 - Hover currently shows only the country name. The interactive `<path>` elements carry a

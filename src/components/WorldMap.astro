@@ -25,13 +25,14 @@ const backdrop = mapCountries.filter((c) => !c.worked);
       </g>
     </svg>
 
+    <!-- Legend floats in the open ocean below Indonesia (lower-right) -->
+    <p class="cea-map__legend">
+      <span class="cea-map__swatch" aria-hidden="true"></span>
+      Where we&rsquo;ve worked
+    </p>
+
     <div class="cea-map__tip" role="status" aria-live="polite" hidden></div>
   </div>
-
-  <figcaption class="cea-map__legend">
-    <span class="cea-map__swatch" aria-hidden="true"></span>
-    Where we&rsquo;ve worked
-  </figcaption>
 
   <!-- Screen-reader list of intervention countries -->
   <ul class="sr-only">
@@ -98,19 +99,32 @@ const backdrop = mapCountries.filter((c) => !c.worked);
   }
 
   .cea-map__legend {
-    display: flex;
+    position: absolute;
+    right: 1.5%;
+    bottom: 7%;
+    margin: 0;
+    display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    margin-top: 1rem;
-    font-size: 0.85rem;
-    color: #475569;
+    gap: 0.45rem;
+    padding: 0.28rem 0.6rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.82);
+    box-shadow: 0 1px 6px rgba(0, 46, 93, 0.12);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #334155;
+    white-space: nowrap;
+    pointer-events: none;
   }
   .cea-map__swatch {
-    width: 0.9rem;
-    height: 0.9rem;
+    width: 0.8rem;
+    height: 0.8rem;
     border-radius: 3px;
     background: var(--color-brand-gold);
     flex: none;
+  }
+  @media (max-width: 480px) {
+    .cea-map__legend { font-size: 0.72rem; padding: 0.22rem 0.5rem; }
   }
 </style>
 
