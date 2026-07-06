@@ -7,7 +7,7 @@ import { partners, innovations } from "../data/partners";
 import catalystIcon from "../assets/images/logos/catalyst-blue.png";
 import heroPoster from "../assets/images/heroes/home-hero-poster.jpg";
 import nightlights from "../assets/images/heroes/nightlights.jpg";
-import worldMap from "../assets/images/map/world-map.png";
+import WorldMap from "../components/WorldMap.astro";
 
 const partnerImages = import.meta.glob<{ default: ImageMetadata }>(
   "../assets/images/partners/*.{png,jpg,jpeg,webp}",
@@ -121,7 +121,7 @@ function partnerImg(filename: string) {
           </p>
         </div>
         <div class="relative">
-          <Image src={worldMap} alt="Map of countries where Catalyst has worked" class="w-full h-auto" width={900} height={500} />
+          <WorldMap />
         </div>
       </div>
     </div>

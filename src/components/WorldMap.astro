@@ -1,0 +1,164 @@
+---
+import { mapViewBox, mapCountries } from "../data/worldMap";
+
+const worked = mapCountries.filter((c) => c.worked);
+const backdrop = mapCountries.filter((c) => !c.worked);
+---
+<figure class="cea-map">
+  <div class="cea-map__stage">
+    <svg
+      viewBox={mapViewBox}
+      class="cea-map__svg"
+      role="img"
+      aria-label="World map highlighting the countries where Catalyst has worked"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <!-- Backdrop: displayed markets (non-interactive) -->
+      <g class="cea-map__backdrop" aria-hidden="true">
+        {backdrop.map((c) => <path d={c.d} />)}
+      </g>
+      <!-- Intervention countries: interactive -->
+      <g class="cea-map__worked">
+        {worked.map((c) => (
+          <path d={c.d} data-name={c.name} tabindex="0" role="button" aria-label={c.name} />
+        ))}
+      </g>
+    </svg>
+
+    <div class="cea-map__tip" role="status" aria-live="polite" hidden></div>
+  </div>
+
+  <figcaption class="cea-map__legend">
+    <span class="cea-map__swatch" aria-hidden="true"></span>
+    Where we&rsquo;ve worked
+  </figcaption>
+
+  <!-- Screen-reader list of intervention countries -->
+  <ul class="sr-only">
+    {worked.map((c) => <li>{c.name}</li>)}
+  </ul>
+</figure>
+
+<style>
+  .cea-map { margin: 0; }
+  .cea-map__stage { position: relative; }
+  .cea-map__svg { width: 100%; height: auto; display: block; overflow: visible; }
+
+  .cea-map__backdrop path {
+    fill: var(--color-brand-blue);
+    stroke: #ffffff;
+    stroke-width: 0.5;
+    vector-effect: non-scaling-stroke;
+    pointer-events: none;
+  }
+  .cea-map__worked path {
+    fill: var(--color-brand-gold);
+    stroke: #ffffff;
+    stroke-width: 0.6;
+    vector-effect: non-scaling-stroke;
+    cursor: pointer;
+    outline: none;
+    transition: fill 0.15s ease;
+  }
+  .cea-map__worked path:hover,
+  .cea-map__worked path:focus,
+  .cea-map__worked path.is-active {
+    fill: var(--color-brand-gold-deep);
+  }
+  .cea-map__worked path:focus-visible {
+    stroke: var(--color-brand-blue);
+    stroke-width: 1.4;
+  }
+
+  .cea-map__tip {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    transform: translate(-50%, -130%);
+    background: var(--color-brand-blue);
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    line-height: 1;
+    padding: 6px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+    pointer-events: none;
+    box-shadow: 0 8px 22px rgba(0, 46, 93, 0.25);
+  }
+  .cea-map__tip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: var(--color-brand-blue);
+  }
+
+  .cea-map__legend {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: #475569;
+  }
+  .cea-map__swatch {
+    width: 0.9rem;
+    height: 0.9rem;
+    border-radius: 3px;
+    background: var(--color-brand-gold);
+    flex: none;
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    function initCatalystMap() {
+      var stages = document.querySelectorAll(".cea-map__stage");
+      stages.forEach(function (stage) {
+        if (stage.dataset.bound === "1") return;
+        stage.dataset.bound = "1";
+        var tip = stage.querySelector(".cea-map__tip");
+        var paths = stage.querySelectorAll(".cea-map__worked path");
+
+        function show(name, clientX, clientY) {
+          var rect = stage.getBoundingClientRect();
+          tip.textContent = name;
+          tip.style.left = clientX - rect.left + "px";
+          tip.style.top = clientY - rect.top + "px";
+          tip.hidden = false;
+        }
+        function showAtNode(node) {
+          var b = node.getBoundingClientRect();
+          show(node.getAttribute("data-name"), b.left + b.width / 2, b.top + b.height / 2);
+        }
+        function hide() {
+          tip.hidden = true;
+          paths.forEach(function (p) { p.classList.remove("is-active"); });
+        }
+
+        paths.forEach(function (p) {
+          p.addEventListener("pointerenter", function (e) { show(p.getAttribute("data-name"), e.clientX, e.clientY); });
+          p.addEventListener("pointermove", function (e) { show(p.getAttribute("data-name"), e.clientX, e.clientY); });
+          p.addEventListener("pointerleave", hide);
+          p.addEventListener("focus", function () { p.classList.add("is-active"); showAtNode(p); });
+          p.addEventListener("blur", hide);
+          // Touch: tap to pin the label at the country
+          p.addEventListener("click", function () { p.classList.add("is-active"); showAtNode(p); });
+        });
+        // Tap elsewhere dismisses a pinned label on touch devices
+        document.addEventListener("pointerdown", function (e) {
+          if (!e.target.closest || !e.target.closest(".cea-map__worked path")) hide();
+        });
+      });
+    }
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initCatalystMap);
+    } else {
+      initCatalystMap();
+    }
+  })();
+</script>
