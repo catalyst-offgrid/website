@@ -57,7 +57,7 @@ export const team: TeamMember[] = [
   {
     name: "Itoro Atakpa",
     role: "Senior Associate",
-    bio: "Itoro is an interdisciplinary engineer with 7 years of experience, including as a renewable energy researcher & consultant. She has experience supporting various clients with renewable energy & e-mobility rollout in the U.S., Latin America & sub-Saharan Africa.",
+    bio: "Itoro is an interdisciplinary engineer with seven years of experience, including as a renewable energy researcher & consultant. She has experience supporting various clients with renewable energy & e-mobility rollout in the U.S., Latin America & sub-Saharan Africa.",
     headshot: "itoro-atakpa.png",
     linkedin: "https://www.linkedin.com/in/itoro-atakpa-462397123/",
     group: "core",
@@ -65,7 +65,7 @@ export const team: TeamMember[] = [
   {
     name: "Jennifer Ortiz",
     role: "Associate",
-    bio: "Jennifer is an environmental and energy engineer with over 5 years of experience in project management and education. Before joining Catalyst, she was an energy researcher at the International Energy Agency (IEA) focusing on the energy transition in emerging economies.",
+    bio: "Jennifer is an environmental and energy engineer with over five years of experience in project management and education. Before joining Catalyst, she was an energy researcher at the International Energy Agency (IEA) focusing on the energy transition in emerging economies.",
     headshot: "jennifer-ortiz.png",
     linkedin: "https://www.linkedin.com/in/jennifercortiz/",
     group: "core",
@@ -89,7 +89,7 @@ export const team: TeamMember[] = [
   {
     name: "Rachel McManus",
     role: "Senior Associate",
-    bio: "Rachel spent 7 years as a practitioner with EarthSpark International, leading its spin-off Haitian social enterprise, Enèji Pwòp. She is an operations specialist with experience developing training programs and leading business processes in the nonprofit and social entrepreneurship sector.",
+    bio: "Rachel spent seven years as a practitioner with EarthSpark International, leading its spin-off Haitian social enterprise, Enèji Pwòp. She is an operations specialist with experience developing training programs and leading business processes in the nonprofit and social entrepreneurship sector.",
     headshot: "rachel-mcmanus.png",
     linkedin: "https://www.linkedin.com/in/rachel-mcmanus-28552922/",
     group: "core",
