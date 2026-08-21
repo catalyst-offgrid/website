@@ -128,6 +128,12 @@ export const team: TeamMember[] = [
   },
 
   {
+    name: "Christian Yesashimwe",
+    role: "Affiliated Advisor",
+    bio: "Christian is an energy access researcher with eight years of experience across Africa and the United States. At UC Berkeley, he works on clean energy technologies and business models in low-resource settings. He has led energy programmes across Rwanda, the DRC, Uganda, and Zambia and contributed technical work for EDP Renewables, Grand Challenges Canada, and Siemens Stiftung.",
+    group: "advisor",
+  },
+  {
     name: "Dima Reda",
     role: "Affiliated Advisor",
     bio: "Dima has 20 years experience in natural resource management, climate change, gender, and monitoring and evaluation (M&E). She is the President and Founder of Nataij Group. Previously, she served as the Results Based Management Coordinator at the Global Environment Facility.",
@@ -143,6 +149,12 @@ export const team: TeamMember[] = [
     name: "Inka Schomer",
     role: "Affiliated Advisor",
     bio: "Inka is the director of Distill Inclusion. With a career spanning over 15 years, she specializes in helping infrastructure stakeholders think practically through their gender equality and social inclusion challenges and opportunities to ensure they are responsive to change and well-positioned for business opportunities.",
+    group: "advisor",
+  },
+  {
+    name: "Marta Cenzato",
+    role: "Affiliated Advisor",
+    bio: "Marta brings expertise in business analytics and techno-economic modelling across various energy-related sectors. As a Business Evaluations Analyst at SEA Milan Airports, she supported investment decision-making through economic modelling. Her experience includes consulting at BIP, co-founding a waste-to-hydrogen venture, and analysing off-grid energy performance for a remote island in the Philippines.",
     group: "advisor",
   },
   {
