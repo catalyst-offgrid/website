@@ -130,7 +130,7 @@ export const team: TeamMember[] = [
   {
     name: "Christian Yesashimwe",
     role: "Affiliated Advisor",
-    bio: "Christian is an energy access researcher with eight years of experience across Africa and the United States. At UC Berkeley, he works on clean energy technologies and business models in low-resource settings. He has led energy programmes across Rwanda, the DRC, Uganda, and Zambia and contributed technical work for EDP Renewables, Grand Challenges Canada, and Siemens Stiftung.",
+    bio: "Christian is an energy access researcher with eight years of experience in Africa and the US. At UC Berkeley, he researches clean energy technologies and business models for low-resource settings. He has led energy programs in East Africa and provided technical expertise to EDP, Grand Challenges Canada, and Siemens Stiftung.",
     group: "advisor",
   },
   {
@@ -154,7 +154,7 @@ export const team: TeamMember[] = [
   {
     name: "Marta Cenzato",
     role: "Affiliated Advisor",
-    bio: "Marta brings expertise in business analytics and techno-economic modelling across various energy-related sectors. As a Business Evaluations Analyst at SEA Milan Airports, she supported investment decision-making through economic modelling. Her experience includes consulting at BIP, co-founding a waste-to-hydrogen venture, and analysing off-grid energy performance for a remote island in the Philippines.",
+    bio: "Marta brings expertise in business analytics and techno-economic modeling across energy sectors. As an Analyst at SEA Milan Airports, she supported investment decisions through economic modeling. Her experience includes consulting at BIP, co-founding a waste-to-hydrogen venture, and analyzing off-grid energy in the Philippines.",
     group: "advisor",
   },
   {
