@@ -154,7 +154,7 @@ export const team: TeamMember[] = [
   {
     name: "Jamie Yang",
     role: "Affiliated Advisor",
-    bio: "Jamie is an energy access entrepreneur and engineer with 15+ years of experience bringing clean infrastructure to off-grid communities. He founded EGG-energy in Tanzania, scaling it to 1,000+ installations, and led early-stage energy access investing at Facebook. At Ukama, a connectivity startup, he has worn many hats, from power engineer to finance.",
+    bio: "Jamie is an energy access entrepreneur and engineer with 15+ years bringing clean infrastructure to off-grid communities. He founded EGG-energy in Tanzania, scaling it to 1,000+ installations. At Facebook, he funded early-stage energy access technology, and now works at a connectivity startup.",
     group: "advisor",
   },
   {
