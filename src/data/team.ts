@@ -152,6 +152,12 @@ export const team: TeamMember[] = [
     group: "advisor",
   },
   {
+    name: "Jamie Yang",
+    role: "Affiliated Advisor",
+    bio: "Jamie is an energy access entrepreneur and engineer with 15+ years of experience bringing clean infrastructure to off-grid communities. He founded EGG-energy in Tanzania, scaling it to 1,000+ installations, and led early-stage energy access investing at Facebook. At Ukama, a connectivity startup, he has worn many hats, from power engineer to finance.",
+    group: "advisor",
+  },
+  {
     name: "Marta Cenzato",
     role: "Affiliated Advisor",
     bio: "Marta brings expertise in business analytics and techno-economic modeling across energy sectors. As an Analyst at SEA Milan Airports, she supported investment decisions through economic modeling. Her experience includes consulting at BIP and co-founding a waste-to-hydrogen venture.",
